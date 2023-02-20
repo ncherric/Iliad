@@ -1,0 +1,8 @@
+channel_priority: strict
+
+channels:
+  - bioconda
+  - conda-forge
+
+dependencies:
+  - multiqc

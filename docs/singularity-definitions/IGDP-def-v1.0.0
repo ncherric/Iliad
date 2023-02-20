@@ -1,0 +1,91 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+%environment
+    PATH=$PATH:/usr/bin:/usr/bin/bcftools-1.14/bin/:/usr/bin/samtools-1.15/bin/:/usr/bin/miniconda3/bin:$PATH
+
+    export PATH
+    export BCFTOOLS_PLUGINS=/usr/bin/bcftools-1.14/plugins/
+
+%post
+    apt-get -y update
+    apt -y update
+
+    apt install software-properties-common -y
+
+    # Install bwa
+    apt-get install -y wget \
+    bwa \
+    curl \
+    git \
+    tar \
+    build-essential \
+    zlib1g-dev \
+    libbz2-dev \
+    liblzma-dev \
+    libncurses5-dev \
+    unzip
+
+    # build-essential for bcftools1.14
+    # zlib1g-dev for bcftools1.14
+    # libbz2-dev for bcftools1.14
+    # liblzma-dev for bcftools1.14
+    # libncurses5-dev for samtools1.14
+    # unzip for illumina product files
+    # https://www.devmanuals.net/install/ubuntu/ubuntu-20-04-focal-fossa/installing-bwa-on-ubuntu20-04.html
+
+    mkdir -p /usr/share/man/man1/
+    apt-get install -y openjdk-8-jdk
+    apt-get install -y openjdk-8-jre
+    update-alternatives --config java
+    update-alternatives --config javac
+
+    wget -P /usr/bin/ https://github.com/broadinstitute/picard/releases/download/2.27.2/picard.jar
+
+    wget -P /usr/bin/ https://sourceforge.net/projects/samtools/files/samtools/1.14/bcftools-1.14.tar.bz2
+    cd /usr/bin/
+    tar xvfj /usr/bin/bcftools-1.14.tar.bz2
+    cd /usr/bin/bcftools-1.14/
+    ./configure --prefix=/usr/bin/bcftools-1.14
+    make
+    make install
+    export PATH="/usr/bin/bcftools-1.14/bin:$PATH"
+    rm /usr/bin/bcftools-1.14.tar.bz2
+
+    # install samtools for test
+    wget -P /usr/bin/ https://sourceforge.net/projects/samtools/files/samtools/1.15/samtools-1.15.tar.bz2
+    cd /usr/bin/
+    tar xvfj /usr/bin/samtools-1.15.tar.bz2
+    cd /usr/bin/samtools-1.15/
+    ./configure --prefix=/usr/bin/samtools-1.15
+    make
+    make install
+    export PATH="/usr/bin/samtools-1.15/bin:$PATH"
+    rm /usr/bin/samtools-1.15.tar.bz2
+
+    wget -P /usr/bin/bcftools-1.14/plugins/ https://software.broadinstitute.org/software/gtc2vcf/gtc2vcf_1.14-20220112.zip
+    cd /usr/bin/bcftools-1.14/plugins/
+    unzip gtc2vcf_1.14-20220112.zip
+
+    # Install miniconda 
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    /usr/bin/sh Miniconda3-latest-Linux-x86_64.sh -b -f -p /usr/bin/miniconda3/
+    rm Miniconda3-latest-Linux-x86_64.sh
+
+    #. /usr/bin/miniconda3/etc/profile.d/conda.sh
+    export PATH=/usr/bin/miniconda3/bin:$PATH
+
+    #/usr/bin/sh Anaconda3-2020.02-Linux-x86_64.sh -bfp /usr/local
+    
+    #Conda configuration of channels from .condarc file
+    conda config --file /.condarc --add channels defaults
+    conda config --file /.condarc --add channels conda-forge
+    conda update conda
+    #List installed environments
+    conda list
+    conda install mamba -n base -c conda-forge
+
+%labels
+    Author noahherrick1@gmail.com
+    Version 1.0.0
+    Pipeline Iliad-Genomic-Data-Pipeline

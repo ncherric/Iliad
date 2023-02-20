@@ -1,0 +1,11 @@
+channel_priority: strict
+
+channels:
+  - conda-forge
+  - bioconda
+  - r
+
+dependencies:
+  - python=3.8.10
+  - python-wget
+  - pysam

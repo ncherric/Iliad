@@ -1,0 +1,1 @@
+# Place vcf_Lift-and-Merge data files here. Each genetic data file must be either a (.vcf) or (vcf.gz) where each (vcf.gz) must have a corresponding vcf.gz.tbi (or vcf.gz.csi) index file #

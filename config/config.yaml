@@ -1,0 +1,290 @@
+# The following configuration file holds very important variables that will help operate I L I A D. 
+# There are many provided download links that I L I A D will automatically download when you, the user, invoke it. 
+# All of these come with no warranties. Needless to say, but links tend to break over time! 
+# We will do our best to keep them up-to-date.
+# Feel free to replace any links with your own preferences of files. 
+# Again, this comes with no warranties.
+
+# __Author__ = Noah Herrick
+# __Email__ = noahherrick1@gmail.com
+# __Software__ = Iliad: Suite of Snakemake Genomic Data Processing Workflows
+# __License__ = MIT License
+# __copyright__ = Copyright 2023, Noah Herrick
+# __Year__ = 2023
+# __Version__ = 1.0.0
+
+#####################################
+#####################################
+#####################################
+
+#  #  # USER INPUT VARIABLES  #  #  #
+
+#####################################
+#####################################
+#####################################
+
+# You must insert your /PATH/TO/Iliad/
+# use 'pwd' command to find your current working directory when you are inside of Iliad directory
+# e.g. /user/name/projects/Iliad/ <---- must include forward slash at the end of working directory path
+
+# must include forward slash, '/', at the end of working directory path
+workdirPath: NEED PATH HERE
+
+
+
+##############################################################################################
+### --- Default tables and samples for Raw Sequence (FASTQ) and Stored Sequence (CRAM) --- ###
+# ------------------------------------------------------------------------------------------ #
+
+# for downloading FastQ raw seq data make sure there is an Excel table or csv document with two columns and no header: Sample_Name,FTP_url
+# e.g KPGP-00127,ftp://ftp.kobic.re.kr/pub/KPGP/2020_release_candidate/WGS_SR/KPGP-00127/KPGP-00127_L1_R1.fq.gz
+samplesDict: config/UserSampleTable.xlsx
+# must include list of samples in one column with "sample" header, no matter if you use the download feature or if you re-direct ILIAD to FASTQ data path
+samples: config/samples.tsv
+
+# Same setup as above for if you are retrieving CRAM files from an FTP server
+cramSamplesDict: config/cramSampleTable.xlsx
+cramSamples: config/cramSamples.tsv
+
+###########################################################
+### --- Default GENOME REFERENCE ASSEMBLY retrieval --- ###
+# ------------------------------------------------------- #
+
+# If you want to automatically download reference genome assembly, configure below AutoRetrieveReference as 'true' - otherwise leave blank! 
+AutoRetrieveReference: true # default is true
+# If you already have specific reference genome assembly, configure below IhaveReference as 'true', 
+# place into your ./Iliad/resources/ directory, 
+# and configure filename below
+# - otherwise leave blank! 
+IhaveReference: # default is blank
+
+# If you have your own reference file to use, state the filePath 
+# - DO NOT REMOVE "resources/".
+# It MUST be in the your "./Iliad/resources/" directory like so ./Iliad/resources/FILENAME
+reference: 
+  filePath: resources/GRCh38_full_analysis_set_plus_decoy_hla.fa # This is a popular example that you might already have filed away
+
+############################################################
+### --- Default VARIANT CALLING options via BCFtools --- ###
+# -------------------------------------------------------- #
+
+# BCFtools manual LINK: https://samtools.github.io/bcftools/bcftools.html
+# BCFtools cheat sheet LINK: https://gist.github.com/elowy01/93922762e131d7abd3c7e8e166a74a0b
+
+VariantCalling:
+  # # See BCFtools manual for adding additional options, e.g. for base alignment quality "-B". Just add options within bounds of quotations
+  mpileup:
+    options: "-d 8000 -B" # default is → -d 8000 -B
+  call:
+    options: "-m -A" # default is → -m -A
+
+# Normalize and Left-align - configure below Normalize as 'true' - otherwise leave blank!
+Normalize: true
+
+# # See BCFtools manual for adding additional options. Just add options within bounds of quotations.
+# Current options in effect when "Normalize: true" are "norm -f {reference}"
+# you can add other flags using the 'options: "[add more options here]"' below
+Norm:
+  options: ""  # default is blank
+
+# DO NOT Normalize and Left-align - configure below doNotNormalize as 'true' - otherwise leave blank!
+doNotNormalize: # default is blank - benchmarked as true
+
+################################################
+### --- Lift and Merge Submodule Options --- ###
+# -------------------------------------------- #
+
+# place the appropriate BASE of each filename under the file header "baseFileName_VCF"
+# i.e. if FILENAME.vcf, then the BASE is "FILENAME".
+# These can be either compressed (.vcf.gz and .vcf.gz.[tbi/csi]) or uncompressed (.vcf).
+# a compressed file will need the associated index file in the directory, too.
+vcfs: config/mergeTheseVCFs.txt
+
+LiftoverTF: true # default is true
+
+# update your genomic positions to Homo sapiens GRCh38 reference assembly - configure below Version38 as 'true' - otherwise mark 'false'!
+Version38: true # default is true
+# update your genomic positions to Homo sapiens GRCh37 reference assembly - configure above Version38 as 'false'
+
+dbsnpLiftMerge:
+
+  desiredVersion: GRCh38
+  projectName: Demo
+
+  #----------- 37 -------------
+  dbsnp37VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz
+  dbsnp37TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
+  file37: All_20180423.vcf.gz
+  #----------- 38 -------------
+  dbsnp38VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
+  dbsnp38TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
+  file38: All_20180418.vcf.gz
+
+genomeReference:
+  #----------- 37 -------------
+  37Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37
+  file37: human_g1k_v37.fasta
+  #----------- 38 -------------
+  38Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
+  file38: GRCh38_full_analysis_set_plus_decoy_hla.fa
+  index38: GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
+
+#############################################
+### --- dbSNP annotation file options --- ###
+# ----------------------------------------- #
+
+# used in Raw Sequence Module, Stored Sequence Module, SNP Array Module
+# the uncommented configuration options will be used for these modules.
+# switch the commented/uncommented three configuration lines if you would like to switch versions.
+# you may also update the FTP links if you would like a different dbSNP annotation file - but of course that comes with no warranties
+
+dbSNP:
+  # FTP site: https://ftp.ncbi.nih.gov/snp/
+  # dbsnp all file
+  # Check to see if you are using correct assembly with your project
+  #----------- 37 -------------
+  # dbsnpVcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz
+  # dbsnpTbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
+  # file: All_20180423.vcf.gz
+  #----------- 38 -------------
+  dbsnpVcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
+  dbsnpTbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
+  file: All_20180418.vcf.gz
+
+#####################################
+#####################################
+#####################################
+
+#   #   # DEFAULT VARIABLES #   #   #
+
+#####################################
+#####################################
+#####################################
+
+# used in Raw Sequence Module, Stored Sequence Module, and SNP Array Module
+# Reference Genome Assembly
+ref:
+  # ensembl species name
+  species: homo_sapiens
+  # ensembl release
+  release: 104
+  # genome build
+  build: GRCh38
+
+# used in Raw Sequence Module and Stored Sequence Module
+# Annotation files for variant calling
+NYGC:
+  # FTP Site: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/
+  # annotations files are in GRCh38 assembly
+  nygcUrlPath: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/annotated/
+  nygcFileStart: CCDG_13607_B01_GRM_WGS_2019-02-19_chr
+  nygcFileEnd: .recalibrated_variants.annotated.txt
+  numberOfSplitRegionsFiles: 5
+
+###################################
+### --- RAW SEQUENCE MODULE --- ###
+# ------------------------------- #
+
+# used to shorten the downloaded directories so file is directly placed in correct folder - will need to edit based on your FTP download path
+url:
+  cutdirs: 5
+
+######################################
+### --- STORED SEQUENCE MODULE --- ###
+# ---------------------------------- #
+
+# used to shorten the downloaded directories so file is directly placed in correct folder - will need to edit based on your FTP download path
+cramUrl:
+  cutdirs: 5
+
+################################
+### --- SNP ARRAY MODULE --- ###
+# ---------------------------- #
+
+urlProductFiles:
+  # product files LINK
+  # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-product-files.html
+  # manifest file LINK: update to 37 or 38, make sure its BPM file
+
+  #----------- 37 -------------
+  #manifest: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-bpm.zip
+  #mzip: infinium-multi-ethnic-global-8-d1-bpm.zip
+  #filename: Multi-EthnicGlobal_D1.bpm # for expanding function later
+  ##build: D1 # for expanding function later
+
+  #----------- 38 -------------
+  ## LINK: ftp://ussd-ftp.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38
+  manifest:  https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38/multi-ethnic-global-8-d2-bpm.zip
+  mzip: multi-ethnic-global-8-d2-bpm.zip
+  #filename: Multi-EthnicGlobal_D2.bpm # for expanding function later
+  ##build: D2  # for expanding function later
+
+  # cluster file LINK
+  cluster: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-cluster-file.zip
+  czip: infinium-multi-ethnic-global-8-d1-cluster-file.zip
+
+urlSupportFiles:
+  # support files LINK
+
+  # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-support-files.html
+
+  #----------- 37 ------------- uncomment 37 section below if you need to use GRCh37 assembly
+
+  # # physical and genetic coordinates for 37
+  #physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d1-physical-genetic-coordinates.zip
+  #pzip: multi-ethnic-global-8-d1-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D1.csv_Physical-and-Genetic-Coordinates.txt
+
+  #----------- 38 ------------- comment block 38 section below if you need to use GRCh37 assembly
+
+  # physical and genetic coordinates for 38
+  physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-physical-genetic-coordinates.zip
+  pzip: multi-ethnic-global-8-d2-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D2.csv_Physical-and-Genetic-Coordinates.txt
+
+  # rsids conversion file - Loci Name to rsID
+  rsidConversion: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-b150-rsids.zip
+  rzip: multi-ethnic-global-8-d2-b150-rsids.zip
+  rfile: Multi-EthnicGlobal_D2_b150_rsids.txt
+
+Illumina:
+  # iaap-cli exe path
+  ftpDownload: ftp://webdata2:webdata2@ussd-ftp.illumina.com/downloads/software/iaap/iaap-cli-linux-x64-1.1.0.tar.gz
+  DownloadTarFile: iaap-cli-linux-x64-1.1.0.tar.gz
+  Download: iaap-cli-linux-x64-1.1.0
+  iaapcli: iaap-cli
+  #iaapcli: /N/project/WalshWGS/IliadGenomicDataPipeline/Iliad/target_workflow/illumina_gencall/AutoConvert2.0/AutoConvert
+
+################################
+### --- SNP ARRAY MODULE --- ###
+### - QC VALUE THRESHOLDS -  ###
+# ---------------------------- #
+
+QCarray:
+    GenTrainUpperThreshold: 0.7
+    GenTrainLowerThreshold: 0.67
+    ClusterSepUpperThreshold: 0.45
+    ClusterSepLowerThreshold: 0.4
+
+
+#####################################
+#####################################
+#####################################
+
+#  #  #  S U B M O D U L E S  #  #  #
+
+#####################################
+#####################################
+#####################################
+
+# The major submodule named - Lift-and-Merge - can be found above near line 91.
+# There are many configurations, checks, and automatic steps that may help users with little experience.
+# These more independent and small task workflows below may come in handy for some quick data maneuvers.
+
+MergerSub:
+
+LiftoverSub:
+  # either point to file in config directory or enter 1 filename for file needing converted
+  # Indicate which reference assembly you desire to switch your positions
+  filename: Tatte-Demo
+  desiredVersion: GRCh38 # switch to GRCh37 if you need to revert from 38 to 37
+
+MergeTargetAndRef:

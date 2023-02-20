@@ -1,0 +1,40 @@
+##### Environment Dependencies #####
+
+singularity: "library://ncherric/iliad/igdp-container:latest"
+include: "rules/common.smk"
+
+LiftoverTF=config["LiftoverTF"]
+Version38=config["Version38"]
+
+
+##### Target rules #####
+
+rule all:
+	input:
+		expand("data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi", project=config["dbsnpLiftMerge"]["projectName"], refAssemblyVersion=config["dbsnpLiftMerge"]["desiredVersion"]),
+
+##### Modules #####
+
+if LiftoverTF is True:
+	print("LiftoverTF was True, performing Liftover")
+
+	if Version38 is True:
+		print("Version38 was True, lifting to 38") # 37 -> 38
+
+		include: "rules/lift_and_merge-0_dbsnps.smk"
+		include: "rules/lift_and_merge-0_referenceGenomes.smk"
+		include: "rules/lift_and_merge-1_prepare_37_to_38_VCFs.smk"
+		include: "rules/lift_and_merge-2A_37_to_38_VCF-IDs.smk"
+		include: "rules/lift_and_merge-2B_37_to_38_VCF-if38VCF-IDs.smk"
+		include: "rules/lift_and_merge-3A_37_to_38_cleanIDs-Fixref.smk"
+		include: "rules/lift_and_merge-3B_37_to_38_VCF-if38VCF-cleanIDs-Fixref.smk"
+		include: "rules/lift_and_merge-3C_37_to_38_dbSNP-IDs.smk"
+		include: "rules/lift_and_merge-4A_37_to_38-Lift-to-38.smk"
+		include: "rules/lift_and_merge-5_37_to_38_MergeVCFs.smk"
+
+	if Version38 is False:
+		print("Version38 was False, lifting to 37") # 38 -> 37
+
+if LiftoverTF is False:
+	print("No liftover to be done")
+

@@ -1,0 +1,15 @@
+##### Environment Dependencies #####
+
+# singularity: "library://ncherric/iliad/igdp-container:latest"
+include: "rules/common.smk"
+
+##### Target rules #####
+
+rule all:
+	input:
+		expand("data/liftover/{version}/liftedOver.{name}.vcf", name=NAMES, version=config['Liftover']['desiredVersion'])
+
+##### Modules #####
+
+include: "rules/dbsnpsSeq.smk"
+include: "rules/liftoverTo38.smk"

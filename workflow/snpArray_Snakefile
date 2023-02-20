@@ -1,0 +1,21 @@
+##### Environment Dependencies #####
+
+singularity: "library://ncherric/iliad/igdp-container:latest"
+
+##### Target rules #####
+
+rule all:
+	input:
+		"data/snp_array/vcf/5-passing-QC-rsids.vcf.gz.tbi",
+		"data/snp_array/qc/all-qc-scores-scatterplot.png",
+
+##### Modules #####
+
+include: "rules/common.smk"
+include: "rules/idat2gtc.smk"
+include: "rules/ref.smk"
+include: "rules/gtc2vcf.smk"
+include: "rules/arrayVCF.smk"
+include: "rules/qcArrayVCF.smk"
+include: "rules/dbsnps.smk"
+

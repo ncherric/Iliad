@@ -1,0 +1,8 @@
+channel_priority: strict
+
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - bcftools=1.14

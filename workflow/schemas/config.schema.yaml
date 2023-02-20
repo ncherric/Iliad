@@ -1,0 +1,51 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  samples:
+    type: string
+  units:
+    type: string
+
+  ref:
+    type: object
+    properties:
+      species:
+        type: string
+      build:
+        type: string
+      release:
+        type: integer
+    required:
+      - species
+      - build
+      - release
+
+  url:
+    type: object
+    properties:
+      cutdirs:
+        type: integer
+
+  snpArraySamples:
+    type: string
+
+  urlProductFiles:
+    type: object
+    properties:
+      path:
+        type: string
+      manifest:
+        type: string
+      mzip:
+        type: string
+      cluster:
+        type: string
+      czip:
+        type: string
+
+required:
+  - ref

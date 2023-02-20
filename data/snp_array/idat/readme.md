@@ -1,0 +1,1 @@
+# place idat files in this directory

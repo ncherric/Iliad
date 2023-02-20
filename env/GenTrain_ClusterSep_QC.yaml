@@ -1,0 +1,10 @@
+channel_priority: strict
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.8.10
+  - numpy
+  - matplotlib
+  - pandas

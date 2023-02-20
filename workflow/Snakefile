@@ -1,0 +1,31 @@
+singularity: "library://ncherric/iliad/igdp-container:latest"
+
+include: "rules/common.smk"
+splits=config['NYGC']['numberOfSplitRegionsFiles']
+
+##### Target rules #####
+rule all:
+	input: 
+		expand("results/vcf/Merged-chr{chroms}-allSamples-with-rsIDs.vcf.gz.tbi", chroms=CHROMS),
+		expand("results/vcf/{sample}/chrStrCheck/alignmentFileHeader.out", sample=samples["sample"]),
+
+##### Modules #####
+
+
+include: "rules/fq.smk"
+
+include: "rules/fastQC.smk"
+
+include: "rules/concatRawReads.smk"
+
+include: "rules/ref.smk"
+
+include: "rules/mapping.smk"
+
+include: "rules/nygcAnnotations-bam.smk"
+
+include: "rules/variantCalling.smk"
+
+include: "rules/dbsnpAnnotation.smk"
+
+include: "rules/dbsnpsSeq.smk"

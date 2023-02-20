@@ -1,0 +1,45 @@
+singularity: "library://ncherric/iliad/igdp-container"
+
+include: "rules/common.smk"
+
+##### Target rules #####
+rule all:
+	input:
+		expand("results/vcf/Merged-chr{chroms}-allSamples-with-rsIDs.vcf.gz.tbi", chroms=CHROMS),
+		"data/snp_array/vcf/5-passing-QC-rsids.vcf",
+		"data/snp_array/qc/all-qc-scores-scatterplot.png",
+		"data/target_ref_merge/MERGED-TARGET-REFERENCE.vcf.gz.tbi",
+
+##### Modules #####
+
+include: "rules/fq.smk"
+
+include: "rules/fastQC.smk"
+
+include: "rules/concatRawReads.smk"
+
+include: "rules/ref.smk"
+
+include: "rules/mapping.smk"
+
+include: "rules/nygcAnnotations-bam.smk"
+
+include: "rules/variantCalling.smk"
+
+include: "rules/dbsnpAnnotation.smk"
+
+include: "rules/dbsnps.smk"
+
+include: "rules/common.smk"
+
+include: "rules/idat2gtc.smk"
+
+include: "rules/ref.smk"
+
+include: "rules/gtc2vcf.smk"
+
+include: "rules/arrayVCF.smk"
+
+include: "rules/qcArrayVCF.smk"
+
+include: "rules/merge_target_ref.smk"

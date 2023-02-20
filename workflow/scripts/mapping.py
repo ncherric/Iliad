@@ -1,0 +1,81 @@
+from os import path
+import re
+import tempfile
+from snakemake.shell import shell
+
+
+# Extract arguments.
+extra = snakemake.params.get("extra", "")
+
+sort = snakemake.params.get("sorting", "none")
+sort_order = snakemake.params.get("sort_order", "coordinate")
+sort_extra = snakemake.params.get("sort_extra", "")
+
+reference = snakemake.input.ref
+if isinstance(reference, str):
+	reference = path.splitext(snakemake.input.ref)[0]
+else:
+	reference = path.splitext(snakemake.input.ref[0])[0]
+
+
+if re.search(r"-T\b", sort_extra) or re.search(r"--TMP_DIR\b", sort_extra):
+	sys.exit(
+		"You have specified temp dir (`-T` or `--TMP_DIR`) in params.sort_extra; this is automatically set from params.tmp_dir."
+	)
+
+log = snakemake.log_fmt_shell(stdout=False, stderr=True)
+
+
+# Check inputs/arguments.
+if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not in {
+	1,
+	2,
+}:
+	raise ValueError("input must have 1 (single-end) or " "2 (paired-end) elements")
+
+# if sort_order not in {"coordinate", "queryname"}:
+#     raise ValueError("Unexpected value for sort_order ({})".format(sort_order))
+
+# # Determine which pipe command to use for converting to bam or sorting.
+# if sort == "none":
+
+#     # Simply convert to bam using samtools view.
+#     pipe_cmd = "samtools view -Sbh -o {snakemake.output[0]} -"
+
+# elif sort == "samtools":
+
+#     # Add name flag if needed.
+#     if sort_order == "queryname":
+#         sort_extra += " -n"
+
+#     # Sort alignments using samtools sort.
+#     pipe_cmd = "samtools sort -T {tmp} {sort_extra} -o {snakemake.output[0]} -"
+
+# elif sort == "picard":
+
+	# Sort alignments using picard SortSam.
+pipe_cmd = (
+	"java -jar /usr/bin/picard.jar SortSam {sort_extra} --INPUT /dev/stdin"
+	" --OUTPUT {snakemake.output[0]} --SORT_ORDER {sort_order} --TMP_DIR {tmp}"
+)
+
+# index_cmd = (
+#     "java -jar /usr/bin/picard.jar BuildBamIndex --INPUT {snakemake.output[0]}"
+# )
+
+# else:
+#     raise ValueError("Unexpected value for params.sort ({})".format(sort))
+
+with tempfile.TemporaryDirectory() as tmp:
+	shell(
+		"(bwa mem"
+		" -t {snakemake.threads}"
+		" {extra}"
+		" {reference}"
+		" {snakemake.input.reads}"
+		" | " + pipe_cmd + ") {log}"
+	)
+
+shell(
+	"java -jar /usr/bin/picard.jar BuildBamIndex --INPUT {snakemake.output.sortedBam} --OUTPUT {snakemake.output.bamIndex}"
+)
