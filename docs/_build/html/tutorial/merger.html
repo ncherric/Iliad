@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge VCF Data &mdash; Iliad 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Merge Reference and Target Data" href="merge_ref_target.html" />
+    <link rel="prev" title="Lift Over Variants - 37 / 38" href="liftover.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/ILIAD-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/platform_preparation.html">Platform Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/demo.html">DEMO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/config.html">Configuration File</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="raw_sequence.html">Iliad Raw Sequence - Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stored_sequence.html">Iliad Stored Sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snp_array.html">Iliad SNP Array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Submodules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="liftover.html">Lift Over Variants - 37 / 38</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Merge VCF Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tl-dr-setup">TL;DR setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#information">Information</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#in-depth-setup">In-depth Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="merge_ref_target.html">Merge Reference and Target Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/more_resources.html">More Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/contributing.html#types-of-contributions">Types of Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Iliad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Merge VCF Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial/merger.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="merge-vcf-data">
+<span id="tutorial-merger"></span><h1>Merge VCF Data<a class="headerlink" href="#merge-vcf-data" title="Permalink to this heading"></a></h1>
+<section id="tl-dr-setup">
+<h2>TL;DR setup<a class="headerlink" href="#tl-dr-setup" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p><strong>SKIP STEP 2</strong> <a class="reference external" href="https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html">Installation</a> of Iliad. Singularity is not needed.</p>
+<p><strong>Please make sure that your conda environment for Iliad is activated</strong> - <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">iliadEnv</span></code> or <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">activate</span> <span class="pre">iliadEnv</span></code></p>
+<p><strong>Modify the configuration file</strong> <code class="docutils literal notranslate"><span class="pre">workdirPath</span></code> parameter to the appropriate path leading up to and including <code class="docutils literal notranslate"><span class="pre">/Iliad</span></code> and a final forward slash e.g. <code class="docutils literal notranslate"><span class="pre">/Path/To/Iliad/</span></code>.
+The configuration file is found in <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#####################################</span><span class="w"></span>
+<span class="c1">#####################################</span><span class="w"></span>
+<span class="c1">#####################################</span><span class="w"></span>
+
+<span class="c1">#  #  # USER INPUT VARIABLES  #  #  #</span><span class="w"></span>
+
+<span class="c1">#####################################</span><span class="w"></span>
+<span class="c1">#####################################</span><span class="w"></span>
+<span class="c1">#####################################</span><span class="w"></span>
+
+<span class="c1"># You must insert your /PATH/TO/Iliad/</span><span class="w"></span>
+<span class="c1"># use &#39;pwd&#39; command to find your current working directory when you are inside of Iliad directory</span><span class="w"></span>
+<span class="c1"># e.g. /path/to/Iliad/ &lt;---- must include forward slash at the end of working directory path</span><span class="w"></span>
+
+<span class="c1"># must include forward slash, &#39;/&#39;, at the end of working directory path</span><span class="w"></span>
+<span class="nt">workdirPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Insert/path/to/Iliad/</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You might consider changing some other parameters to your project needs that are pre-set and include:</p>
+<ul class="simple">
+<li><p>Merger submodule variables</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">MergerSubmodule</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">ProjectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NEED MERGER PROJECT NAME HERE</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Place your data into the <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/</span></code> directory.</p>
+<p>Since this module is NOT the main snakefile, Snakemake will NOT automatically detect it without the <code class="docutils literal notranslate"><span class="pre">--snakefile</span></code> flag.
+(Please make sure that your conda environment for Iliad is activated - <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">iliadEnv</span></code> or <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">activate</span> <span class="pre">iliadEnv</span></code>)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake --snakefile workflow/mergerSub_Snakefile --cores <span class="m">1</span>
+</pre></div>
+</div>
+<p>and combined with other user-specified snakemake flags such as <code class="docutils literal notranslate"><span class="pre">--cores</span></code>.</p>
+<p>If you plan to use on a local machine or self-built server without a job scheduler the default command to run is the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake -p --use-conda --snakefile workflow/mergerSub_Snakefile --cores <span class="m">1</span> --jobs <span class="m">1</span> --default-resource<span class="o">=</span><span class="nv">mem_mb</span><span class="o">=</span><span class="m">10000</span> --latency-wait <span class="m">120</span>
+</pre></div>
+</div>
+<p>However, there is a file included in the <code class="docutils literal notranslate"><span class="pre">Iliad</span></code> directory named - <code class="docutils literal notranslate"><span class="pre">mergerSub-snakemake.sh</span></code> that will be useful in batch job submission.
+Below is an example snakemake workflow submission in SLURM job scheduler.
+Please read the shell variables at the top of the script and customize to your own paths and resource needs.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch mergerSub-snakemake.sh
+</pre></div>
+</div>
+<p>If you would like more in-depth information and descriptions, please continue to the next sections below.
+Otherwise, you have completed the TL;DR setup section.</p>
+</section>
+<section id="information">
+<h2>Information<a class="headerlink" href="#information" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>This tutorial introduces the basic Bcftools merge <cite>submodule</cite> of the <a class="reference external" href="https://iliad-readthedocs.readthedocs.io/en/latest/index.html">Iliad</a> workflow developed using Snakemake workflow language.
+Please visit <a class="reference external" href="https://snakemake.readthedocs.io">Snakemake</a> for specific details. They also provide informational <a class="reference external" href="https://slides.com/johanneskoester/snakemake-tutorial">slides</a>. In general, though, each module is composed of rules. These rules define how output files are generated from input files while
+automatically determining dependencies amongst the rules. A <code class="docutils literal notranslate"><span class="pre">DAG</span></code> (directed acyclic graph) of jobs will be built each time to account for all of the samples and jobs
+that will executed either via job scheduler or local cores and will execute in parallel if multiple jobs are declared.
+Because of the Snakemake workflow system design, the <strong>Iliad</strong> workflow is scalable from single core machines to HPC clusters with job schedulers.</p>
+<p>The <strong>Merger submodule</strong> is designed to simplify merging VCF where conda environments are created on the fly that contain BCFtools (v1.14) and there is no need for Singlurity.
+We ensured no bioinformatics knowledge is needed to run this module with the help of internal test runs on MacOS, Windows, and HPC
+as well as external test runs performed on Google Cloud Platform (<a class="reference external" href="https://cloud.google.com/">GCP</a>).</p>
+<p><strong>Merger Submodule Rulegraph</strong></p>
+<img alt="../_images/mergerSub-rulegraph.png" class="align-center" src="../_images/mergerSub-rulegraph.png" />
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h2>
+<p>Genetics research continues at an unprecedented speed and collaborations or newly published open-source datasets may introduce the need merge data.
+To make a comprehensive genomic pipeline, we wanted to provide the means necessary for researchers to easily combine datasets.
+Sometimes you just need to switch the position sites in your VCF files so you can properly merge your data with others, and you may want to visit our <a class="reference external" href="https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/liftover.html">liftover</a>
+submodule if you think the data you would like to combine has different reference assembly positions.
+Pull requests and collobarations are welcomed.</p>
+</section>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this heading"></a></h2>
+<p>This is a minor submodule in terms of being lightweight and does not require many of the components that some of the other modules do.
+This module does not require Singularity.</p>
+<p>If you have multiple independent VCF files and need the means to combine them, this module is for you.</p>
+<p>The indicated sample list in the file <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/vcf-list.txt</span></code> will be automatically read by BCFtools when running the appropriate Snakefile described here.
+Your <code class="docutils literal notranslate"><span class="pre">vcf</span></code> will have to be annotated and have correct rsID tags.
+<em>We are currently working to add more submodule features for independent VCF annotation without requiring the use of the main modules.</em></p>
+<p>Default workflow configurations can be found in your path to the configuration file: <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>.</p>
+<p>By adding a project name in the configuration file, differnt merge instances will be contained in the specified project name directory automatically created.</p>
+<section id="in-depth-setup">
+<h3>In-depth Setup<a class="headerlink" href="#in-depth-setup" title="Permalink to this heading"></a></h3>
+<p>For this module, you can <strong>SKIP STEP 2</strong> <a class="reference external" href="https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html">Installation</a> of Iliad.
+You will find your new working directory within the <code class="docutils literal notranslate"><span class="pre">path/to/project-workdir/Iliad/</span></code> folder.
+Make sure your current working directory is in this cloned repo as stated in the installation.
+ALSO, be sure your <code class="docutils literal notranslate"><span class="pre">workdirPath:</span> <span class="pre">/path/to/project-workdir/Iliad/</span></code> in the <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code> is set accordingly and with a forward slash <code class="docutils literal notranslate"><span class="pre">/</span></code> at the end.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> Iliad
+</pre></div>
+</div>
+<p>In that working directory you will find there are a number of directories with files and code to run each of the module pipelines.</p>
+<p><strong>FIRST</strong>, there is a <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/</span></code> directory with a <code class="docutils literal notranslate"><span class="pre">readme.md</span></code> file. You must place your sample list in the <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/vcf-list.txt</span></code> file in the <code class="docutils literal notranslate"><span class="pre">data/vcf_merge/</span></code> folder.
+This list should contain the full path to your <code class="docutils literal notranslate"><span class="pre">.vcf.gz</span></code> files that you would like to merge - one file per line.
+Place your data into the <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/</span></code> directory for simplicity - but by providing full paths in the <code class="docutils literal notranslate"><span class="pre">vcf-list.txt</span></code> to data that is accessible in your system,</p>
+<blockquote>
+<div><p>you don’t have to necessarily migrate your data. There will be an auto generated directory with <code class="docutils literal notranslate"><span class="pre">/Iliad/data/vcf_merge/</span></code> for your specifically configured project name</p>
+</div></blockquote>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">vcf-list.txt</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>/Path/To/File1.vcf.gz</p></td>
+</tr>
+<tr class="row-even"><td><p>/Path/To/File2.vcf.gz</p></td>
+</tr>
+<tr class="row-odd"><td><p>/Path/To/File3.vcf.gz</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>SECOND</strong>, there is a configuration file with some default parameters, however, you MUST at least change the <code class="docutils literal notranslate"><span class="pre">workdirPath</span></code> parameter to the appropriate
+path leading up to and including <code class="docutils literal notranslate"><span class="pre">/Iliad/</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">/path/to/project-workdir/Iliad/</span></code>. The configuration file is found in <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workdirPath</span><span class="p">:</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">directory</span><span class="o">/</span><span class="n">Iliad</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Some other parameters that are pre-set and you might consider changing to your project needs include:</p>
+<ul class="simple">
+<li><p>Merge project configuration information</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">MergerSubmodule</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">ProjectName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NEED MERGER PROJECT NAME HERE</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>THIRD</strong>,
+each module pipeline has a specific <code class="docutils literal notranslate"><span class="pre">Snakefile</span></code>.
+Snakemake will automatically detect the main snakefile, which is named excatly as such and found in the <code class="docutils literal notranslate"><span class="pre">workflow</span></code> directory: <code class="docutils literal notranslate"><span class="pre">workflow/Snakefile</span></code>.
+Iliad reserves the main snakefile for the main module, specifically the raw sequence read data <a class="reference external" href="https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/raw_sequence.html">module</a>.
+This means the user must specify which <code class="docutils literal notranslate"><span class="pre">Snakefile</span></code> will be invoked with</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake --snakefile workflow/mergerSub_Snakefile
+</pre></div>
+</div>
+<p>and combined with other user-specified snakemake flags, of course, like <code class="docutils literal notranslate"><span class="pre">--cores</span></code>.</p>
+<p>Users must invoke this snakefile e.g. <code class="docutils literal notranslate"><span class="pre">workflow/mergerSub_Snakefile</span></code> to perform the desired VCF data merge for this <strong>MERGER SUBMODULE</strong>.</p>
+<p>If you plan to use on a local machine or self-built server without a job scheduler the default command to run is the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake -p --use-conda --cores <span class="m">1</span> --jobs <span class="m">1</span> --snakefile workflow/mergerSub_Snakefile --default-resource<span class="o">=</span><span class="nv">mem_mb</span><span class="o">=</span><span class="m">10000</span> --latency-wait <span class="m">120</span>
+</pre></div>
+</div>
+<p>However, there is a file included in the <code class="docutils literal notranslate"><span class="pre">Iliad</span></code> directory named - <code class="docutils literal notranslate"><span class="pre">mergerSub-snakemake.sh</span></code> that will be useful in batch job submission.
+Below is an example snakemake workflow submission in SLURM job scheduler.
+Please read the shell variables at the top of the script and customize to your own paths and resource needs.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch mergerSub-snakemake.sh
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="liftover.html" class="btn btn-neutral float-left" title="Lift Over Variants - 37 / 38" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="merge_ref_target.html" class="btn btn-neutral float-right" title="Merge Reference and Target Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2023, Noah Herrick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

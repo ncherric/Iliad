@@ -45,21 +45,33 @@
               <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/platform_preparation.html">Platform Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/demo.html">DEMO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/config.html">Configuration File</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">How-To Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/raw_sequence.html">Iliad Raw Sequence - Main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/raw_sequence.html">Iliad Raw Sequence - Main Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/stored_sequence.html">Iliad Stored Sequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/snp_array.html">Iliad SNP Array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Submodules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/liftover.html">Lift Over Variants - 37 / 38</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/merger.html">Merge VCF Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/merge_ref_target.html">Merge Reference and Target Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/liftover.html">Liftover</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="more_resources.html">More Resources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-provide-pre-existing-file-such-as-a-sorted-bam-that-i-already-have-and-want-to-perform-variant-calling-on-it">How do I provide pre-existing file, such as a sorted BAM that I already have and want to perform variant calling on it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-variant-calling-stage-i-receive-the-error-e-faidx-adjust-position-the-sequence-7-was-not-found">In variant calling stage, I receive the error: <code class="docutils literal notranslate"><span class="pre">[E::</span> <span class="pre">faidx_adjust_position]</span> <span class="pre">The</span> <span class="pre">sequence</span> <span class="pre">&quot;7&quot;</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">found.</span></code>?</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -90,7 +102,26 @@
            <div itemprop="articleBody">
              
   <section id="frequently-asked-questions">
-<span id="projectinfo"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading"></a></h1>
+<span id="projectinfo-faq"></span><h1><a class="toc-backref" href="#id1">Frequently Asked Questions</a><a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading"></a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#frequently-asked-questions" id="id1">Frequently Asked Questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-do-i-provide-pre-existing-file-such-as-a-sorted-bam-that-i-already-have-and-want-to-perform-variant-calling-on-it" id="id2">How do I provide pre-existing file, such as a sorted BAM that I already have and want to perform variant calling on it?</a></p></li>
+<li><p><a class="reference internal" href="#in-variant-calling-stage-i-receive-the-error-e-faidx-adjust-position-the-sequence-7-was-not-found" id="id3">In variant calling stage, I receive the error: <code class="docutils literal notranslate"><span class="pre">[E::</span> <span class="pre">faidx_adjust_position]</span> <span class="pre">The</span> <span class="pre">sequence</span> <span class="pre">&quot;7&quot;</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">found.</span></code>?</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="how-do-i-provide-pre-existing-file-such-as-a-sorted-bam-that-i-already-have-and-want-to-perform-variant-calling-on-it">
+<h2><a class="toc-backref" href="#id2">How do I provide pre-existing file, such as a sorted BAM that I already have and want to perform variant calling on it?</a><a class="headerlink" href="#how-do-i-provide-pre-existing-file-such-as-a-sorted-bam-that-i-already-have-and-want-to-perform-variant-calling-on-it" title="Permalink to this heading"></a></h2>
+<p>Use the appropriate Snakemake flags. In this case, if you move the sorted BAM file to <code class="docutils literal notranslate"><span class="pre">./Iliad/results/sortedBam/</span></code> directory, then you must add <code class="docutils literal notranslate"><span class="pre">--ignore-incomplete</span></code> as long as you are certain the file is complete, there is an associated index file tagging along with it, and you are aware of the risks of running that flag.</p>
+</section>
+<section id="in-variant-calling-stage-i-receive-the-error-e-faidx-adjust-position-the-sequence-7-was-not-found">
+<h2><a class="toc-backref" href="#id3">In variant calling stage, I receive the error: <code class="docutils literal notranslate"><span class="pre">[E::</span> <span class="pre">faidx_adjust_position]</span> <span class="pre">The</span> <span class="pre">sequence</span> <span class="pre">&quot;7&quot;</span> <span class="pre">was</span> <span class="pre">not</span> <span class="pre">found.</span></code>?</a><a class="headerlink" href="#in-variant-calling-stage-i-receive-the-error-e-faidx-adjust-position-the-sequence-7-was-not-found" title="Permalink to this heading"></a></h2>
+<p>Every once in a while, the conditional rules may fail. We believe this is a timing issue, but the quick fix is to let the jobs that are already running complete. Snakemake handles errors but shutting down after all currently running jobs complete. Start the run again but add the <code class="docutils literal notranslate"><span class="pre">--rerun-incomplete</span></code> flag.</p>
+</section>
 </section>
 
 
@@ -104,7 +135,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2022, Noah Herrick.</p>
+    <p>&#169; Copyright 2023-2023, Noah Herrick.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

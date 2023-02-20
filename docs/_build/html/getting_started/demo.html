@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEMO &mdash; Iliad 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/custom.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration File" href="config.html" />
+    <link rel="prev" title="Platform Preparation" href="platform_preparation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/ILIAD-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="platform_preparation.html">Platform Preparation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DEMO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cloning-the-github-repo">Cloning the GitHub Repo</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-snakedeploy-from-snakemake-workflow-catalog">Using Snakedeploy from snakemake workflow catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration File</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-To Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/raw_sequence.html">Iliad Raw Sequence - Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/stored_sequence.html">Iliad Stored Sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/snp_array.html">Iliad SNP Array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Submodules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/liftover.html">Lift Over Variants - 37 / 38</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/merger.html">Merge VCF Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/merge_ref_target.html">Merge Reference and Target Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/more_resources.html">More Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/contributing.html#types-of-contributions">Types of Contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/credits.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../projectinfo/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Iliad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DEMO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/demo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="demo">
+<span id="getting-started-demo"></span><h1>DEMO<a class="headerlink" href="#demo" title="Permalink to this heading"></a></h1>
+<hr class="docutils" />
+<p>The purpose of the DEMO is to take you step-by-step in retrieving the <em>Iliad</em> suite of workflows and running the Main Module using tutorial data.</p>
+<section id="cloning-the-github-repo">
+<h2>Cloning the GitHub Repo<a class="headerlink" href="#cloning-the-github-repo" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Step 1. Open up your web browser and follow this <a class="reference external" href="https://github.com/ncherric/Iliad">link</a> to <em>Iliad</em> GitHub repository. You can read the README for general info and copy the HTTPS link. Here is the <a class="reference external" href="https://www.github.com/ncherric/Iliad.git">HTTPS link</a>  to save you some web browsing.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step1.png"><img alt="../_images/Git-step1.png" class="align-center" src="../_images/Git-step1.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 2. run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://www.github.com/ncherric/Iliad.git</span></code> in order to retrieve the workflows and configuration files.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step2.png"><img alt="../_images/Git-step2.png" class="align-center" src="../_images/Git-step2.png" style="width: 400px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 3. Now make sure you are in the right environment. If you see <code class="docutils literal notranslate"><span class="pre">(base)</span> <span class="pre">Iliad</span> <span class="pre">$</span></code> you are not in the right environment. Create the mamba or conda environment using either mamba or conda. We use mamba here because it is an updated python package manager version of conda, but conda should work interchangeably and we have tested this.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step3.png"><img alt="../_images/Git-step3.png" class="align-center" src="../_images/Git-step3.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 4.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step4.png"><img alt="../_images/Git-step4.png" class="align-center" src="../_images/Git-step4.png" style="width: 400px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 5.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step5.png"><img alt="../_images/Git-step5.png" class="align-center" src="../_images/Git-step5.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 6.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step6.png"><img alt="../_images/Git-step6.png" class="align-center" src="../_images/Git-step6.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 7.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step7A.png"><img alt="../_images/Git-step7A.png" class="align-center" src="../_images/Git-step7A.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>The table will have two columns - Column 1 you input the sample ID. It is ok to have multiple repeating Sample IDs for paired-end reads and multiplexed data. Here is the tutorial file already setup: <code class="docutils literal notranslate"><span class="pre">./Iliad/config/UserSampleTable.xlsx</span></code></p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step7B.png"><img alt="../_images/Git-step7B.png" class="align-center" src="../_images/Git-step7B.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 8.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step8A.png"><img alt="../_images/Git-step8A.png" class="align-center" src="../_images/Git-step8A.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>It also requires you put each sample ID in a list into a text file <code class="docutils literal notranslate"><span class="pre">./Iliad/config/samples.tsv</span></code>. One sample per line. DO NOT repeat sample IDs here.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step8B.png"><img alt="../_images/Git-step8B.png" class="align-center" src="../_images/Git-step8B.png" style="width: 400px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 9. Run a dry run (-n) and print statements (p) -&gt; so <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">-np</span></code>. In some cases you may need to add other flags like <code class="docutils literal notranslate"><span class="pre">--rerun-incomplete</span></code> or <code class="docutils literal notranslate"><span class="pre">ignore-incomplete</span></code> or <code class="docutils literal notranslate"><span class="pre">rerun-triggers</span> <span class="pre">mtime</span></code>. See the <a class="reference external" href="https://snakemake.readthedocs.io">Snakemake</a> documentation for appropriate usage.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step9A.png"><img alt="../_images/Git-step9A.png" class="align-center" src="../_images/Git-step9A.png" style="width: 400px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>Below is the stdout from running  <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">-np</span></code>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step9B.png"><img alt="../_images/Git-step9B.png" class="align-center" src="../_images/Git-step9B.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 10.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step10.png"><img alt="../_images/Git-step10.png" class="align-center" src="../_images/Git-step10.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><p>Step 11. In summary, these paired-end reads were downloaded from the open source ftp site by providing the link in this <code class="docutils literal notranslate"><span class="pre">UserSampleTable.xlsx</span></code>. This will be the input to <em>Iliad</em>. You will have to edit this file with links to automatically download the data for your needs. For this tutorial, keep the file as is.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step11A.png"><img alt="../_images/Git-step11A.png" class="align-center" src="../_images/Git-step11A.png" style="width: 400px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>This is the output from <em>Iliad</em>. I use the <code class="docutils literal notranslate"><span class="pre">tree</span></code> command here just to demonstrate the file structures of the output. It will be output in <code class="docutils literal notranslate"><span class="pre">./Iliad/results/</span></code> directory. There you will find directories created for specific stages of output - FASTQ, sorted BAM, and VCF.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/Git-step11B.png"><img alt="../_images/Git-step11B.png" class="align-center" src="../_images/Git-step11B.png" style="width: 800px;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="using-snakedeploy-from-snakemake-workflow-catalog">
+<h2>Using Snakedeploy from snakemake workflow catalog<a class="headerlink" href="#using-snakedeploy-from-snakemake-workflow-catalog" title="Permalink to this heading"></a></h2>
+<p><strong>! Under Construction !</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="platform_preparation.html" class="btn btn-neutral float-left" title="Platform Preparation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="config.html" class="btn btn-neutral float-right" title="Configuration File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2023, Noah Herrick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
