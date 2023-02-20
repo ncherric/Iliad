@@ -54,8 +54,6 @@ What Iliad will do:
 
 * **Deliver the GWAS data** you need for your analyses as optimized VCF output
 
-.. _main-getting-started:
-
 ## Getting started
 
 * Please read our paper for a full understanding of how Iliad can best serve you and your genetic data processing road blocks: 
