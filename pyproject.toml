@@ -1,0 +1,11 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+  "setuptools>=42",
+  'tomli; python_version < "3.8"',
+]
+
+[project]
+name = "ILIAD"
+authors = [{name = "Noah Herrick", email = "noahherrick1@gmail"}]
+dynamic = ["version", "description"]
