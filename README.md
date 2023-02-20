@@ -2,7 +2,7 @@
   <content>
 
 <p align="left">
-  <img width="496"  src="docs/source/static/ILIAD-logo.png" alt="Iliad logo">
+  <img width="496"  src="docs/readme-img/ILIAD-logo.png" alt="Iliad logo">
 </p>
 
 
@@ -13,7 +13,7 @@
 
 # Snakemake workflow: Iliad Genomic Data Pipeline
 <p align="center">
-  <img src="https://github.com/ncherric/Iliad/blob/main/docs/source/static/Iliad-Figure1-forReadTheDocs.png?raw=true">
+  <img src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure1-forReadTheDocs.png?raw=true">
 </p>
 
 
