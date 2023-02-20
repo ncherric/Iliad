@@ -1,0 +1,5 @@
+.. _projectinfo:
+
+============
+Contributing
+============

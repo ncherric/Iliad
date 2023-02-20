@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basics &mdash; Iliad 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sphinx-argparse.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/custom.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html">
+            <img src="../../_static/ILIAD-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Iliad SNP Array Tutorial</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Iliad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Basics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorial/save-these-for-possible-layout-change/basics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basics">
+<h1>Basics<a class="headerlink" href="#basics" title="Permalink to this heading"></a></h1>
+<p>The raw files from an Illumina sequencer are bead array files found in raw intensity data <code class="docutils literal notranslate"><span class="pre">.idat</span></code> format.
+These <code class="docutils literal notranslate"><span class="pre">.idat</span></code> files are to be converted into Genotype Call <code class="docutils literal notranslate"><span class="pre">.gtc</span></code> files using <a class="reference external" href="https://support.illumina.com/downloads/iaap-genotyping-cli.html">iaap-cli</a> software. This software does have an
+end-user license agreement (<a class="reference external" href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/iaap/Illumina%20Array%20Analysis%20Platform%20IAAP%201.1%20EULA.pdf">EULA</a>) and is not included or distributed by Iliad. If the user chooses to configure a download of the
+program, it will be downloaded, independent from the Iliad repository distribution.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.gtc</span></code> files are converted to a <code class="docutils literal notranslate"><span class="pre">.vcf</span></code> using <a class="reference external" href="https://samtools.github.io/bcftools/bcftools.html">bcftools</a> plug-in <a class="reference external" href="https://github.com/freeseek/gtc2vcf">gtc2vcf</a>.
+This requires a reference genome assembly and Iliad downloads the user-configured reference genome fasta files.
+Iliad is configured to download <em>Homo sapiens</em> GRCh38 release 104 as default.</p>
+<p>Processing the <code class="docutils literal notranslate"><span class="pre">.vcf</span></code> is critical for realistic genetic data compatibility.
+Custom python scripts are called in rules to rename unconventional loci names to standardized <code class="docutils literal notranslate"><span class="pre">rs</span> <span class="pre">IDs</span></code> using dbSNP files.
+The default configuration file is set to download human_9606_b151_GRCh38p7 <code class="docutils literal notranslate"><span class="pre">All_20180418.vcf.gz</span></code>.</p>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">vcf</span></code> is processed, quality controls are performed based on the GenTrain and ClusterSep scores.
+Default thresholds, along with other default workflow configurations, can be found in your path to the configuration file: <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2022, Noah Herrick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
