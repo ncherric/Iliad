@@ -5,13 +5,13 @@ Merge VCF Data
 ==============================
 
 .. hyperlinks
-.. _Iliad: https://iliad-readthedocs.readthedocs.io/en/latest/index.html
+.. _Iliad: https://iliad.readthedocs.io/en/latest/index.html
 .. _Snakemake: https://snakemake.readthedocs.io
 .. _GCP: https://cloud.google.com/
-.. _installation: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html
+.. _installation: https://iliad.readthedocs.io/en/latest/getting_started/installation.html
 .. _slides: https://slides.com/johanneskoester/snakemake-tutorial
-.. _liftover: https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/liftover.html
-.. _module: https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/raw_sequence.html
+.. _liftover: https://iliad.readthedocs.io/en/latest/tutorial/liftover.html
+.. _module: https://iliad.readthedocs.io/en/latest/tutorial/raw_sequence.html
 
 
 TL;DR setup

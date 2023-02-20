@@ -5,7 +5,7 @@ Iliad SNP Array
 ===============
 ##########################
 .. hyperlinks
-.. _Iliad: https://iliad-readthedocs.readthedocs.io/en/latest/index.html
+.. _Iliad: https://iliad.readthedocs.io/en/latest/index.html
 .. _Snakemake: https://snakemake.readthedocs.io
 .. _Illumina: https://support.illumina.com/
 .. _MEGA: https://support.illumina.com/array/array_kits/infinium-multi-ethnic-global-8-kit.html
@@ -14,8 +14,8 @@ Iliad SNP Array
 .. _EULA: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/iaap/Illumina%20Array%20Analysis%20Platform%20IAAP%201.1%20EULA.pdf
 .. _gtc2vcf: https://github.com/freeseek/gtc2vcf
 .. _bcftools: https://samtools.github.io/bcftools/bcftools.html
-.. _installation: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html
-.. _module: https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/raw_sequence.html
+.. _installation: https://iliad.readthedocs.io/en/latest/getting_started/installation.html
+.. _module: https://iliad.readthedocs.io/en/latest/tutorial/raw_sequence.html
 .. _slides: https://slides.com/johanneskoester/snakemake-tutorial
 
 

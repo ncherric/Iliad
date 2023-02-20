@@ -5,14 +5,14 @@ Iliad Stored Sequence
 =====================
 ##########################
 .. hyperlinks
-.. _Iliad: https://iliad-readthedocs.readthedocs.io/en/latest/index.html
+.. _Iliad: https://iliad.readthedocs.io/en/latest/index.html
 .. _Snakemake: https://snakemake.readthedocs.io
 .. _data: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/
 .. _Odyssey: https://doi.org/10.1186/s12859-019-2964-5
 .. _GCP: https://cloud.google.com/
 .. _Bcftools: https://samtools.github.io/bcftools/bcftools.html
-.. _installation: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html
-.. _module: https://iliad-readthedocs.readthedocs.io/en/latest/tutorial/raw_sequence.html
+.. _installation: https://iliad.readthedocs.io/en/latest/getting_started/installation.html
+.. _module: https://iliad.readthedocs.io/en/latest/tutorial/raw_sequence.html
 .. _protocol: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/1000G_README_2019April10_NYGCjointcalls.pdf
 .. _chr22: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/annotated/CCDG_13607_B01_GRM_WGS_2019-02-19_chr22.recalibrated_variants.annotated.txt
 .. _vcf: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/
