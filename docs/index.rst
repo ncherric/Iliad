@@ -2,7 +2,7 @@
 
 .. _manual-main:
 
-.. _installation: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/installation.html
+.. _installation: https://iliad.readthedocs.io/en/latest/getting_started/installation.html
 
 ===========================
 ILIAD Genomic Data Pipeline
@@ -49,7 +49,7 @@ What Iliad will do:
 Getting started
 ---------------
 
-* Please read our paper for a full understanding of how Iliad can best serve you and your genetic data processing road blocks `replace with paper link here <https://github.com/ncherric/Iliad-ReadtheDocs>`_.
+* Please read our paper for a full understanding of how Iliad can best serve you and your genetic data processing road blocks `replace with paper link here <https://github.com/ncherric/Iliad>`_.
 
 * Quickly learn how to install Iliad - visit the Installation_ page
 

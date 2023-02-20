@@ -64,7 +64,7 @@ master_doc = "index"
 # General information about the project.
 project = "Iliad"
 date = datetime.now()
-copyright = "2022-{year}, Noah Herrick".format(year=date.timetuple()[0])
+copyright = "2023-{year}, Noah Herrick".format(year=date.timetuple()[0])
 
 
 # List of patterns, relative to source directory, that match files and

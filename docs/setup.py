@@ -22,9 +22,9 @@ setup(
     long_description_content_type="text/markdown",
     zip_safe=False,
     license="MIT",
-    url="https://iliad-readthedocs.readthedocs.io",
+    url="https://iliad.readthedocs.io",
     project_urls={
-        "Source": "https://github.com/iliad-readthedocs",
+        "Source": "https://github.com/iliad",
     },
     entry_points={
     },
