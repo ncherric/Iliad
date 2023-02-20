@@ -8,15 +8,6 @@
 ILIAD Genomic Data Pipeline
 ===========================
 
-.. image:: https://img.shields.io/badge/snakemake-≥6.3.0-green.svg
-    :target: https://snakemake.github.io
-
-.. image:: https://img.shields.io/badge/python-≥3.8.0-brightgreen.svg
-    :target: https://python.org
-
-.. image:: https://img.shields.io/badge/Singularity-≥3.6.4-blue.svg
-    :target: https://docs.sylabs.io/guides/3.6/user-guide/introduction.html
-
 Iliad is a multi-functional **genomic data processing pipeline** implemented via the **Snakemake** workflow management system, Singularity or Docker container, 
 and a handful of Conda environments.
 Instances of any Singularity or Docker containers and Conda environments are automatically pulled down and 
@@ -62,21 +53,6 @@ Getting started
       *  Stored Sequence Read Data (.cram)
 
       *  SNP Array Data (.idat)
-
-  * Submodules
-
-      *  Lift Over Variants
-
-         *  i.e. converting GRCh37 human reference assembly genomic positions to GRCh38
-
-      *  Merge VCF Data
-
-         *  i.e. combining independent datasets
-
-         *  Also includes the option to lift over all datasets to desired human reference - GRCh37 or 38 - and then merge the datasets
-
-      *  Merge Target and Reference Data
-    .. make each of these into a link
 
 
 **Iliad Workflow Schematic**
