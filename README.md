@@ -13,7 +13,7 @@
 
 # Snakemake workflow: Iliad Genomic Data Pipeline
 <p align="center">
-  <img src="https://github.com/ncherric/Iliad/blob/main/docs/source/static/Figure1-ReadMe.png?raw=true">
+  <img src="https://github.com/ncherric/Iliad/blob/main/docs/source/static/Iliad-Figure1-forReadTheDocs.png?raw=true">
 </p>
 
 
