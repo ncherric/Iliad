@@ -67,5 +67,5 @@ What Iliad will do:
 
 * Quickly learn how to install Iliad - visit the Installation page at  https://iliad.readthedocs.io/
 
-* Start processing your data right away by following one of the `HOW-TO GUIDES` on Iliad modules or `Submodules`
+* Start processing your data right away by following one of the `HOW-TO GUIDES` on Iliad modules or Submodules
 
