@@ -19,7 +19,7 @@
 # you want one process that can use 16 cores for multithreading: --ntasks=1 --cpus-per-task=16
 # REPLACE [Working Iliad Directory] with /PATH/TO/Iliad/
 sbcmd="sbatch --ntasks=1 --cpus-per-task={threads} --mem={resources.mem_mb}"
-sbcmd+=" --time=1-12:0:0 --output=[Working Iliad Directory]/logs/{rule}.{wildcards}.o"
+sbcmd+=" --time={resources.runtime} --output=[Working Iliad Directory]/logs/{rule}.{wildcards}.o"
 sbcmd+=" --error=[Working Iliad Directory]/logs/{rule}.{wildcards}.e"
 sbcmd+=" --mail-user= --mail-type=ALL,TIME_LIMIT"
 
