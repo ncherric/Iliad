@@ -11,12 +11,14 @@
 [![Singularity](https://img.shields.io/badge/Singularity-≥3.6.4-blue.svg)](https://docs.sylabs.io/guides/3.6/user-guide/introduction.html)
 ---------
 
-# Iliad's Main modules and their workflows
+# Iliad's workflows
+
+## Main Modules
 <p align="center">
   <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure1-forReadTheDocs.png?raw=true">
 </p>
 
-# Iliad's Main modules and their workflows
+## The most comprehensive Submodule
 <p align="center">
   <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure2-forReadTheDocs.png?raw=true">
 </p>
