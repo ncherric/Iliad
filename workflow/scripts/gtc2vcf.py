@@ -14,11 +14,11 @@ extra_normalize = snakemake.params.get("extra_normalize", "")
 vcfDir = snakemake.params.get("vcfDir", "")
 
 reference = snakemake.input.fasta
-if isinstance(reference, str):
-	reference = path.splitext(snakemake.input.fasta)[0]
-else:
-	reference = path.splitext(snakemake.input.fasta[0])[0]
-
+# comment block below if you have to add specific path to referene in cram_variantCalling.smk file
+# if isinstance(reference, str):
+# 	reference = path.splitext(snakemake.input.ref)[0]
+# else:
+# 	reference = path.splitext(snakemake.input.ref[0])[0]
 
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 

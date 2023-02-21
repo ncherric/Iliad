@@ -4,7 +4,7 @@ rule gtc2vcf:
 		bpm="illumina/product_files/Multi-EthnicGlobal_D2.bpm",
 		egt="illumina/product_files/Multi-EthnicGlobal_D1_ClusterFile.egt",
 		gtc="data/snp_array/gtc/",
-		fasta=rules.bwa_index.output,
+		fasta=which_ref,
 	output:
 		vcf="data/snp_array/vcf/1-vcf-from-gtc.vcf.gz",
 	params:

@@ -180,9 +180,10 @@ def get_NormTrueFalse(wildcards):
 def get_NormLeftAlign(wildcards):
 	input_list = []
 	if config["Normalize"]:
-		  input_list.append(config["Norm"]["options"])
+		if config["Norm"]["options"] is not None:
+			input_list.append(config["Norm"]["options"])
 	if config["doNotNormalize"]:
-		  input_list.append("")
+		input_list.append("")
 	return input_list
 
 def get_split_filepath(wildcards):
