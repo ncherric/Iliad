@@ -20,7 +20,7 @@
 # REPLACE [Working Iliad Directory] with /PATH/TO/Iliad/
 sbcmd="sbatch --ntasks=1 --cpus-per-task={threads} --mem={resources.mem_mb}"
 sbcmd+=" --time=1-12:0:0 --output=[Working Iliad Directory]/logs/{rule}.{wildcards}.o"
-sbcmd+=" --error=[Working Iliad Directory]/Iliad/logs/{rule}.{wildcards}.e"
+sbcmd+=" --error=[Working Iliad Directory]/logs/{rule}.{wildcards}.e"
 sbcmd+=" --mail-user= --mail-type=ALL,TIME_LIMIT"
 
 snakemake -p --use-singularity --use-conda --cores 8 --jobs 8 --default-resource=mem_mb=10000 --cluster "$sbcmd" --latency-wait 60
