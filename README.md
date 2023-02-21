@@ -18,7 +18,7 @@
   <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure1-forReadTheDocs.png?raw=true">
 </p>
 
-## The most comprehensive Submodule
+## A comprehensive Submodule
 <p align="center">
   <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure2-forReadTheDocs.png?raw=true">
 </p>
