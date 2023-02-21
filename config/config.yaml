@@ -259,10 +259,10 @@ Illumina:
 # ---------------------------- #
 
 QCarray:
-    GenTrainUpperThreshold: 0.7
-    GenTrainLowerThreshold: 0.67
-    ClusterSepUpperThreshold: 0.45
-    ClusterSepLowerThreshold: 0.4
+  GenTrainUpperThreshold: 0.7
+  GenTrainLowerThreshold: 0.67
+  ClusterSepUpperThreshold: 0.45
+  ClusterSepLowerThreshold: 0.4
 
 
 #####################################
