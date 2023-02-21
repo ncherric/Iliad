@@ -78,7 +78,7 @@ The most important variables that a user can defined are also stated within each
     # - DO NOT REMOVE "resources/".
     # It MUST be in the your "./Iliad/resources/" directory like so ./Iliad/resources/FILENAME
     reference: 
-    filePath: resources/GRCh38_full_analysis_set_plus_decoy_hla.fa # This is a popular example that you might already have filed away
+      filePath: resources/GRCh38_full_analysis_set_plus_decoy_hla.fa # This is a popular example that you might already have filed away
 
     ############################################################
     ### --- Default VARIANT CALLING options via BCFtools --- ###
@@ -89,9 +89,9 @@ The most important variables that a user can defined are also stated within each
 
     VariantCalling:
     # # See BCFtools manual for adding additional options, e.g. for base alignment quality "-B". Just add options within bounds of quotations
-    mpileup:
+      mpileup:
         options: "-d 8000 -B" # default is → -d 8000 -B
-    call:
+      call:
         options: "-m -A" # default is → -m -A
 
     # Normalize and Left-align - configure below Normalize as 'true' - otherwise leave blank!
@@ -101,7 +101,7 @@ The most important variables that a user can defined are also stated within each
     # Current options in effect when "Normalize: true" are "norm -f {reference}"
     # you can add other flags using the 'options: "[add more options here]"' below
     Norm:
-    options: ""  # default is blank
+      options: ""  # default is blank
 
     # DO NOT Normalize and Left-align - configure below doNotNormalize as 'true' - otherwise leave blank!
     doNotNormalize: # default is blank - benchmarked as true
@@ -124,23 +124,26 @@ The most important variables that a user can defined are also stated within each
 
     dbsnpLiftMerge:
 
-    desiredVersion: 38
-    projectName: Demo
+      desiredVersion: GRCh38
+      projectName: Demo
 
-    #----------- 37 -------------
-    dbsnp37VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz
-    dbsnp37TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
-    file37: All_20180423.vcf.gz
-    #----------- 38 -------------
-    dbsnp38VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
-    dbsnp38TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
-    file38: All_20180418.vcf.gz
+      #----------- 37 -------------
+      dbsnp37VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz
+      dbsnp37TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
+      file37: All_20180423.vcf.gz
+      #----------- 38 -------------
+      dbsnp38VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
+      dbsnp38TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
+      file38: All_20180418.vcf.gz
 
     genomeReference:
-    #----------- 37 -------------
-    37Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.*
-    #----------- 38 -------------
-    38Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.*
+      #----------- 37 -------------
+      37Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37
+      file37: human_g1k_v37.fasta
+      #----------- 38 -------------
+      38Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
+      file38: GRCh38_full_analysis_set_plus_decoy_hla.fa
+      index38: GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
 
     #############################################
     ### --- dbSNP annotation file options --- ###
@@ -160,9 +163,9 @@ The most important variables that a user can defined are also stated within each
     # dbsnpTbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
     # file: All_20180423.vcf.gz
     #----------- 38 -------------
-    dbsnpVcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
-    dbsnpTbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
-    file: All_20180418.vcf.gz
+      dbsnpVcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
+      dbsnpTbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
+      file: All_20180418.vcf.gz
 
     #####################################
     #####################################
@@ -177,22 +180,22 @@ The most important variables that a user can defined are also stated within each
     # used in Raw Sequence Module, Stored Sequence Module, and SNP Array Module
     # Reference Genome Assembly
     ref:
-    # ensembl species name
-    species: homo_sapiens
-    # ensembl release
-    release: 104
-    # genome build
-    build: GRCh38
+      # ensembl species name
+      species: homo_sapiens
+      # ensembl release
+      release: 104
+      # genome build
+      build: GRCh38
 
     # used in Raw Sequence Module and Stored Sequence Module
     # Annotation files for variant calling
     NYGC:
-    # FTP Site: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/
-    # annotations files are in GRCh38 assembly
-    nygcUrlPath: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/annotated/
-    nygcFileStart: CCDG_13607_B01_GRM_WGS_2019-02-19_chr
-    nygcFileEnd: .recalibrated_variants.annotated.txt
-    numberOfSplitRegionsFiles: 5
+      # FTP Site: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/
+      # annotations files are in GRCh38 assembly
+      nygcUrlPath: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20190425_NYGC_GATK/annotated/
+      nygcFileStart: CCDG_13607_B01_GRM_WGS_2019-02-19_chr
+      nygcFileEnd: .recalibrated_variants.annotated.txt
+      numberOfSplitRegionsFiles: 5
 
     ###################################
     ### --- RAW SEQUENCE MODULE --- ###
@@ -200,7 +203,7 @@ The most important variables that a user can defined are also stated within each
 
     # used to shorten the downloaded directories so file is directly placed in correct folder - will need to edit based on your FTP download path
     url:
-    cutdirs: 5
+      cutdirs: 5
 
     ######################################
     ### --- STORED SEQUENCE MODULE --- ###
@@ -208,63 +211,63 @@ The most important variables that a user can defined are also stated within each
 
     # used to shorten the downloaded directories so file is directly placed in correct folder - will need to edit based on your FTP download path
     cramUrl:
-    cutdirs: 5
+      cutdirs: 5
 
     ################################
     ### --- SNP ARRAY MODULE --- ###
     # ---------------------------- #
 
     urlProductFiles:
-    # product files LINK
-    # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-product-files.html
-    # manifest file LINK: update to 37 or 38, make sure its BPM file
-
-    #----------- 37 -------------
-    #manifest: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-bpm.zip
-    #mzip: infinium-multi-ethnic-global-8-d1-bpm.zip
-    #filename: Multi-EthnicGlobal_D1.bpm # for expanding function later
-    ##build: D1 # for expanding function later
-
-    #----------- 38 -------------
-    ## LINK: ftp://ussd-ftp.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38
-    manifest:  https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38/multi-ethnic-global-8-d2-bpm.zip
-    mzip: multi-ethnic-global-8-d2-bpm.zip
-    #filename: Multi-EthnicGlobal_D2.bpm # for expanding function later
-    ##build: D2  # for expanding function later
-
-    # cluster file LINK
-    cluster: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-cluster-file.zip
-    czip: infinium-multi-ethnic-global-8-d1-cluster-file.zip
+      # product files LINK
+      # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-product-files.html
+      # manifest file LINK: update to 37 or 38, make sure its BPM file
+  
+      #----------- 37 -------------
+      #manifest: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-bpm.zip
+      #mzip: infinium-multi-ethnic-global-8-d1-bpm.zip
+      #filename: Multi-EthnicGlobal_D1.bpm # for expanding function later
+      ##build: D1 # for expanding function later
+  
+      #----------- 38 -------------
+      ## LINK: ftp://ussd-ftp.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38
+      manifest:  https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/build38/multi-ethnic-global-8-d2-bpm.zip
+      mzip: multi-ethnic-global-8-d2-bpm.zip
+      #filename: Multi-EthnicGlobal_D2.bpm # for expanding function later
+      ##build: D2  # for expanding function later
+  
+      # cluster file LINK
+      cluster: https://webdata.illumina.com/downloads/productfiles/multiethnic-global-8/v1-0/infinium-multi-ethnic-global-8-d1-cluster-file.zip
+      czip: infinium-multi-ethnic-global-8-d1-cluster-file.zip
 
     urlSupportFiles:
-    # support files LINK
-
-    # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-support-files.html
-
-    #----------- 37 ------------- uncomment 37 section below if you need to use GRCh37 assembly
-
-    # # physical and genetic coordinates for 37
-    #physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d1-physical-genetic-coordinates.zip
-    #pzip: multi-ethnic-global-8-d1-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D1.csv_Physical-and-Genetic-Coordinates.txt
-
-    #----------- 38 ------------- comment block 38 section below if you need to use GRCh37 assembly
-
-    # physical and genetic coordinates for 38
-    physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-physical-genetic-coordinates.zip
-    pzip: multi-ethnic-global-8-d2-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D2.csv_Physical-and-Genetic-Coordinates.txt
-
-    # rsids conversion file - Loci Name to rsID
-    rsidConversion: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-b150-rsids.zip
-    rzip: multi-ethnic-global-8-d2-b150-rsids.zip
-    rfile: Multi-EthnicGlobal_D2_b150_rsids.txt
+      # support files LINK
+  
+      # LINK: https://support.illumina.com/downloads/infinium-multi-ethnic-global-8-v1-support-files.html
+  
+      #----------- 37 ------------- uncomment 37 section below if you need to use GRCh37 assembly
+  
+      # # physical and genetic coordinates for 37
+      #physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d1-physical-genetic-coordinates.zip
+      #pzip: multi-ethnic-global-8-d1-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D1.csv_Physical-and-Genetic-Coordinates.txt
+  
+      #----------- 38 ------------- comment block 38 section below if you need to use GRCh37 assembly
+  
+      # physical and genetic coordinates for 38
+      physicalGeneticCoordinates: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-physical-genetic-coordinates.zip
+      pzip: multi-ethnic-global-8-d2-physical-genetic-coordinates.zip # Multi-EthnicGlobal_D2.csv_Physical-and-Genetic-Coordinates.txt
+  
+      # rsids conversion file - Loci Name to rsID
+      rsidConversion: https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/multiethnic-global/multi-ethnic-global-8-d2-b150-rsids.zip
+      rzip: multi-ethnic-global-8-d2-b150-rsids.zip
+      rfile: Multi-EthnicGlobal_D2_b150_rsids.txt
 
     Illumina:
-    # iaap-cli exe path
-    ftpDownload: ftp://webdata2:webdata2@ussd-ftp.illumina.com/downloads/software/iaap/iaap-cli-linux-x64-1.1.0.tar.gz
-    DownloadTarFile: iaap-cli-linux-x64-1.1.0.tar.gz
-    Download: iaap-cli-linux-x64-1.1.0
-    iaapcli: iaap-cli
-    #iaapcli: /N/project/WalshWGS/IliadGenomicDataPipeline/Iliad/target_workflow/illumina_gencall/AutoConvert2.0/AutoConvert
+      # iaap-cli exe path
+      ftpDownload: ftp://webdata2:webdata2@ussd-ftp.illumina.com/downloads/software/iaap/iaap-cli-linux-x64-1.1.0.tar.gz
+      DownloadTarFile: iaap-cli-linux-x64-1.1.0.tar.gz
+      Download: iaap-cli-linux-x64-1.1.0
+      iaapcli: iaap-cli
+      #iaapcli: /N/project/WalshWGS/IliadGenomicDataPipeline/Iliad/target_workflow/illumina_gencall/AutoConvert2.0/AutoConvert
 
     ################################
     ### --- SNP ARRAY MODULE --- ###
@@ -272,10 +275,10 @@ The most important variables that a user can defined are also stated within each
     # ---------------------------- #
 
     QCarray:
-        GenTrainUpperThreshold: 0.7
-        GenTrainLowerThreshold: 0.67
-        ClusterSepUpperThreshold: 0.45
-        ClusterSepLowerThreshold: 0.4
+      GenTrainUpperThreshold: 0.7
+      GenTrainLowerThreshold: 0.67
+      ClusterSepUpperThreshold: 0.45
+      ClusterSepLowerThreshold: 0.4
 
 
     #####################################
@@ -288,16 +291,16 @@ The most important variables that a user can defined are also stated within each
     #####################################
     #####################################
 
-    # The major submodule named - Lift-and-Merge - can be found above near line 91.
+    # The major submodule named - Lift-and-Merge - can be found above near line 101.
     # There are many configurations, checks, and automatic steps that may help users with little experience.
     # These more independent and small task workflows below may come in handy for some quick data maneuvers.
 
     MergerSub:
 
     LiftoverSub:
-    # either point to file in config directory or enter 1 filename for file needing converted
-    # Indicate which reference assembly you desire to switch your positions
-    filename: Tatte-Demo
-    desiredVersion: GRCh38 # switch to GRCh37 if you need to revert from 38 to 37
+      # either point to file in config directory or enter 1 filename for file needing converted
+      # Indicate which reference assembly you desire to switch your positions
+      filename: Tatte-Demo
+      desiredVersion: GRCh38 # switch to GRCh37 if you need to revert from 38 to 37
 
     MergeTargetAndRef:

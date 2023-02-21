@@ -55,13 +55,16 @@ Getting started
       *  SNP Array Data (.idat)
 
 
-**Iliad Workflow Schematic**
+**Iliad Workflow Schematics**
 ****************************
 
 .. image:: tutorial/img/Iliad-Figure1-forReadTheDocs.png
    :align: center
    :width: 600
 
+.. image:: tutorial/img/Iliad-Figure2-forReadTheDocs.png
+   :align: center
+   :width: 600
 
 .. toctree::
    :caption: Getting started
@@ -91,8 +94,8 @@ Getting started
    :hidden:
    :maxdepth: 1
 
+   tutorial/lift_and_merge
    tutorial/liftover
-   tutorial/merger
    tutorial/merge_ref_target
 
 .. toctree::
