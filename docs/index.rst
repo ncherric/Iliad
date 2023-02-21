@@ -54,13 +54,22 @@ Getting started
 
       *  SNP Array Data (.idat)
 
+.. _main-Iliad-Workflow-Schematics:
 
-**Iliad Workflow Schematics**
+-------------------------
+Iliad Workflow Schematics
+-------------------------
+
+
+**Main Modules**
 ****************************
 
 .. image:: tutorial/img/Iliad-Figure1-forReadTheDocs.png
    :align: center
    :width: 600
+
+**A comprehensive Submodule**
+****************************
 
 .. image:: tutorial/img/Iliad-Figure2-forReadTheDocs.png
    :align: center
