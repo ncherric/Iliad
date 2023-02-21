@@ -1,23 +1,30 @@
 <snippet>
   <content>
 
-<p align="left">
+<p align="center">
   <img width="496"  src="docs/readme-img/ILIAD-logo.png" alt="Iliad logo">
 </p>
 
 
-[![Snakemake](https://img.shields.io/badge/snakemake-â‰¥6.3.0-green.svg)](https://snakemake.github.io)
-[![Python](https://img.shields.io/badge/python-â‰¥3.8.0-brightgreen.svg)](https://python.org)
-[![Singularity](https://img.shields.io/badge/Singularity-â‰¥3.6.4-blue.svg)](https://docs.sylabs.io/guides/3.6/user-guide/introduction.html)
+[![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-green.svg)](https://snakemake.github.io)
+[![Python](https://img.shields.io/badge/python-≥3.8.0-brightgreen.svg)](https://python.org)
+[![Singularity](https://img.shields.io/badge/Singularity-≥3.6.4-blue.svg)](https://docs.sylabs.io/guides/3.6/user-guide/introduction.html)
 ---------
 
-# Snakemake workflow: Iliad Genomic Data Pipeline
+# Iliad's workflows
+
+## Main Modules
 <p align="center">
-  <img src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure1-forReadTheDocs.png?raw=true">
+  <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure1-forReadTheDocs.png?raw=true">
+</p>
+
+## A comprehensive Submodule
+<p align="center">
+  <img width="496"  src="https://github.com/ncherric/Iliad/blob/main/docs/readme-img/Iliad-Figure2-forReadTheDocs.png?raw=true">
 </p>
 
 
-A Snakemake workflow for genomic data processing and modularized to accomadate raw sequence data (.fq), stored sequence data (.cram), Illumina microarray data (.idat), and variant call format files (.vcf)
+Iliad is a suite of Snakemake workflows for genomic data processing. The modularization feature of Snakemake accomodates raw sequence data (.fq), stored sequence data (.cram), Illumina microarray data (.idat), and variant call format data (.vcf).
 
 ---------
 ## Usage
@@ -26,7 +33,7 @@ Please visit our documentation hosted on Read The Docs: https://iliad.readthedoc
 
 ## Intro Page
 
-ILIAD Genomic Data Pipeline
+ILIAD 
 
 Iliad is a multi-functional **genomic data processing pipeline** implemented via the **Snakemake** workflow management system, Singularity or Docker container, 
 and a handful of Conda environments.
@@ -60,5 +67,5 @@ What Iliad will do:
 
 * Quickly learn how to install Iliad - visit the Installation page at  https://iliad.readthedocs.io/
 
-* Start processing your data right away by following one of the `HOW-TO GUIDES` on Iliad modules or `Submodules`
+* Start processing your data right away by following one of the `HOW-TO GUIDES` on Iliad modules or Submodules
 
