@@ -1,5 +1,4 @@
 splits=config['NYGC']['numberOfSplitRegionsFiles']
-# modified
 
 rule variant_calling:
 	input:
@@ -9,7 +8,6 @@ rule variant_calling:
 		ref=which_ref,
 		regionsFileChr=get_splits_chr,
 		regionsFile=get_splits,
-		# chrStr=findSequenceName,
 	output:
 		splitChrVCF="results/vcf/{sample}/chr{chroms}.split-{split}.vcf.gz",
 	resources:
@@ -102,7 +100,6 @@ rule concat_splits_per_chrom_index:
 		"""
 		bcftools index --tbi {input.concatChrVCF} -o {output.concatChrTBI}
 		"""
-
 
 rule merge_sample_chrom_list:
 	input:

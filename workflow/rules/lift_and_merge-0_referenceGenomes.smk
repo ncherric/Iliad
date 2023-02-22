@@ -1,4 +1,4 @@
-rule download_referenceGenome_37_file: #wont be able to fully cache as output stands
+rule download_referenceGenome_37_file:
 	output:
 		tmpoGenomeFile37="resources/tempFile37.to.remove",
 	params:
@@ -22,7 +22,7 @@ rule download_referenceGenome_37_file: #wont be able to fully cache as output st
 		echo "to remove" > {params.workdirPath}{output.tmpoGenomeFile37}
 		"""
 
-rule download_referenceGenome_38_file: #wont be able to fully cache as output stands
+rule download_referenceGenome_38_file:
 	output:
 		tmpoGenomeFile38="resources/tempFile38.to.remove",
 	params:

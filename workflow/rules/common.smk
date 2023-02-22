@@ -147,10 +147,6 @@ def which_ref(wildcards):
 		  input_list.append(config["reference"]["filePath"])
 	return input_list
 
-
-# potentially provide both 37 and 38 to each rule at decision point....
-
-
 def get_splits(wildcards):
 	"""Get splits for all chromosomes of given sample."""
 	return expand(
@@ -160,10 +156,6 @@ def get_splits_chr(wildcards):
 	"""Get splits for all chromosomes of given sample."""
 	return expand(
 	"NYGC/SplitLists/chr{{chroms}}/regionsSplit-chr-{{split}}.txt")
-
-
-
-
 
 def get_variant_calling_mpileup_params(wildcards):
 	return config["VariantCalling"]["mpileup"]["options"]
@@ -232,53 +224,6 @@ def get_v38_basenames(wildcards):
 	print(f"get_v38_basenames {wildcards}")
 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step2-ReferenceAssembly-VersionCheck/basename_If_V38.{vcf}.txt", 
 	vcf=vcfs["baseFileName_VCF"])
-
-
-
-# # input function for the rule concat_splits_per_chrom
-# def get_concatenate_input(wildcards):
-# 	# decision based on content of output file
-# 	# Important: use the method open() of the returned file!
-# 	# This way, Snakemake is able to automatically download the file if it is generated in
-# 	# a cloud environment without a shared filesystem.
-# 	with checkpoints.concat_list.get(sample=wildcards.sample, chroms=wildcards.chroms).output[0].open() as f:
-# 		x = len(f.readlines())
-# 		if x == splits:
-# 			return "results/vcf/{sample}/chr{chroms}-concatList.txt"
-# 		else:
-# 			print(f"split vcf files have not all been added to concat list: {splits}")
-
-# def get_versionCheck(wildcards):
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step2-ReferenceAssembly-VersionCheck/versionCheck.{vcf}.txt",
-# 		 vcf=vcfs["baseFileName_VCF"])
-# def get_dbSNP_Extracted(wildcards):
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step2-ReferenceAssembly-VersionCheck/random1.{vcf}-sites-extracted-from-dbSNP.txt",
-# 		 vcf=vcfs["baseFileName_VCF"])
-# def get_keep23(wildcards):
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step1-Keep23/Keep23.{vcf}.vcf.gz",
-# 		 vcf=vcfs["baseFileName_VCF"])
-# def get_keep23index(wildcards):
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
-# 		 vcf=vcfs["baseFileName_VCF"])
-
-
-
-# def get_combineMyData_37filepaths(wildcards):
-# 	checkpoints.check_basenames.get(wildcards.project, wildcards.refAssemblyVersion)
-# 	vcf37s = glob_wildcards(f"data/vcf_Merge-and-Lift/{wildcards.project}/{wildcards.refAssemblyVersion}/step4A-Input-vcfIDs37/queried.{{vcf37}}.rsIDs.txt").vcf37
-# 	return expand(f"data/vcf_Merge-and-Lift/{wildcards.project}/{wildcards.refAssemblyVersion}/step4A-Input-vcfIDs37/queried.{{vcf37}}.rsIDs.txt", vcf37=vcf37s)
-
-
-# def get_combineMyData_37filepaths(wildcards):
-# 	"""Get combineMyData filepaths for all rsid files from merger VCFs."""
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step4A-Input-vcfIDs37/queried.{vcf}.rsIDs.txt", vcf=vcfs["baseFileName_VCF"])
-
-# def get_combineMyData_38filepaths(wildcards):
-# 	"""Get combineMyData filepaths for all rsid files from merger VCFs."""
-# 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step4B-Input-vcfIDs38/queried38.{vcf}.rsIDs.txt", vcf=vcfs["baseFileName_VCF"])
-
-
-
 
 # def get_reference_assembly_version(wildcards):
 # 	"""Get version number for proper dbSNP liftover."""

@@ -1,5 +1,3 @@
-# maybe put these two rules in prepare_38VCFs.smk
-
 def aggregate_38_VCFs(wildcards):
 	print(f"aggregate_38_VCFs is: {wildcards}")
 	checkpoint_output = os.path.dirname(checkpoints.check_basenames_v38.get(**wildcards).output[0])
@@ -15,7 +13,6 @@ def aggregate_38_VCFs(wildcards):
 rule get_random_vars_for_match38: # These are all likely 38s, but just double checking...
 	input:
 		file38=aggregate_38_VCFs,
-		# file38=lambda wildcards : aggregate_38_VCFs(wildcards),
 		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmpChkPtFile.tmp",
 	output:
 		vcfForRandomizing="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/temp.preppedForRandom.{vcf38}.vcf",
@@ -133,7 +130,7 @@ rule aggregate_v38_VCFs_basenames_again:
 		cat {input.listOf_V38_VCFs_basenames} > {output.fileWithBaseNamesForAllVersion38}
 		"""
 
-rule aggregate_v38_VCFs_again: # make this a rule? # THIS ONE GETS WHOLE FILEPATHS
+rule aggregate_v38_VCFs_again:
 	input:
 		listOf_V38_VCFs=get_v38_filePath_files_again,
 	output:
@@ -178,14 +175,9 @@ def aggregate_38_VCFs_again(wildcards):
 	print(f"baseNames is: {baseNames}")
 	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/validated/{{valid38}}.vcf.gz", valid38=baseNames)
 
-
-
-# maybe put below in this current file
-
 rule annotate_if_VCF_38version:
 	input:
 		valid38=aggregate_38_VCFs_again,
-		# valid38=lambda wildcards : aggregate_38_VCFs_again(wildcards),
 		tmpoFile38="dbSNP/tempFile38.to.remove",
 		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/tmpChkPtFile.tmp",
 	output:
@@ -221,7 +213,6 @@ rule query_38_VCF_IDs:
 		bcftools query -f %ID\\\\n {input.annotated38} > {output.rsidList38}
 		"""
 
-
 def get_combineMyData_38filepaths(wildcards):
 	checkpoint_output = os.path.dirname(checkpoints.validate_basenames_v38_again.get(**wildcards).output[0])
 	ids = glob(join(checkpoint_output, "valid_*.vcf.gz"))
@@ -244,8 +235,6 @@ rule combine_MyData_SNPs_38:
 		"""
 		cat {input} | sort -V - | uniq - > {output.combinedSNPlist38}
 		"""
-
-# maybe put below in 38dbSNP-IDs.smk
 
 rule get_rsids_from_dbSNP38:
 	input:

@@ -1,4 +1,3 @@
-# Step 0 - retrieve necessary Illumina support files for your SNP array
 checkpoint download_product_files:
 	output:
 		manifestFile="illumina/product_files/Multi-EthnicGlobal_D2.bpm",
@@ -9,13 +8,10 @@ checkpoint download_product_files:
 		mzip=config["urlProductFiles"]["mzip"],
 		egt=config["urlProductFiles"]["cluster"],
 		czip=config["urlProductFiles"]["czip"],
-	# benchmark:
-	# 	repeat("benchmarks/download_product_files.array", 3)
+	benchmark:
+		repeat("benchmarks/download_product_files.array", 1)
 	script:
 		"../scripts/download-product-files.py"
-
-# Step 1 - convert .idat files to .gtc files
-# iaap-cli
 
 checkpoint download_iaap:
 	output:
@@ -26,8 +22,8 @@ checkpoint download_iaap:
 		iaapIlluminaDownloadTar=config['Illumina']['DownloadTarFile'],
 		iaapIlluminaDownload=config['Illumina']['Download'],
 		iaapcli=config['Illumina']['iaapcli'],
-	# benchmark:
-	# 	repeat("benchmarks/download_iaap.array", 3)
+	benchmark:
+		repeat("benchmarks/download_iaap.array", 1)
 	script:
 		"../scripts/download-iaap.py"
 
@@ -39,8 +35,8 @@ rule gencall:
 		iaapcli="illumina/gencall/iaap-cli/iaap-cli"
 	output:
 		gtc=directory("data/snp_array/gtc/"),
-	# benchmark:
-	# 	repeat("benchmarks/gencall.array", 3)
+	benchmark:
+		repeat("benchmarks/gencall.array", 1)
 	shell:
 		"""
 		mkdir -p {output.gtc}

@@ -70,7 +70,6 @@ rule merge_vcfs_index:
 		mergeVCF="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
 	output:
 		mergeTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz.tbi",
-	# conda: "../../env/bcftools1-14.yaml",
 	resources:
 		mem_mb=1500,
 		runtime="00:30:00",
@@ -94,12 +93,6 @@ rule FinalQC:
 	benchmark:
 		repeat("benchmarks/FinalQC-{project}-{refAssemblyVersion}.LiftAndMerge", 1)
 	shell:
-		# """
-		# bcftools view {input.mergeVCF} -O z -o {output.FinalQC}
-		# """
-		# """
-		# bcftools view -i 'F_MISSING < 0.05' {input.mergeVCF} -O z -o {output.FinalQC}
-		# """
 		"""
 		bcftools view -i 'AC!=0 & MAF[0]<0.05 & F_MISSING < 0.05' {input.mergeVCF} -O z -o {output.FinalQC}
 		"""
@@ -109,7 +102,6 @@ rule FinalQC_index:
 		FinalQC="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz",
 	output:
 		FinalQC_TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi",
-	# conda: "../../env/bcftools1-14.yaml",
 	resources:
 		mem_mb=1500,
 		runtime="00:30:00",

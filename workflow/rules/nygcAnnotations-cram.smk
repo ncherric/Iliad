@@ -88,7 +88,6 @@ ruleorder: split_chroms_chr_string > split_chroms
 rule split_chroms_chr_string:
 	input:
 		tabChrFile="NYGC/annotatedNYGC-chr{chroms}.uniq.tab.chr.txt",
-		# rules.tabbed_regions.output if chrStrFalse else rules.tabbed_regions_chr_string.output,
 	output:
 		splitsChr="NYGC/SplitLists/chr{chroms}/regionsSplit-chr-{split}.txt",
 	params:
@@ -111,7 +110,6 @@ rule split_chroms_chr_string:
 rule split_chroms:
 	input:
 		tabFile="NYGC/annotatedNYGC-chr{chroms}.uniq.tab.txt",
-		# rules.tabbed_regions.output if chrStrFalse else rules.tabbed_regions_chr_string.output,
 	output:
 		splits="NYGC/SplitLists/chr{chroms}/regionsSplit-{split}.txt",
 	params:

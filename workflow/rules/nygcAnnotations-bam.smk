@@ -62,23 +62,6 @@ rule check_for_chr_string:
 
 ruleorder: tabbed_regions_chr_string > tabbed_regions
 
-
-# rule tabbed_regions: # conditional statement in py script to recognize chrStr var
-# 	input:
-# 		dir("results/vcf/{sample}/chrStrCheck/"),
-# 		uniqFile="NYGC/annotatedNYGC-chr{chroms}.uniq.txt",
-# 		# chrStr=chrStr, # maybe put function in here
-# 	output:
-# 		tabFile="NYGC/annotatedNYGC-chr{chroms}.uniq.tab.txt",
-# 		tchFile="results/vcf/{sample}/chrStrCheck/remove.touch",
-# 	resources:
-# 		mem_mb=500,
-# 		runtime="00:30:00",
-# 	benchmark:
-# 		repeat("benchmarks/tabbed_regions.{chroms}.StoredSequence", 1)
-# 	script:
-# 		"../scripts/tabbed-regions-conditional.py"
-
 # if chrStr:
 rule tabbed_regions_chr_string: # CHROMOSOME STRING YES - "chr1"
 	input:
@@ -111,7 +94,6 @@ ruleorder: split_chroms_chr_string > split_chroms
 rule split_chroms_chr_string:
 	input:
 		tabChrFile="NYGC/annotatedNYGC-chr{chroms}.uniq.tab.chr.txt",
-		# rules.tabbed_regions.output if chrStrFalse else rules.tabbed_regions_chr_string.output,
 	output:
 		splitsChr="NYGC/SplitLists/chr{chroms}/regionsSplit-chr-{split}.txt",
 	params:
@@ -131,11 +113,9 @@ rule split_chroms_chr_string:
 		split -a 3 -n l/{params.numberOfSplits} -d {params.wd}{input.tabChrFile} regionsSplit-chr- --additional-suffix=.txt
 		"""
 
-
 rule split_chroms:
 	input:
 		tabFile="NYGC/annotatedNYGC-chr{chroms}.uniq.tab.txt",
-		# rules.tabbed_regions.output if chrStrFalse else rules.tabbed_regions_chr_string.output,
 	output:
 		splits="NYGC/SplitLists/chr{chroms}/regionsSplit-{split}.txt",
 	params:

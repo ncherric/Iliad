@@ -153,7 +153,6 @@ rule check_matches:
 		project_from_wc=lambda wc: wc.get("project"),
 		refAssemblyVersion_from_wc=lambda wc: wc.get("refAssemblyVersion"),
 		vcf_from_wc=lambda wc: wc.get("vcf"),
-		# fileWithBaseNameIfVersion37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/basename_If_V37.{vcf}.txt",
 	resources:
 		mem_mb=1500,
 		runtime="00:10:00",
@@ -178,7 +177,7 @@ rule aggregate_v37_VCFs_basenames:
 		cat {input.listOf_V37_VCFs_basenames} > {output.fileWithBaseNamesForAllVersion37}
 		"""
 
-rule aggregate_v37_VCFs: # make this a rule? # THIS ONE GETS WHOLE FILEPATHS
+rule aggregate_v37_VCFs:
 	input:
 		listOf_V37_VCFs=get_v37_filePath_files,
 	output:
@@ -230,7 +229,7 @@ rule aggregate_v38_VCFs_basenames:
 		cat {input.listOf_V38_VCFs_basenames} > {output.fileWithBaseNamesForAllVersion38}
 		"""
 
-rule aggregate_v38_VCFs: # make this a rule? # THIS ONE GETS WHOLE FILEPATHS
+rule aggregate_v38_VCFs:
 	input:
 		listOf_V38_VCFs=get_v38_filePath_files,
 	output:

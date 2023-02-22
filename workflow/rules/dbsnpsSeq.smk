@@ -1,4 +1,4 @@
-rule download_dbSNP_file: #wont be able to fully cache as output is rn
+rule download_dbSNP_file:
 	output:
 		tmpoFile="dbSNP/tempFile.to.remove",
 	params:

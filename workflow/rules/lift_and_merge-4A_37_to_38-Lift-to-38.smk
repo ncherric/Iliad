@@ -1,5 +1,3 @@
-# Guide file
-
 rule get_38_specific_dbSNP_vcf:
 	input:
 		combinedSNPlist="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/combinedMyData.rsIDs.txt",

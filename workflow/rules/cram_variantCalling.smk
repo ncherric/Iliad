@@ -4,7 +4,6 @@ rule cram_variant_calling:
 	input:
 		cram="results/cram/{sample}.cram",
 		cramIndex="results/cram/{sample}.cram.crai",
-		# SMP = "results/downloads/{sample}/",
 		ref = which_ref,
 		chrStrCheck="results/vcf/{sample}/chrStrCheck/alignmentFileHeader.out",
 		regionsFileChr=get_splits_chr,

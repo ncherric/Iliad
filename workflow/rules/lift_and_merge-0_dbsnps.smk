@@ -1,4 +1,4 @@
-rule download_dbSNP_37_file: #wont be able to fully cache as output stands
+rule download_dbSNP_37_file:
 	output:
 		tmpoFile37="dbSNP/tempFile37.to.remove",
 	params:
@@ -21,7 +21,7 @@ rule download_dbSNP_37_file: #wont be able to fully cache as output stands
 		echo "to remove" > {params.workdirPath}{output.tmpoFile37}
 		"""
 
-rule download_dbSNP_38_file: #wont be able to fully cache as output stands
+rule download_dbSNP_38_file:
 	output:
 		tmpoFile38="dbSNP/tempFile38.to.remove",
 	params:
