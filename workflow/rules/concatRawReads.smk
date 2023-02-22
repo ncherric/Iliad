@@ -1,5 +1,3 @@
-# Add If statement for .fastq.gz extensions or integrate into shell 
-
 rule concat_reads:
 	input:
 		SMP = "results/downloads/{sample}/",
