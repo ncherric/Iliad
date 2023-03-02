@@ -56,6 +56,7 @@ Use an Excel sheet or CSV file with no header and the following two columns/fiel
 #### Example: **UserSampleTable.xlsx** or **UserSampleTable.csv** are found in the ``/Iliad/config/`` directory
 
 | KPGP-00127 | ftp://ftp.kobic.re.kr/pub/KPGP/2020_release_candidate/WGS_SR/KPGP-00127/KPGP-00127_L1_R1.fq.gz |
+| --- | --- |
 | KPGP-00127 | ftp://ftp.kobic.re.kr/pub/KPGP/2020_release_candidate/WGS_SR/KPGP-00127/KPGP-00127_L1_R2.fq.gz |
 
 This exact template exists already in ``/Iliad/config/UserSampleTable.xlsx``. (The Excel Viewer extension on VS code is really handy for editing!)
@@ -74,6 +75,7 @@ you need to provide a separate ``samples.tsv`` file where the TSV file has a hea
 #### Example: **samples.tsv** found in the ``/Iliad/config/`` directory
 
 | sample |
+| --- |
 | KPGP-00127 |
 
 since this module is the main snakefile, Snakemake will automatically detect it without the flag. 
