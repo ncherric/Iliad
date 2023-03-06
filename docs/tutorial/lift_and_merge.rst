@@ -1,8 +1,8 @@
 .. _tutorial/lift_and_merge:
 
-==============
-Lift and Merge
-==============
+========================
+Lift and Merge - 37 / 38
+========================
 
 .. hyperlinks
 .. _Iliad: https://iliad.readthedocs.io/en/latest/index.html
@@ -44,7 +44,6 @@ The configuration file is found in ``config/config.yaml``.
 
 You might consider changing some other parameters to your project needs that are pre-set and include:
 
-* Merger submodule variables
 .. code:: yaml
 
     ################################################
@@ -81,7 +80,7 @@ You might consider changing some other parameters to your project needs that are
       #----------- 37 -------------
       37Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37
       file37: human_g1k_v37.fasta
-      #----------- 38 -------------
+      #----------- 38 ------------- if you decide to use this reference fasta elsewhere in this project, you will need to download the other accompanying files at http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
       38Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
       file38: GRCh38_full_analysis_set_plus_decoy_hla.fa
       index38: GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
@@ -101,7 +100,7 @@ If you plan to use on a local machine or self-built server without a job schedul
 
 .. code-block:: console
 
-   $ snakemake -p --use-conda --snakefile workflow/Lift-and-Merge_Snakefile --cores 1 --jobs 1 --default-resource=mem_mb=10000 --latency-wait 120
+   $ snakemake -p --use-singularity --use-conda --snakefile workflow/Lift-and-Merge_Snakefile --cores 1 --jobs 1 --default-resource=mem_mb=10000 --latency-wait 120
 
 However, there is a file included in the ``Iliad`` directory named - ``Submodule-Lift-and-Merge-snakemake.sh`` that will be useful in batch job submission. 
 Below is an example snakemake workflow submission in SLURM job scheduler. 
@@ -124,7 +123,7 @@ automatically determining dependencies amongst the rules. A ``DAG`` (directed ac
 that will executed either via job scheduler or local cores and will execute in parallel if multiple jobs are declared.
 Because of the Snakemake workflow system design, the **Iliad** workflow is scalable from single core machines to HPC clusters with job schedulers.
 
-The **Lift-and-Merge submodule** is designed to simplify merging VCF data that could contain genomic positions from different 
+The **Lift-and-Merge submodule** is designed to simplify merging VCF data that could contain genomic positions from different reference assembly builds.
 We ensured no bioinformatics knowledge is needed to run this module with the help of internal test runs on MacOS, Windows, and HPC 
 as well as external test runs performed on Google Cloud Platform (GCP_).
 
@@ -139,10 +138,10 @@ as well as external test runs performed on Google Cloud Platform (GCP_).
 Background
 ==========
 
-Genetics research continues at an unprecedented speed and collaborations or newly published open-source datasets may introduce the need merge data.
+Genetics research continues at an unprecedented speed and collaborations or newly published open-source datasets may introduce the need to merge data.
 To make a comprehensive genomic pipeline, we wanted to provide the means necessary for researchers to easily combine datasets. 
-Sometimes you just need to switch the position sites in your VCF files so you can properly merge your data with others, and you may want to visit our liftover_
-submodule if you think the data you would like to combine has different reference assembly positions.
+Sometimes you just need to switch the position sites in your VCF files so you can properly merge your data with others, and this is the right workflow for you 
+if you would like to combine data that has different reference assembly positions.
 Pull requests and collobarations are welcomed.
 
 Basics
@@ -153,7 +152,7 @@ This module does not require Singularity.
 
 If you have multiple independent VCF files and need the means to combine them, this module is for you.
 
-The indicated sample list in the file ``/Iliad/data/vcf_merge/vcf-list.txt`` will be automatically read by BCFtools when running the appropriate Snakefile described here.
+The indicated sample list in the file ``/Iliad/config/mergeTheseVCFs.txt`` will be automatically read by BCFtools when running the appropriate Snakefile described here.
 Your ``vcf`` will have to be annotated and have correct rsID tags. 
 *We are currently working to add more submodule features for independent VCF annotation without requiring the use of the main modules.*
 
@@ -175,34 +174,70 @@ ALSO, be sure your ``workdirPath: /path/to/project-workdir/Iliad/`` in the ``con
 
 In that working directory you will find there are a number of directories with files and code to run each of the module pipelines.
 
-**FIRST**, there is a ``/Iliad/data/vcf_merge/`` directory with a ``readme.md`` file. You must place your sample list in the ``/Iliad/data/vcf_merge/vcf-list.txt`` file in the ``data/vcf_merge/`` folder.
-This list should contain the full path to your ``.vcf.gz`` files that you would like to merge - one file per line. 
-Place your data into the ``/Iliad/data/vcf_merge/`` directory for simplicity - but by providing full paths in the ``vcf-list.txt`` to data that is accessible in your system,
- you don't have to necessarily migrate your data. There will be an auto generated directory with ``/Iliad/data/vcf_merge/`` for your specifically configured project name 
+**FIRST**, there is a ``/Iliad/data/vcf_Lift-and-Merge/`` directory with a ``readme.md`` file. You must place your sample list in the ``/Iliad/config/mergeTheseVCFs.txt`` file in the ``./Iliad/config/`` folder.
+This list should contain the basename of your ``.vcf`` and/or your ``.vcf.gz`` files that you would like to merge - one file basename per line. 
+AN EXAMPLE: the basename of ``myData.vcf`` is ``myData``.
+Place your data into the ``/Iliad/data/vcf_Lift-and-Merge/`` directory. For even more simplicity, we provided a simple shell script in ``/Iliad/data/vcf_Lift-and-Merge/`` named ``build-VCF-basenames.sh``. 
+This shell script will create a new sample file ``/Iliad/config/mergeTheseVCFs.txt`` based on the data that is currently in ``/Iliad/data/vcf_Lift-and-Merge/``. 
+A previous project version based on your last sample file will be created since your new sample file is overwriting the last one.
 
 
-.. list-table:: vcf-list.txt
+.. list-table:: /Iliad/config/mergeTheseVCFs.txt
    :widths: 25
 
-   * - /Path/To/File1.vcf.gz
-   * - /Path/To/File2.vcf.gz
-   * - /Path/To/File3.vcf.gz
+   * - Data1
+   * - Data2
+   * - Data3
 
 **SECOND**, there is a configuration file with some default parameters, however, you MUST at least change the ``workdirPath`` parameter to the appropriate 
 path leading up to and including ``/Iliad/`` e.g. ``/path/to/project-workdir/Iliad/``. The configuration file is found in ``config/config.yaml``.
 
-.. code:: python
+.. code:: yaml
 
     workdirPath: /my/example/directory/Iliad/
 
 Some other parameters that are pre-set and you might consider changing to your project needs include:
 
-* Merge project configuration information
 .. code:: yaml
 
-   MergerSubmodule:
-      ProjectName: NEED MERGER PROJECT NAME HERE
+    ################################################
+    ### --- Lift and Merge Submodule Options --- ###
+    # -------------------------------------------- #
 
+    # place the appropriate BASE of each filename under the file header "baseFileName_VCF"
+    # i.e. if FILENAME.vcf, then the BASE is "FILENAME".
+    # These can be either compressed (.vcf.gz and .vcf.gz.[tbi/csi]) or uncompressed (.vcf).
+    # a compressed file will need the associated index file in the directory, too.
+    vcfs: config/mergeTheseVCFs.txt
+
+    LiftoverTF: true # default is true
+
+    # update your genomic positions to Homo sapiens GRCh38 reference assembly - configure below Version38 as 'true' - otherwise mark 'false'!
+    Version38: true # default is true
+    # update your genomic positions to Homo sapiens GRCh37 reference assembly - configure above Version38 as 'false'
+
+    dbsnpLiftMerge:
+
+      desiredVersion: GRCh38
+      projectName: Demo
+
+      #----------- 37 -------------
+      dbsnp37VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz
+      dbsnp37TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/All_20180423.vcf.gz.tbi
+      file37: All_20180423.vcf.gz
+      #----------- 38 -------------
+      dbsnp38VcfDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz
+      dbsnp38TbiDownload: https://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh38p7/VCF/All_20180418.vcf.gz.tbi
+      file38: All_20180418.vcf.gz
+
+    genomeReference:
+      #----------- 37 -------------
+      37Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37
+      file37: human_g1k_v37.fasta
+      #----------- 38 ------------- if you decide to use this reference fasta elsewhere in this project, you will need to download the other accompanying files at http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
+      38Reference: http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/
+      file38: GRCh38_full_analysis_set_plus_decoy_hla.fa
+      index38: GRCh38_full_analysis_set_plus_decoy_hla.fa.fai
 
 **THIRD**,
 each module pipeline has a specific ``Snakefile``.
@@ -212,22 +247,22 @@ This means the user must specify which ``Snakefile`` will be invoked with
 
 .. code-block:: console
 
-    $ snakemake --snakefile workflow/mergerSub_Snakefile
+    $ snakemake --snakefile workflow/Lift-and-Merge_Snakefile
 
 and combined with other user-specified snakemake flags, of course, like ``--cores``.
 
-Users must invoke this snakefile e.g. ``workflow/mergerSub_Snakefile`` to perform the desired VCF data merge for this **MERGER SUBMODULE**.
+Users must invoke this snakefile e.g. ``workflow/Lift-and-Merge_Snakefile`` to perform the desired VCF data merge for this **MERGER SUBMODULE**.
 
 If you plan to use on a local machine or self-built server without a job scheduler the default command to run is the following:
 
 .. code-block:: console
 
-   $ snakemake -p --use-conda --cores 1 --jobs 1 --snakefile workflow/mergerSub_Snakefile --default-resource=mem_mb=10000 --latency-wait 120
+   $ snakemake -p --use-singularity --use-conda --cores 1 --jobs 1 --snakefile workflow/Lift-and-Merge_Snakefile --default-resource=mem_mb=10000 --latency-wait 120
 
-However, there is a file included in the ``Iliad`` directory named - ``mergerSub-snakemake.sh`` that will be useful in batch job submission. 
+However, there is a file included in the ``Iliad`` directory named - ``Submodule-Lift-and-Merge-snakemake.sh`` that will be useful in batch job submission. 
 Below is an example snakemake workflow submission in SLURM job scheduler. 
 Please read the shell variables at the top of the script and customize to your own paths and resource needs.
 
 .. code-block:: console
 
-   $ sbatch mergerSub-snakemake.sh
+   $ sbatch Submodule-Lift-and-Merge-snakemake.sh
