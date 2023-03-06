@@ -121,7 +121,7 @@ In all following steps, we will assume that you are inside of that directory.
 .. code-block:: console
 
     $ git clone https://www.github.com/ncherric/Iliad.git
-    $ cd path/to/project-workdir/Iliad
+    $ cd Iliad
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project-workdir/`` like such ``/path/to/project-workdir/Iliad/``.
 
