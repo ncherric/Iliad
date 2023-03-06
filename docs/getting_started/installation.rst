@@ -38,7 +38,7 @@ If you need guidance for a specific platform you are using, see the specific `pl
 
 .. code-block:: console
 
-    $ mamba create -c conda-forge -c bioconda --name iliadEnv snakemake snakedeploy openpyxl pandas
+    $ mamba create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
 
 to install Snakemake, Snakedeploy, and a necessary python library for parsing user input tables in an isolated environment.
 For all following commands ensure that this environment is activated via
@@ -114,12 +114,14 @@ In all following steps, we will assume that you are inside of that directory.
 
     $ snakedeploy deploy-workflow https://github.com/snakemake-workflows/Iliad . --tag v1.0.0
 
+**Alternatively, you could clone the repository using git:**
+
 .. Git clone the `GitHub repository <https://github.com/ncherric/Iliad>`_.
 
-.. .. code-block:: console
+.. code-block:: console
 
-..     $ git clone https://github.com/ncherric/Iliad.git
-..     $ cd path/to/project-workdir/Iliad
+    $ git clone https://www.github.com/ncherric/Iliad.git
+    $ cd path/to/project-workdir/Iliad
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project-workdir/`` like such ``/path/to/project-workdir/Iliad/``.
 
