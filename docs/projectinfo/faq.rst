@@ -22,11 +22,11 @@ I just setup conda, mamba, or micromamba package manager, I run a dry-run of wor
 
 Likely there are some missing exports in your .bashrc file (A hidden file located in your home directory). Try adding the following exports to your .bashrc as mentioned in this `link. <https://github.com/snakemake/snakemake/issues/1120#issuecomment-950735467>`_
 
-```
-export -f conda
-export -f __conda_activate
-export -f __conda_reactivate
-export -f __add_sys_prefix_to_path
-export -f __conda_hashr
-export -f __conda_exe
-```
+.. code-block:: console
+
+    export -f conda
+    export -f __conda_activate
+    export -f __conda_reactivate
+    export -f __add_sys_prefix_to_path
+    export -f __conda_hashr
+    export -f __conda_exe
