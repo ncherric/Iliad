@@ -34,7 +34,7 @@ if not isinstance(snakemake.input.reads, str) and len(snakemake.input.reads) not
 	raise ValueError("input must have 1 (single-end) or " "2 (paired-end) elements")
 
 pipe_cmd = (
-	"/usr/bin/samtools-1.15/bin/samtools sort {sort_extra}"
+	"samtools sort {sort_extra}"
 	" -o {snakemake.output.sortedBam} -@ {snakemake.threads}"
 )
 
@@ -50,9 +50,5 @@ with tempfile.TemporaryDirectory() as tmp:
 
 
 shell(
-	"/usr/bin/samtools-1.15/bin/samtools index -b -@ {snakemake.threads} {snakemake.output.sortedBam}"
-) #########
-#############
-#############    FIX THIS 
-#############
-#############    INDEX WITH SAMTOOLS
+	"samtools index -b -@ {snakemake.threads} {snakemake.output.sortedBam}"
+)

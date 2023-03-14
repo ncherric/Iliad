@@ -13,7 +13,7 @@ shell(
 )
 
 shell(
-	"/usr/bin/samtools-1.15/bin/samtools head results/cram/{sample}.cram |"
+	"samtools head results/cram/{sample}.cram |"
 	" awk '{{print $1,$2}}' - |"
 	" grep -w '@SQ' - >"
 	" results/vcf/{sample}/chrStrCheck/alignmentFileHeader.out"

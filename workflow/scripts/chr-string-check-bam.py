@@ -13,7 +13,7 @@ shell(
 )
 
 shell(
-	"/usr/bin/samtools-1.15/bin/samtools head {snakemake.input.sortedBam} |"
+	"samtools head {snakemake.input.sortedBam} |"
 	" awk '{{print $1,$2}}' - |"
 	" grep -w '@SQ' - >"
 	" results/vcf/{sample}/chrStrCheck/alignmentFileHeader.out"
