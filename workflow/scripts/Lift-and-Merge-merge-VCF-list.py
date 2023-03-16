@@ -14,16 +14,16 @@ sed_arg = [ "sed 's/ /\\n/g'" ]
 
 shell(
 	"echo {snakemake.input.VCFs_in_37} |"
-	" {sed_arg} - > data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-37path.txt"
+	" {sed_arg} - > data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-37path.txt"
 	)
 
 shell(
 	"echo {snakemake.input.VCFs_in_38} |"
-	" {sed_arg} - > data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-38path.txt"
+	" {sed_arg} - > data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-38path.txt"
 	)
 
 shell(
-	"cat data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-37path.txt data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-38path.txt "
+	"cat data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-37path.txt data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/VCFlist-from-38path.txt "
 	"> {snakemake.output.mergeList}"
 )
 

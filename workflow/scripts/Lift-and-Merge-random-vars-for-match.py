@@ -10,7 +10,7 @@ vcf=snakemake.params.get("vcf_from_wc")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-	"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/"
+	"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/"
 )
 
 shell(

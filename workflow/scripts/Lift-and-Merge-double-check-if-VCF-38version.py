@@ -11,7 +11,7 @@ dbsnpFile=snakemake.params.get("dbsnpFile", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-	"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/"
+	"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/"
 )
 
 shell(
@@ -26,11 +26,11 @@ shell(
 shell(
 	"bcftools view -R {snakemake.output.versionCheck}"
 	" -O v"
-	" -o data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmp.file.txt"
+	" -o data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmp.file.txt"
 	" {dbsnpDir}{dbsnpFile}"
 )
 
 shell(
-	" awk '/^[^#]/ {{print $1,$2,$3}}' OFS='\t' data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmp.file.txt >"
+	" awk '/^[^#]/ {{print $1,$2,$3}}' OFS='\t' data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmp.file.txt >"
 	" {snakemake.output.dbSNP_Extracted}"
 )

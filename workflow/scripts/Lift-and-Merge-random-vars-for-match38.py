@@ -10,7 +10,7 @@ vcf38=snakemake.params.get("vcf38_from_wc")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-	"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/"
+	"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/"
 )
 
 shell(

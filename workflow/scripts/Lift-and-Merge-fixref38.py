@@ -13,7 +13,7 @@ valid38 = snakemake.params.get("valid38_from_wc", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/Temp/{valid38}/"
+    "mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/Temp/{valid38}/"
 )
 
 shell(
@@ -23,7 +23,7 @@ shell(
     " -i {dbsnpDir}{dbsnpFile} |"
     " bcftools sort"
     " -m 8G"
-    " -T data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/Temp/{valid38}/"
+    " -T data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/Temp/{valid38}/"
     " -O v"
     " -o {snakemake.output.FixRef38}"
 )

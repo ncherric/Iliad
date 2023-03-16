@@ -52,24 +52,24 @@ if blank_InChecks is True:
 	)
 
 	shell(
-		"echo 'data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz' > {snakemake.output.fileWithPathIfVersion38}"
+		"echo 'data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz' > {snakemake.output.fileWithPathIfVersion38}"
 	)
 
 
 # make 38 directory
 
 	shell(
-		"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/"
+		"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/"
 	)
 
 
 # making the important next step VCFs for 38
 	shell(
-		"bcftools view -O z -o data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz {snakemake.input.keep23}"
+		"bcftools view -O z -o data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz {snakemake.input.keep23}"
 	)
 
 	shell(
-		"bcftools index --tbi data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz"
+		"bcftools index --tbi data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/38path_{vcf}.vcf.gz"
 	)
 
 # this is the 37 destination path
@@ -100,23 +100,23 @@ elif blank_InChecks is False:
 		)
 
 		shell(
-			"echo 'data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz' > {snakemake.output.fileWithPathIfVersion37}"
+			"echo 'data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz' > {snakemake.output.fileWithPathIfVersion37}"
 		)
 
 # make 37 directory
 
 		shell(
-			"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/"
+			"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/"
 		)
 
 
 # making the important next step VCFs for 37
 		shell(
-			"bcftools view -O z -o data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz {snakemake.input.keep23}"
+			"bcftools view -O z -o data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz {snakemake.input.keep23}"
 		)
 
 		shell(
-			"bcftools index --tbi data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz"
+			"bcftools index --tbi data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/37path_{vcf}.vcf.gz"
 		)
 
 	elif df37 is False:

@@ -84,23 +84,23 @@ elif blank_InChecks is False:
 		)
 
 		shell(
-			"echo 'data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz' > {snakemake.output.fileWithPathIfVersion38}"
+			"echo 'data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz' > {snakemake.output.fileWithPathIfVersion38}"
 		)
 
 # make 37 directory
 
 		shell(
-			"mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/"
+			"mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/"
 		)
 
 
 # making the important next step VCFs for 37
 		shell(
-			"bcftools view -O z -o data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz {snakemake.input.file38}"
+			"bcftools view -O z -o data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz {snakemake.input.file38}"
 		)
 
 		shell(
-			"bcftools index --tbi data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz"
+			"bcftools index --tbi data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/valid_{vcf38}.vcf.gz"
 		)
 
 	elif df38 is False:

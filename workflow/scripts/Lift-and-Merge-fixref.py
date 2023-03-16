@@ -13,7 +13,7 @@ vcf37 = snakemake.params.get("vcf37_from_wc", "")
 log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
-    "mkdir -p data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/Temp/{vcf37}/"
+    "mkdir -p data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/Temp/{vcf37}/"
 )
 
 shell(
@@ -23,7 +23,7 @@ shell(
     " -i {dbsnpDir}{dbsnpFile} |"
     " bcftools sort"
     " -m 8G"
-    " -T data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/Temp/{vcf37}/"
+    " -T data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/Temp/{vcf37}/"
     " -O v"
     " -o {snakemake.output.FixRef}"
 )
