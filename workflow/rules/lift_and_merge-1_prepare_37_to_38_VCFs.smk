@@ -3,10 +3,10 @@ ruleorder: zip_Index_1 > zip_Index_2
 
 rule zip_Index_1:
 	input:
-		unzipped="data/vcf_Merge-and-Lift/{vcf}.vcf",
+		unzipped="data/vcf_Lift-and-Merge/{vcf}.vcf",
 	output:
-		zipped="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz",
-		zippedIndexed="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz.tbi",
+		zipped="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz",
+		zippedIndexed="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz.tbi",
 	params:
 	resources:
 		mem_mb=1500,
@@ -21,11 +21,11 @@ rule zip_Index_1:
 
 rule zip_Index_2:
 	input:
-		prezipped2="data/vcf_Merge-and-Lift/{vcf}.vcf.gz",
-		prezipped2tbi="data/vcf_Merge-and-Lift/{vcf}.vcf.gz.tbi",
+		prezipped2="data/vcf_Lift-and-Merge/{vcf}.vcf.gz",
+		prezipped2tbi="data/vcf_Lift-and-Merge/{vcf}.vcf.gz.tbi",
 	output:
-		zipped2="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz",
-		zippedIndexed2="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz.tbi",
+		zipped2="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz",
+		zippedIndexed2="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz.tbi",
 	params:
 	resources:
 		mem_mb=1500,
@@ -41,11 +41,11 @@ rule zip_Index_2:
 
 rule rename_chrs37:
 	input:
-		zipped="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz",
-		zippedIndexed="data/vcf_Merge-and-Lift/{vcf}.zipped.vcf.gz.tbi",
+		zipped="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz",
+		zippedIndexed="data/vcf_Lift-and-Merge/{vcf}.zipped.vcf.gz.tbi",
 	output:
-		renamedChrs37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz",
-		renamedChrs37index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz.tbi",
+		renamedChrs37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz",
+		renamedChrs37index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz.tbi",
 	params:
 		renameChrFile="config/renameChrFile37.txt",
 	resources:
@@ -61,11 +61,11 @@ rule rename_chrs37:
 
 rule keep_autosomes_and_x:
 	input:
-		renamedChrs37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz",
-		renamedChrs37index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz.tbi",
+		renamedChrs37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz",
+		renamedChrs37index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step0-RenameChrs/RenameChrs.{vcf}.vcf.gz.tbi",
 	output:
-		keep23="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
-		keep23index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
+		keep23="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
+		keep23index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
 	resources:
 		mem_mb=1500,
 		runtime="00:05:00",
@@ -79,11 +79,11 @@ rule keep_autosomes_and_x:
 
 rule get_random_vars_for_match: # still mumbo jumbo of possible 37s and 38s
 	input:
-		keep23="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
-		keep23index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
+		keep23="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
+		keep23index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
 	output:
-		vcfForRandomizing="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/temp.preppedForRandom.{vcf}.vcf",
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
+		vcfForRandomizing="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/temp.preppedForRandom.{vcf}.vcf",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 		project_from_wc=lambda wc: wc.get("project"),
@@ -101,11 +101,11 @@ rule get_random_vars_for_match: # still mumbo jumbo of possible 37s and 38s
 
 rule get_vars_from_dbSNP_for_match:
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
 		tmpoFile37="dbSNP/tempFile37.to.remove",
 	output:
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
-		dbSNP_VCF_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.vcf",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
+		dbSNP_VCF_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.vcf",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file37'],
@@ -122,10 +122,10 @@ rule get_vars_from_dbSNP_for_match:
 
 rule dbSNP_match_file: 
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
 	output:
-		dbSNP_Matches="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomMatchesOrBlanks.{vcf}-dbSNP-matches.txt",
+		dbSNP_Matches="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomMatchesOrBlanks.{vcf}-dbSNP-matches.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 	resources:
@@ -138,16 +138,16 @@ rule dbSNP_match_file:
 
 rule check_matches:
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
-		dbSNP_Matches="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomMatchesOrBlanks.{vcf}-dbSNP-matches.txt",
-		keep23="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
-		keep23index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVarsForCheck.{vcf}.txt",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomVars.{vcf}-sites-extracted-from-dbSNP.txt",
+		dbSNP_Matches="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/randomMatchesOrBlanks.{vcf}-dbSNP-matches.txt",
+		keep23="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz",
+		keep23index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step1-Keep23/Keep23.{vcf}.vcf.gz.tbi",
 	output:
-		fileWithPathIfVersion37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/filePath_If_V37.{vcf}.txt",
-		fileWithBaseNameIfVersion37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/basename_If_V37.{vcf}.txt",
-		fileWithPathIfVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/filePath_If_V38.{vcf}.txt",
-		fileWithBaseNameIfVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/basename_If_V38.{vcf}.txt",
+		fileWithPathIfVersion37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/filePath_If_V37.{vcf}.txt",
+		fileWithBaseNameIfVersion37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/basename_If_V37.{vcf}.txt",
+		fileWithPathIfVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/filePath_If_V38.{vcf}.txt",
+		fileWithBaseNameIfVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/basename_If_V38.{vcf}.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 		project_from_wc=lambda wc: wc.get("project"),
@@ -165,7 +165,7 @@ rule aggregate_v37_VCFs_basenames:
 	input:
 		listOf_V37_VCFs_basenames=get_v37_basenames,
 	output:
-		fileWithBaseNamesForAllVersion37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs_basenames.txt",
+		fileWithBaseNamesForAllVersion37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs_basenames.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -181,7 +181,7 @@ rule aggregate_v37_VCFs:
 	input:
 		listOf_V37_VCFs=get_v37_filePath_files,
 	output:
-		fileWithPathsForAllVersion37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs.txt",
+		fileWithPathsForAllVersion37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -196,9 +196,9 @@ rule aggregate_v37_VCFs:
 
 checkpoint check_basenames_v37:
 	input:
-		basenamesFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs_basenames.txt",
+		basenamesFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version37_VCFs_basenames.txt",
 	output:
-		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/tmpChkPtFile.tmp",
+		tmpoFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3A-InputVCFs-37/tmpChkPtFile.tmp",
 	params:
 	resources:
 		mem_mb=1500,
@@ -217,7 +217,7 @@ rule aggregate_v38_VCFs_basenames:
 	input:
 		listOf_V38_VCFs_basenames=get_v38_basenames,
 	output:
-		fileWithBaseNamesForAllVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs_basenames.txt",
+		fileWithBaseNamesForAllVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs_basenames.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -233,7 +233,7 @@ rule aggregate_v38_VCFs:
 	input:
 		listOf_V38_VCFs=get_v38_filePath_files,
 	output:
-		fileWithPathsForAllVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs.txt",
+		fileWithPathsForAllVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -248,9 +248,9 @@ rule aggregate_v38_VCFs:
 
 checkpoint check_basenames_v38:
 	input:
-		basenamesFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs_basenames.txt",
+		basenamesFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step2-ReferenceAssembly-VersionCheck/All_Version38_VCFs_basenames.txt",
 	output:
-		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmpChkPtFile.tmp",
+		tmpoFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmpChkPtFile.tmp",
 	params:
 	resources:
 		mem_mb=1500,

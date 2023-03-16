@@ -1,9 +1,9 @@
 rule get_38_specific_dbSNP_vcf:
 	input:
-		combinedSNPlist="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/combinedMyData.rsIDs.txt",
+		combinedSNPlist="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/combinedMyData.rsIDs.txt",
 		tmpoFile38="dbSNP/tempFile38.to.remove",
 	output:
-		projectSpecificDBSNPvcf="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/specific-38dbSNP-for-lift.vcf",
+		projectSpecificDBSNPvcf="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/specific-38dbSNP-for-lift.vcf",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file38'],
@@ -18,9 +18,9 @@ rule get_38_specific_dbSNP_vcf:
 
 rule create_38_guide_file:
 	input:
-		projectSpecificDBSNPvcf="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/specific-38dbSNP-for-lift.vcf",
+		projectSpecificDBSNPvcf="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/specific-38dbSNP-for-lift.vcf",
 	output:
-		projectSpecific38guideFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/38.specificguideFile-from-38dbSNP-for-lift.txt",
+		projectSpecific38guideFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/38.specificguideFile-from-38dbSNP-for-lift.txt",
 	params:
 	resources:
 		mem_mb=10000,
@@ -33,10 +33,10 @@ rule create_38_guide_file:
 
 rule lift_37_to_38:
 	input:
-		projectSpecific38guideFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/38.specificguideFile-from-38dbSNP-for-lift.txt",
-		FixRef="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/fixref.{vcf37}.vcf",
+		projectSpecific38guideFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/38.specificguideFile-from-38dbSNP-for-lift.txt",
+		FixRef="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6A-clean-vcfIDs37/fixref.{vcf37}.vcf",
 	output:
-		liftedOver="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Lifted.{vcf37}.vcf",
+		liftedOver="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Lifted.{vcf37}.vcf",
 	params:
 		refAssemblyVersion_from_wc=lambda wc: wc.get("refAssemblyVersion"),
 	resources:
@@ -50,12 +50,12 @@ rule lift_37_to_38:
 
 rule sort:
 	input:
-		liftedOver="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Lifted.{vcf37}.vcf",
+		liftedOver="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Lifted.{vcf37}.vcf",
 	output:
-		sortGZ="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz",
-		sortTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz.tbi",
+		sortGZ="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz",
+		sortTBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz.tbi",
 	params:
-		tempDir="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/TempDir/{vcf37}/"
+		tempDir="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/TempDir/{vcf37}/"
 	resources:
 		mem_mb=6000,
 		runtime="01:00:00",
@@ -70,11 +70,11 @@ rule sort:
 
 rule filter:
 	input:
-		sortGZ="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz",
-		sortTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz.tbi",
+		sortGZ="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz",
+		sortTBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/Sorted.{vcf37}.vcf.gz.tbi",
 	output:
-		filtered="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz",
-		filteredTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",
+		filtered="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz",
+		filteredTBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",
 	params:
 	resources:
 		mem_mb=1500,
@@ -92,13 +92,13 @@ def filtered_37_vcfs(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",vcf37=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",vcf37=baseNames)
 
 rule finished2:
 	input: 
 		filtered_37_vcfs
 	output:
-		finished2="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/finished-step2.txt"
+		finished2="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/finished-step2.txt"
 	resources:
 		mem_mb=1500,
 		runtime="00:10:00",

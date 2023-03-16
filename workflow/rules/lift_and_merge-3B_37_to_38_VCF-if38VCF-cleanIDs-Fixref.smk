@@ -1,11 +1,11 @@
 rule get_clean_rsids38_from_MyData:
 	input:
-		cleanDBSNPlist38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/queried38.clean-dbSNP-combinedMyData38.rsIDs.txt",
-		annotated38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
-		annotated38index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
+		cleanDBSNPlist38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/queried38.clean-dbSNP-combinedMyData38.rsIDs.txt",
+		annotated38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
+		annotated38index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
 	output:
-		cleanDBSNPmyData38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
-		cleanDBSNPmyData38Index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
+		cleanDBSNPmyData38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
+		cleanDBSNPmyData38Index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
 	resources:
 		mem_mb=1500,
 		runtime="12:00:00",
@@ -20,11 +20,11 @@ rule get_clean_rsids38_from_MyData:
 # fixref wont work on already lifted over data just so you know! 
 rule rename_chrs38:
 	input:
-		cleanDBSNPmyData38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
-		cleanDBSNPmyData38Index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
+		cleanDBSNPmyData38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
+		cleanDBSNPmyData38Index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
 	output:
-		renamedChrs38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz",
-		renamedChrs38index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz.tbi",
+		renamedChrs38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz",
+		renamedChrs38index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz.tbi",
 	params:
 		renameChrFile38="config/renameChrFile38.txt",
 	resources:
@@ -41,12 +41,12 @@ rule rename_chrs38:
 
 rule fix_ref38:
 	input:
-		renamedChrs38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz",
-		renamedChrs38index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz.tbi",
+		renamedChrs38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz",
+		renamedChrs38index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38-chrString.{valid38}.vcf.gz.tbi",
 		tmpoGenomeFile38="resources/tempFile38.to.remove",
 		tmpoFile="dbSNP/tempFile38.to.remove",
 	output:
-		FixRef38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/fixref38.{valid38}.vcf",
+		FixRef38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/fixref38.{valid38}.vcf",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file38'],
@@ -67,12 +67,12 @@ rule fix_ref38:
 # sort 
 rule sort38:
 	input:
-		FixRef38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/fixref38.{valid38}.vcf",
+		FixRef38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/fixref38.{valid38}.vcf",
 	output:
-		sortGZ38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz",
-		sort38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz.tbi",
+		sortGZ38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz",
+		sort38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz.tbi",
 	params:
-		tempDir="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/TempDir/{valid38}/"
+		tempDir="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/TempDir/{valid38}/"
 	resources:
 		mem_mb=6000,
 		runtime="01:00:00",
@@ -87,11 +87,11 @@ rule sort38:
 
 rule rename_back_to_noChrs:
 	input:
-		sortGZ38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz",
-		sort38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz.tbi",
+		sortGZ38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz",
+		sort38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38.{valid38}.vcf.gz.tbi",
 	output:
-		noChrName38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz",
-		noChrName38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz.tbi",
+		noChrName38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz",
+		noChrName38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz.tbi",
 	params:
 		renameChrFile="config/renameChrFile37.txt",
 	resources:
@@ -108,11 +108,11 @@ rule rename_back_to_noChrs:
 # qc Filtered
 rule filter38:
 	input:
-		noChrName38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz",
-		noChrName38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz.tbi",
+		noChrName38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz",
+		noChrName38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/Sorted38-noChrString.{valid38}.vcf.gz.tbi",
 	output:
-		filtered38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",
-		filtered38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",
+		filtered38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",
+		filtered38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",
 	params:
 	resources:
 		mem_mb=1500,
@@ -128,11 +128,11 @@ rule filter38:
 # # filtering by skipping fixref step if you are attempting to use already lifted data. e.g. you already had some VCF that had positions already lifted over
 # rule filter38:
 # 	input:
-# 		cleanDBSNPmyData38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
-# 		cleanDBSNPmyData38Index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
+# 		cleanDBSNPmyData38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz",
+# 		cleanDBSNPmyData38Index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step6B-clean-vcfIDs38/cleaned38.{valid38}.vcf.gz.tbi",
 # 	output:
-# 		filtered38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",
-# 		filtered38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",
+# 		filtered38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",
+# 		filtered38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",
 # 	params:
 # 	resources:
 # 		mem_mb=1500,
@@ -151,13 +151,13 @@ def filtered_38_vcfs(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",valid38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",valid38=baseNames)
 
 rule finished3:
 	input: 
 		filtered_38_vcfs,
 	output:
-		finished3="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/finished-step3.txt"
+		finished3="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/finished-step3.txt"
 	resources:
 		mem_mb=1500,
 		runtime="00:10:00",

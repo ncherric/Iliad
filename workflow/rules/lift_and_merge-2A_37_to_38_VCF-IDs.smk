@@ -11,7 +11,7 @@ def aggregate_37_VCFs(wildcards):
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
 	print(f"baseNames is: {baseNames}")
-	files = expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3A-InputVCFs-37/{{vcf37}}.vcf.gz", vcf37=baseNames)
+	files = expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step3A-InputVCFs-37/{{vcf37}}.vcf.gz", vcf37=baseNames)
 	print(f"files is: {files}")
 	return files
 
@@ -20,8 +20,8 @@ rule annotate_37_VCFs:
 		file37=aggregate_37_VCFs,
 		dbsnpTemp="dbSNP/tempFile37.to.remove",
 	output:
-		annotated37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz",
-		annotated37index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz.tbi",
+		annotated37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz",
+		annotated37index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz.tbi",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file37'],
@@ -38,10 +38,10 @@ rule annotate_37_VCFs:
 
 rule query_37_VCF_IDs:
 	input:
-		annotated37="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz",
-		annotated37index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz.tbi",
+		annotated37="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz",
+		annotated37index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/annotated.{vcf37}.vcf.gz.tbi",
 	output:
-		rsidList="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/queried.{vcf37}.rsIDs.txt"
+		rsidList="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/queried.{vcf37}.rsIDs.txt"
 	resources:
 		mem_mb=1500,
 		runtime="00:05:00",
@@ -58,14 +58,14 @@ def get_combineMyData_37filepaths(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step4A-Input-vcfIDs37/queried.{vcf37}.rsIDs.txt",vcf37=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step4A-Input-vcfIDs37/queried.{vcf37}.rsIDs.txt",vcf37=baseNames)
 
 
 rule combine_MyData_SNPs:
 	input:
 		rsidList=get_combineMyData_37filepaths,
 	output:
-		combinedSNPlist="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/combinedMyData.rsIDs.txt",
+		combinedSNPlist="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4A-Input-vcfIDs37/combinedMyData.rsIDs.txt",
 	resources:
 		mem_mb=1500,
 		runtime="00:10:00",

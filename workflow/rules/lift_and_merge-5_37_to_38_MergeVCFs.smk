@@ -4,7 +4,7 @@ def filtered_37_vcfs(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz",vcf37=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz",vcf37=baseNames)
 
 def filtered_37_index(wildcards):
 	checkpoint_output = os.path.dirname(checkpoints.check_basenames_v37.get(**wildcards).output[0])
@@ -12,7 +12,7 @@ def filtered_37_index(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",vcf37=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7A-37_lift_to_38/QC-Filtered.{vcf37}.vcf.gz.tbi",vcf37=baseNames)
 
 
 def filtered_38_vcfs(wildcards):
@@ -21,7 +21,7 @@ def filtered_38_vcfs(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",valid38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz",valid38=baseNames)
 
 def filtered_38_index(wildcards):
 	checkpoint_output = os.path.dirname(checkpoints.validate_basenames_v38_again.get(**wildcards).output[0])
@@ -29,7 +29,7 @@ def filtered_38_index(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",valid38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step7B-no_lift_needed_38/QC-Filtered38.{valid38}.vcf.gz.tbi",valid38=baseNames)
 
 
 rule Merger_VCF_List:
@@ -39,7 +39,7 @@ rule Merger_VCF_List:
 		VCFindex_in_37=filtered_37_index,
 		VCFindex_in_38=filtered_38_index,
 	output:
-		mergeList="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/mergeList.txt",
+		mergeList="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/mergeList.txt",
 	params:
 		project_from_wc=lambda wc: wc.get("project"),
 		refAssemblyVersion_from_wc=lambda wc: wc.get("refAssemblyVersion"),
@@ -53,9 +53,9 @@ rule Merger_VCF_List:
 
 rule merge_vcfs:
 	input:
-		mergeList="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/mergeList.txt",
+		mergeList="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/mergeList.txt",
 	output:
-		mergeVCF="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
+		mergeVCF="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
 	params:
 	resources:
 		mem_mb=10000,
@@ -67,9 +67,9 @@ rule merge_vcfs:
 
 rule merge_vcfs_index:
 	input:
-		mergeVCF="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
+		mergeVCF="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
 	output:
-		mergeTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz.tbi",
+		mergeTBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz.tbi",
 	resources:
 		mem_mb=1500,
 		runtime="00:30:00",
@@ -82,10 +82,10 @@ rule merge_vcfs_index:
 
 rule FinalQC:
 	input:
-		mergeVCF="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
-		mergeTBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz.tbi",
+		mergeVCF="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz",
+		mergeTBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step8-merge/FinalMerge.vcf.gz.tbi",
 	output:
-		FinalQC="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz",
+		FinalQC="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz",
 	params:
 	resources:
 		mem_mb=1500,
@@ -99,9 +99,9 @@ rule FinalQC:
    
 rule FinalQC_index:
 	input:
-		FinalQC="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz",
+		FinalQC="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz",
 	output:
-		FinalQC_TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi",
+		FinalQC_TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi",
 	resources:
 		mem_mb=1500,
 		runtime="00:30:00",

@@ -8,15 +8,15 @@ def aggregate_38_VCFs(wildcards):
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
 	print(f"baseNames is: {baseNames}")
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/{{vcf38}}.vcf.gz", vcf38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/{{vcf38}}.vcf.gz", vcf38=baseNames)
 
 rule get_random_vars_for_match38: # These are all likely 38s, but just double checking...
 	input:
 		file38=aggregate_38_VCFs,
-		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmpChkPtFile.tmp",
+		tmpoFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/tmpChkPtFile.tmp",
 	output:
-		vcfForRandomizing="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/temp.preppedForRandom.{vcf38}.vcf",
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
+		vcfForRandomizing="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/temp.preppedForRandom.{vcf38}.vcf",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 		project_from_wc=lambda wc: wc.get("project"),
@@ -33,11 +33,11 @@ rule get_random_vars_for_match38: # These are all likely 38s, but just double ch
 
 rule get_vars_from_dbSNP_for_match38:
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
 		tmpoFile38="dbSNP/tempFile38.to.remove",
 	output:
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
-		dbSNP_VCF_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.vcf",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
+		dbSNP_VCF_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.vcf",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file38'],
@@ -54,10 +54,10 @@ rule get_vars_from_dbSNP_for_match38:
 
 rule dbSNP_match_file38: 
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
 	output:
-		dbSNP_Matches="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomMatchesOrBlanks.{vcf38}-dbSNP-matches.txt",
+		dbSNP_Matches="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomMatchesOrBlanks.{vcf38}-dbSNP-matches.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 	resources:
@@ -70,15 +70,15 @@ rule dbSNP_match_file38:
 
 rule validate_check_matches:
 	input:
-		myData_randomVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
-		dbSNP_ExtractedVarsForMatch="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
-		dbSNP_Matches="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomMatchesOrBlanks.{vcf38}-dbSNP-matches.txt",
+		myData_randomVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVarsForCheck.{vcf38}.txt",
+		dbSNP_ExtractedVarsForMatch="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomVars.{vcf38}-sites-extracted-from-dbSNP38.txt",
+		dbSNP_Matches="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/randomMatchesOrBlanks.{vcf38}-dbSNP-matches.txt",
 		file38=aggregate_38_VCFs,
 	output:
-		fileWithPathIfVersionNotValidated="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/filePath_If_not_validated-for-v37-or-v38.{vcf38}.txt",
-		fileWithBaseNameIfVersionNotValidated="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/basename_If_not_validated-for-v37-or-v38.{vcf38}.txt",
-		fileWithPathIfVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/filePath_If_V38.{vcf38}.txt",
-		fileWithBaseNameIfVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/basename_If_V38.{vcf38}.txt",
+		fileWithPathIfVersionNotValidated="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/filePath_If_not_validated-for-v37-or-v38.{vcf38}.txt",
+		fileWithBaseNameIfVersionNotValidated="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/basename_If_not_validated-for-v37-or-v38.{vcf38}.txt",
+		fileWithPathIfVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/filePath_If_V38.{vcf38}.txt",
+		fileWithBaseNameIfVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/basename_If_V38.{vcf38}.txt",
 	conda: "../../env/determine-vcf-version.yaml"
 	params:
 		project_from_wc=lambda wc: wc.get("project"),
@@ -101,7 +101,7 @@ def get_v38_filePath_files_again(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/ValidateVersion/filePath_If_V38.{vcf38}.txt", vcf38=baseNames) 
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/ValidateVersion/filePath_If_V38.{vcf38}.txt", vcf38=baseNames) 
 
 def get_v38_basenames_again(wildcards):
 	print(f"get_v38_basenames_validated")
@@ -111,14 +111,14 @@ def get_v38_basenames_again(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/ValidateVersion/basename_If_V38.{vcf38}.txt", vcf38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/ValidateVersion/basename_If_V38.{vcf38}.txt", vcf38=baseNames)
 
 
 rule aggregate_v38_VCFs_basenames_again:
 	input:
 		listOf_V38_VCFs_basenames=get_v38_basenames_again,
 	output:
-		fileWithBaseNamesForAllVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs_basenames.txt",
+		fileWithBaseNamesForAllVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs_basenames.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -134,7 +134,7 @@ rule aggregate_v38_VCFs_again:
 	input:
 		listOf_V38_VCFs=get_v38_filePath_files_again,
 	output:
-		fileWithPathsForAllVersion38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs.txt",
+		fileWithPathsForAllVersion38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs.txt",
 	params:
 	resources:
 		mem_mb=1500,
@@ -149,9 +149,9 @@ rule aggregate_v38_VCFs_again:
 
 checkpoint validate_basenames_v38_again:
 	input:
-		basenamesFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs_basenames.txt",
+		basenamesFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/ValidateVersion/All_Version38_VCFs_basenames.txt",
 	output:
-		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/tmpChkPtFile.tmp",
+		tmpoFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/tmpChkPtFile.tmp",
 	params:
 	resources:
 		mem_mb=1500,
@@ -173,16 +173,16 @@ def aggregate_38_VCFs_again(wildcards):
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
 	print(f"baseNames is: {baseNames}")
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/validated/{{valid38}}.vcf.gz", valid38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step3B-InputVCFs-38/validated/{{valid38}}.vcf.gz", valid38=baseNames)
 
 rule annotate_if_VCF_38version:
 	input:
 		valid38=aggregate_38_VCFs_again,
 		tmpoFile38="dbSNP/tempFile38.to.remove",
-		tmpoFile="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/tmpChkPtFile.tmp",
+		tmpoFile="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step3B-InputVCFs-38/validated/tmpChkPtFile.tmp",
 	output:
-		annotated38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
-		annotated38index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
+		annotated38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
+		annotated38index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file38'],
@@ -199,10 +199,10 @@ rule annotate_if_VCF_38version:
 
 rule query_38_VCF_IDs:
 	input:
-		annotated38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
-		annotated38index="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
+		annotated38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz",
+		annotated38index="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/annotated38.{valid38}.vcf.gz.tbi",
 	output:
-		rsidList38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/queried38.{valid38}.rsIDs.txt"
+		rsidList38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/queried38.{valid38}.rsIDs.txt"
 	resources:
 		mem_mb=1500,
 		runtime="00:05:00",
@@ -219,13 +219,13 @@ def get_combineMyData_38filepaths(wildcards):
 	baseNames = []
 	for id in ids:
 		baseNames.append(Path(id).stem.rsplit('.',maxsplit=1)[0])
-	return expand("data/vcf_Merge-and-Lift/{{project}}/{{refAssemblyVersion}}/step4B-Input-vcfIDs38/queried38.{valid38}.rsIDs.txt",valid38=baseNames)
+	return expand("data/vcf_Lift-and-Merge/{{project}}/{{refAssemblyVersion}}/step4B-Input-vcfIDs38/queried38.{valid38}.rsIDs.txt",valid38=baseNames)
 
 rule combine_MyData_SNPs_38:
 	input:
 		rsidList=get_combineMyData_38filepaths,
 	output:
-		combinedSNPlist38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/combinedMyData.rsIDs.txt",
+		combinedSNPlist38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/combinedMyData.rsIDs.txt",
 	resources:
 		mem_mb=1500,
 		runtime="00:10:00",
@@ -238,10 +238,10 @@ rule combine_MyData_SNPs_38:
 
 rule get_rsids_from_dbSNP38:
 	input:
-		combinedSNPlist38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/combinedMyData.rsIDs.txt",
+		combinedSNPlist38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step4B-Input-vcfIDs38/combinedMyData.rsIDs.txt",
 	output:
-		dbsnpExtractedIDsFile38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz",
-		dbsnpExtractedIDsFile38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz.tbi",
+		dbsnpExtractedIDsFile38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz",
+		dbsnpExtractedIDsFile38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz.tbi",
 	params:
 		dbsnpDir="dbSNP/",
 		dbsnpFile=config['dbsnpLiftMerge']['file38'],
@@ -258,10 +258,10 @@ rule get_rsids_from_dbSNP38:
 
 rule query_dbSNP_clean_IDs38:
 	input:
-		dbsnpExtractedIDsFile38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz",
-		dbsnpExtractedIDsFile38TBI="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz.tbi",
+		dbsnpExtractedIDsFile38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz",
+		dbsnpExtractedIDsFile38TBI="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/extracted38.dbSNP.combinedMyData.vcf.gz.tbi",
 	output:
-		cleanDBSNPlist38="data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/queried38.clean-dbSNP-combinedMyData38.rsIDs.txt",
+		cleanDBSNPlist38="data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step5B-dbSNP-IDs-38/queried38.clean-dbSNP-combinedMyData38.rsIDs.txt",
 	resources:
 		mem_mb=1500,
 		runtime="00:05:00",

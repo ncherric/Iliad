@@ -11,7 +11,7 @@ Version38=config["Version38"]
 
 rule all:
 	input:
-		expand("data/vcf_Merge-and-Lift/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi", project=config["dbsnpLiftMerge"]["projectName"], refAssemblyVersion=config["dbsnpLiftMerge"]["desiredVersion"]),
+		expand("data/vcf_Lift-and-Merge/{project}/{refAssemblyVersion}/step9-FinalQC/FinalMerge-QC.vcf.gz.tbi", project=config["dbsnpLiftMerge"]["projectName"], refAssemblyVersion=config["dbsnpLiftMerge"]["desiredVersion"]),
 
 ##### Modules #####
 
@@ -35,6 +35,18 @@ if LiftoverTF is True:
 	if Version38 is False:
 		print("Version38 was False, lifting to 37") # 38 -> 37
 
+		include: "rules/lift_and_merge-0_dbsnps.smk"
+		include: "rules/lift_and_merge-0_referenceGenomes.smk"
+		include: "rules/lift_and_merge-1_prepare_38_to_37_VCFs.smk"
+		include: "rules/lift_and_merge-2A_38_to_37_VCF-IDs.smk"
+		include: "rules/lift_and_merge-2B_38_to_37_VCF-if37VCF-IDs.smk"
+		include: "rules/lift_and_merge-3A_38_to_37_cleanIDs-Fixref.smk"
+		include: "rules/lift_and_merge-3B_38_to_37_VCF-if37VCF-cleanIDs-Fixref.smk"
+		include: "rules/lift_and_merge-3C_38_to_37_dbSNP-IDs.smk"
+		include: "rules/lift_and_merge-4A_38_to_37-Lift-to-37.smk"
+		include: "rules/lift_and_merge-5_38_to_37_MergeVCFs.smk"
+
 if LiftoverTF is False:
 	print("No liftover to be done")
 
+	include: "rules/lift_and_merge-5_37_to_38_MergeVCFs.smk"
