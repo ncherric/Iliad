@@ -61,6 +61,37 @@ Although it is highly recommended to follow the Singularity specific installatio
 Again, please see our specific `platform`_ preparation guides to set up your machine to this point if you are on a Windows or Mac machine. 
 Singularity cooperates best with a Linux OS. It requires GO, so the following code blocks incorporate this dependency.
 
+You might need to install system dependencies.. For example, if you just created a VM Instance on Google Cloud Platform:
+
+Debian-based systems, such as Ubuntu 20.04 (x86_64)
+
+.. code-block:: console
+
+	# Ensure repositories are up-to-date
+	sudo apt-get update
+	# Install debian packages for dependencies
+	sudo apt-get install -y \
+	    build-essential \
+    	libseccomp-dev \
+    	pkg-config \
+    	squashfs-tools \
+    	cryptsetup \
+    	curl wget git
+
+CentOS/RHEL systems:
+
+.. code-block:: console
+
+    # Install basic tools for compiling
+    sudo yum groupinstall -y 'Development Tools'
+    # Ensure EPEL repository is available
+    sudo yum install -y epel-release
+    # Install RPM packages for dependencies
+    sudo yum install -y \
+        libseccomp-devel \
+        squashfs-tools \
+        cryptsetup \
+        wget git
 
 Install GO and put it in your PATH
 
