@@ -65,33 +65,35 @@ You might need to install system dependencies.. For example, if you just created
 
 Debian-based systems, such as Ubuntu 20.04 (x86_64)
 
+Ensure repositories are up-to-date and install debian packages for dependencies
+
 .. code-block:: console
 
-	# Ensure repositories are up-to-date
-	sudo apt-get update
-	# Install debian packages for dependencies
-	sudo apt-get install -y \
-	    build-essential \
-    	libseccomp-dev \
-    	pkg-config \
-    	squashfs-tools \
-    	cryptsetup \
-    	curl wget git
+	$ sudo apt-get update
+
+	$ sudo apt-get install -y \
+	build-essential \
+	libseccomp-dev \
+	pkg-config \
+	squashfs-tools \
+	cryptsetup \
+	curl wget git
 
 CentOS/RHEL systems:
 
+Install basic tools for compiling, ensure EPEL repository is available, install RPM packages for dependencies
+
 .. code-block:: console
 
-    # Install basic tools for compiling
-    sudo yum groupinstall -y 'Development Tools'
-    # Ensure EPEL repository is available
-    sudo yum install -y epel-release
-    # Install RPM packages for dependencies
-    sudo yum install -y \
-        libseccomp-devel \
-        squashfs-tools \
-        cryptsetup \
-        wget git
+	$ sudo yum groupinstall -y 'Development Tools'
+    
+	$ sudo yum install -y epel-release
+
+	$ sudo yum install -y \
+	libseccomp-devel \
+	squashfs-tools \
+	cryptsetup \
+	wget git
 
 Install GO and put it in your PATH
 
