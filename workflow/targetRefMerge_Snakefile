@@ -1,4 +1,4 @@
-singularity: "library://ncherric/iliad/igdp-container"
+singularity: "library://ncherric/iliad/igdp-container:v1.16"
 
 include: "rules/common.smk"
 
