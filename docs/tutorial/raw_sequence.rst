@@ -84,7 +84,7 @@ Example: **UserSampleTable.xlsx** or **UserSampleTable.csv** are found in the ``
    * - KPGP-00127
      - ftp://ftp.kobic.re.kr/pub/KPGP/2020_release_candidate/WGS_SR/KPGP-00127/KPGP-00127_L1_R2.fq.gz
 
-This exact template exists already in ``/Iliad/config/UserSampleTable.xlsx``. (The Excel Viewer extension on VS code is really handy for editing!)
+This exact template exists already in ``/Iliad/config/UserSampleTable.xlsx`` OR ``/Iliad/config/UserSampleTable.csv``. (The Excel Viewer extension on VS code is really handy for editing the .xlsx file if spreadsheets are your preference!)
 If you already have the sequence files and are not downloading open-source data, you have the option to place your data into the ``Iliad/data/fastq/`` directory.
 
 Whether you are automatically downloading via Iliad or you manually place data into ``Iliad/data/fastq/`` directory,
