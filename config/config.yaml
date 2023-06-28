@@ -38,12 +38,12 @@ workdirPath: NEED PATH HERE
 
 # for downloading FastQ raw seq data make sure there is an Excel table or csv document with two columns and no header: Sample_Name,FTP_url
 # e.g KPGP-00127,ftp://ftp.kobic.re.kr/pub/KPGP/2020_release_candidate/WGS_SR/KPGP-00127/KPGP-00127_L1_R1.fq.gz
-samplesDict: config/UserSampleTable.xlsx
+samplesDict: config/UserSampleTable.csv
 # must include list of samples in one column with "sample" header, no matter if you use the download feature or if you re-direct ILIAD to FASTQ data path
 samples: config/samples.tsv
 
 # Same setup as above for if you are retrieving CRAM files from an FTP server
-cramSamplesDict: config/cramSampleTable.xlsx
+cramSamplesDict: config/cramSampleTable.csv
 cramSamples: config/cramSamples.tsv
 
 ###########################################################
