@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""Module readthedocs configuration."""
 
 import sys
 import os

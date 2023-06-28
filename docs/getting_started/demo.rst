@@ -119,7 +119,7 @@ Cloning the GitHub Repo
 |
 |
 
-The table will have two columns - Column 1 you input the sample ID. It is ok to have multiple repeating Sample IDs for paired-end reads and multiplexed data. Here is the tutorial file already setup: ``./Iliad/config/UserSampleTable.xlsx``
+The table will have two columns - Column 1 you input the sample ID. It is ok to have multiple repeating Sample IDs for paired-end reads and multiplexed data. Here is the tutorial file already setup: ``./Iliad/config/UserSampleTable.csv``
 
 |
 |
