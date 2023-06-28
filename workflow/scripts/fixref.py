@@ -19,7 +19,7 @@ log = snakemake.log_fmt_shell(stdout=False, stderr=True)
 
 shell(
     "mkdir -p data/vcf_merge/{project}/{refAssemblyVersion}/step7-fixref/Temp/{vcf}/"
-
+)
 
 shell(
     "bcftools +fixref {snakemake.input.cleanDBSNPmyData}"
