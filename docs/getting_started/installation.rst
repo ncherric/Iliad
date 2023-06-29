@@ -4,7 +4,8 @@
 .. _Conda: https://conda.pydata.org
 .. _instructions: https://mamba.readthedocs.io/en/latest/installation.html
 .. _platform: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/platform_preparation.html
-
+.. _token: https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls
+.. _creation: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 
 .. _getting_started/installation:
 
@@ -141,16 +142,19 @@ First, create an appropriate project working directory on your system and enter 
     $ mkdir -p /path/to/project-workdir
     $ cd /path/to/project-workdir
 
-In the next step, you will snakedeploy or clone the Iliad repo. This will create an Iliad directory that you will cd into.
+In the next step, you will clone the Iliad repo. This will create an Iliad directory that you will cd into.
+If you are not an active github user, you may have to create an account and a personal access token that is entered 
+for password when prompted to do so on the command line in the following step. 
+Here is a link for token_ information and creation_.
 
-**OPTION 1: snakedeploy**
+.. **OPTION 1: snakedeploy**
 
-.. code-block:: console
+.. .. code-block:: console
 
-    $ snakedeploy deploy-workflow https://github.com/snakemake-workflows/Iliad . --tag v1.0.0
-    $ cd Iliad
+..     $ snakedeploy https://github.com/ncherric/Iliad . --tag v1.0.0
+..     $ cd Iliad
 
-**OPTION 2: clone the repository using git:**
+**Clone the repository using git:**
 
 .. Git clone the `GitHub repository <https://github.com/ncherric/Iliad>`_.
 
