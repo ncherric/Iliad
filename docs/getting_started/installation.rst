@@ -130,10 +130,10 @@ Make sure Singularity is in your PATH and accessible by Snakemake.
 
 **Estimated time: 15-60 minutes**
 
-Step 3: Deploy workflow
-============================
+Step 3: Clone the Iliad repository and workflows
+================================================
 
-Given that Snakemake and Snakedeploy are installed and available (see Step 1), the workflow can be deployed as follows.
+.. Given that Snakemake and Snakedeploy are installed and available (see Step 1), the workflow can be deployed as follows.
 
 First, create an appropriate project working directory on your system and enter it:
 
