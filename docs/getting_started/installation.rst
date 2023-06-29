@@ -144,6 +144,7 @@ First, create an appropriate project working directory on your system and enter 
 In the next step, you will snakedeploy or clone the Iliad repo. This will create an Iliad directory that you will cd into.
 
 **OPTION 1: snakedeploy**
+
 .. code-block:: console
 
     $ snakedeploy deploy-workflow https://github.com/snakemake-workflows/Iliad . --tag v1.0.0
