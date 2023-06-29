@@ -141,13 +141,15 @@ First, create an appropriate project working directory on your system and enter 
     $ mkdir -p /path/to/project-workdir
     $ cd /path/to/project-workdir
 
-In all following steps, we will assume that you are inside of that directory.
+In the next step, you will snakedeploy or clone the Iliad repo. This will create an Iliad directory that you will cd into.
 
+**OPTION 1: snakedeploy**
 .. code-block:: console
 
     $ snakedeploy deploy-workflow https://github.com/snakemake-workflows/Iliad . --tag v1.0.0
+    $ cd Iliad
 
-**Alternatively, you could clone the repository using git:**
+**OPTION 2: clone the repository using git:**
 
 .. Git clone the `GitHub repository <https://github.com/ncherric/Iliad>`_.
 
@@ -157,7 +159,7 @@ In all following steps, we will assume that you are inside of that directory.
     $ cd Iliad
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project-workdir/`` like such ``/path/to/project-workdir/Iliad/``.
-
+And your current working directory should be ``/path/to/project-workdir/Iliad/``.
 
 Two important folders found in the Iliad directory are **workflow** and **config**.
 The ``workflow`` contains rules and scripts that a designated Snakefile in Iliad call on to run a specific module.
