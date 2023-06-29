@@ -215,13 +215,13 @@ For running the workflow while deploying any necessary software via singularity 
 When executing the workflow, Snakemake will automatically find the main Snakefile in the workflow subfolder which is the **Raw Sequence Read Data** module.
 However, there are other Snakefiles that are specific to the other Modules that you will have to call using ``--snakefile [desired module snakefile]``
 
-* ``--snakefile Snakefile`` -> Raw Sequence Read Data
-* ``--snakefile cram_Snakefile`` -> Stored Sequence Read Data
-* ``--snakefile snpArray_Snakefile`` -> SNP Array Data
-* ``--snakefile LiftoverTo38_Snakefile`` -> Submodule to liftover GRCh37 assembly VCF data to GRCh38 assembly
-* ``--snakefile LiftoverTo37_Snakefile`` -> Submodule to liftover GRCh38 assembly VCF data to GRCh37 assembly
-* ``--snakefile merger_Snakefile`` -> Submodule to merging list of VCFs
-* ``--snakefile mergeRefTarget_Snakefile`` -> Submodule that will merge your processed Reference and Target data if you have previously completed both modules 
+* ``--snakefile workflow/Snakefile`` -> Raw Sequence Read Data
+* ``--snakefile workflow/cram_Snakefile`` -> Stored Sequence Read Data
+* ``--snakefile workflow/snpArray_Snakefile`` -> SNP Array Data
+* ``--snakefile workflow/LiftoverTo38_Snakefile`` -> Submodule to liftover GRCh37 assembly VCF data to GRCh38 assembly
+* ``--snakefile workflow/LiftoverTo37_Snakefile`` -> Submodule to liftover GRCh38 assembly VCF data to GRCh37 assembly
+* ``--snakefile workflow/merger_Snakefile`` -> Submodule to merging list of VCFs
+* ``--snakefile workflow/mergeRefTarget_Snakefile`` -> Submodule that will merge your processed Reference and Target data if you have previously completed both modules 
 
 Visit the How-To Guides pages for further info about each of the Modules and Submodules in the bulleted list above.
 
