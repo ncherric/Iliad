@@ -1,6 +1,6 @@
 ##### Environment Dependencies #####
 
-singularity: "library://ncherric/iliad/igdp-container:latest"
+singularity: "library://ncherric/iliad/igdp-container:v1.16"
 
 ##### Target rules #####
 
