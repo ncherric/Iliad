@@ -35,7 +35,7 @@ Please visit our documentation hosted on Read The Docs: https://iliad.readthedoc
 
 ILIAD 
 
-Iliad is a multi-functional **genomic data processing pipeline** implemented via the **Snakemake** workflow management system, Singularity or Docker container, 
+Iliad is a multi-functional toolkit comprised of **genomic data processing pipelines** implemented via the **Snakemake** workflow management system, Singularity or Docker container, 
 and a handful of Conda environments.
 Instances of any Singularity or Docker containers and Conda environments are automatically pulled down and 
 created to build the right execution environment during workflow runtime, making light of the numerous required bioinformatic third-party software tools and dependencies.
