@@ -172,7 +172,7 @@ Here is a link for token_ information and creation_.
 
 .. code-block:: console
 
-    $ git clone https://www.github.com/ncherric/Iliad.git
+    $ git clone https://github.com/ncherric/Iliad.git
     $ cd Iliad
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project-workdir/`` like such ``/path/to/project-workdir/Iliad/``.
