@@ -31,6 +31,18 @@ For other options see `here <https://github.com/mamba-org/mamba>`_.
 
 You will need to add Mamba to PATH so follow their instructions_ for such.
 
+Here is my suggested install guidance for Conda:
+
+.. code-block:: console
+
+    $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+    $ sudo mkdir -p /opt/conda
+    $ CONDA_DIR=/opt/conda
+    $ /bin/bash ~/miniconda.sh -b -p /opt/conda
+    $ PATH=$CONDA_DIR/bin:$PATH
+    $ source ~/.bashrc
+    $ conda init bash
+
 Given that Mamba (or Conda) is installed, run the following in your command line interface tool 
 (i.e. `Putty <https://www.putty.org/>`_, 
 `MacOS Terminal <https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac>`_,
