@@ -137,6 +137,25 @@ Make sure Singularity is in your PATH and accessible by Snakemake.
 .. code-block:: console
 
 	$ singularity version
+
+Edit the Singularity configuration file to allow SHARED LOOP DEVICES.
+
+.. code-block:: console
+   
+	$ sudo nano /usr/local/etc/singularity/singularity.conf
+
+Change the SHARED LOOP DEVICES to yes. "shared loop devices = yes"
+
+.. code-block:: yaml
+
+    # SHARED LOOP DEVICES: [BOOL]
+    # DEFAULT: no
+    # Allow to share same images associated with loop devices to minimize loop
+    # usage and optimize kernel cache (useful for MPI)
+    shared loop devices = yes
+
+.. code-block:: console
+
 	$ cd ~
 
 **Estimated time: 15-60 minutes**
@@ -194,6 +213,10 @@ Step 4: Configure Workflow
 To configure this workflow, modify ``Iliad/config/config.yaml`` according to your needs. 
 The file is clearly denoted into sections that you can change according to your needs. 
 There are many defaults set that you do not have to change. The one most important change you will have to make is the following:
+
+.. code-block:: console
+
+    $ nano config/config.yaml
 
 .. code-block:: console
 
