@@ -154,6 +154,8 @@ Change the SHARED LOOP DEVICES to yes. "shared loop devices = yes"
     # usage and optimize kernel cache (useful for MPI)
     shared loop devices = yes
 
+Return to Home directory
+
 .. code-block:: console
 
 	$ cd ~
