@@ -121,16 +121,16 @@ Install Singularity
 
 .. code-block:: console
 
-	$ export VERSION=3.8.7 && \ # adjust this as necessary
-    wget https://github.com/apptainer/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
-    tar -xzf singularity-${VERSION}.tar.gz && \
-    cd singularity-${VERSION}
+	$ export VERSION=3.8.7  # adjust this as necessary
+	$ wget https://github.com/apptainer/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
+	$ tar -xzf singularity-${VERSION}.tar.gz
+	$ cd singularity-${VERSION}
 
 .. code-block:: console
 
-	$ ./mconfig && \
-    make -C ./builddir && \
-    sudo make -C ./builddir install
+	$ ./mconfig
+	$ make -C ./builddir
+	$ sudo make -C ./builddir install
 
 Make sure Singularity is in your PATH and accessible by Snakemake.
 
