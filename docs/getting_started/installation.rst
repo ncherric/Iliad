@@ -51,7 +51,7 @@ If you need guidance for a specific platform you are using, see the specific `pl
 
 .. code-block:: console
 
-    $ mamba create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
+    $ conda create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
 
 to install Snakemake, Snakedeploy, and a necessary python library for parsing user input tables in an isolated environment.
 For all following commands ensure that this environment is activated via
@@ -59,7 +59,7 @@ For all following commands ensure that this environment is activated via
 
 .. code-block:: console
 
-    $ mamba activate iliadEnv
+    $ conda activate iliadEnv
 
 **Estimated time: 15-20 minutes**
 
