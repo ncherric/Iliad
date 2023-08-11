@@ -40,8 +40,8 @@ Here is my suggested install guidance for Conda:
     $ CONDA_DIR=/opt/conda
     $ /bin/bash ~/miniconda.sh -b -p /opt/conda
     $ PATH=$CONDA_DIR/bin:$PATH
-    $ source ~/.bashrc
     $ conda init bash
+    $ source ~/.bashrc
 
 Given that Mamba (or Conda) is installed, run the following in your command line interface tool 
 (i.e. `Putty <https://www.putty.org/>`_, 
@@ -112,24 +112,24 @@ Install GO and put it in your PATH
 
 .. code-block:: console
 
-    export GOVERSION=1.18.1 OS=linux ARCH=amd64  # change these variables as you need
-    wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz
-    sudo tar -C /usr/local -xzf /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz
-    echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-    source ~/.bashrc
+	$ export GOVERSION=1.18.1 OS=linux ARCH=amd64  # change these variables as you need
+	$ wget -O /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz https://dl.google.com/go/go${GOVERSION}.${OS}-${ARCH}.tar.gz
+	$ sudo tar -C /usr/local -xzf /tmp/go${GOVERSION}.${OS}-${ARCH}.tar.gz
+	$ echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+	$ source ~/.bashrc
 
 Install Singularity
 
 .. code-block:: console
 
-    export VERSION=3.8.7 && # adjust this as necessary \
+	$ export VERSION=3.8.7 && # adjust this as necessary \
     wget https://github.com/apptainer/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz && \
     cd singularity-${VERSION}
 
 .. code-block:: console
 
-    ./mconfig && \
+	$ ./mconfig && \
     make -C ./builddir && \
     sudo make -C ./builddir install
 
@@ -137,8 +137,8 @@ Make sure Singularity is in your PATH and accessible by Snakemake.
 
 .. code-block:: console
 
-    singularity version
-
+	$ singularity version
+	$ cd ~
 
 **Estimated time: 15-60 minutes**
 
@@ -147,12 +147,12 @@ Step 3: Clone the Iliad repository and workflows
 
 .. Given that Snakemake and Snakedeploy are installed and available (see Step 1), the workflow can be deployed as follows.
 
-First, create an appropriate project working directory on your system and enter it:
+First, create an appropriate project working directory (/path/to/project-workdir) on your system and enter it:
 
 .. code-block:: console
 
-    $ mkdir -p /path/to/project-workdir
-    $ cd /path/to/project-workdir
+    $ mkdir -p project
+    $ cd project
 
 In the next step, you will clone the Iliad repo. This will create an Iliad directory that you will cd into.
 If you are not an active github user, you may have to create an account and a personal access token that is entered 
