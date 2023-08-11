@@ -36,9 +36,8 @@ Here is my suggested install guidance for Conda:
 .. code-block:: console
 
     $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-    $ sudo mkdir -p /opt/conda
     $ CONDA_DIR=/opt/conda
-    $ /bin/bash ~/miniconda.sh -b -p /opt/conda
+    $ sudo /bin/bash ~/miniconda.sh -b -p /opt/conda
     $ PATH=$CONDA_DIR/bin:$PATH
     $ conda init bash
     $ source ~/.bashrc
@@ -122,7 +121,7 @@ Install Singularity
 
 .. code-block:: console
 
-	$ export VERSION=3.8.7 && # adjust this as necessary \
+	$ export VERSION=3.8.7 && \ # adjust this as necessary
     wget https://github.com/apptainer/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz && \
     tar -xzf singularity-${VERSION}.tar.gz && \
     cd singularity-${VERSION}
