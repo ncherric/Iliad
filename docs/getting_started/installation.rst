@@ -19,11 +19,9 @@ It largely reduces the learning curve and software dependency installations by t
 It still requires the installation of the native package manager for the Snakemake application itself and Singularity.
 Many HPC users at an academic institution will already have Singularity on their clusters.
 
-
-.. raw:: html
-
-<video controls src="img/How-To-INTRO_Trim.mp4"></video>
-
+.. video:: img/How-To-INTRO_Trim.mp4
+   :width: 500
+   :height: 300
 
 Google Cloud Platform server - Linux (Ubuntu)
 ====================================================================
