@@ -238,8 +238,3 @@ This is the output from *Iliad*. I use the ``tree`` command here just to demonst
 
 |
 |
-
-Using Snakedeploy from snakemake workflow catalog
-=================================================
-
-**! Under Construction !**
