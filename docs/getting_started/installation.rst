@@ -6,7 +6,7 @@
 .. _platform: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/platform_preparation.html
 .. _token: https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls
 .. _creation: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
-
+.. _login: https://cloud.google.com/?hl=en
 .. _getting_started/installation:
 
 ============
@@ -19,10 +19,17 @@ It largely reduces the learning curve and software dependency installations by t
 It still requires the installation of the native package manager for the Snakemake application itself and Singularity.
 Many HPC users at an academic institution will already have Singularity on their clusters.
 
-.. _conda-install:
+.. image:: img/How-To-INTRO_Trim.mp4
+   :align: center
+   :width: 600
+
+Google Cloud Platform server - Linux (Ubuntu)
+====================================================================
+
+First, you will have to use your google account or create one and login_.
 
 Step 1: Install Snakemake and Snakedeploy
-=============================================
+*****************************************
 
 Snakemake and Snakedeploy are best installed via the `Mamba package manager <https://github.com/mamba-org/mamba>`_ (a newer package manager for Conda replacement). 
 From our testing, Conda is perfectly fine as an alternative, and you can use them interchangeably below.
@@ -63,7 +70,7 @@ For all following commands ensure that this environment is activated via
 **Estimated time: 15-20 minutes**
 
 Step 2: Install Singularity
-============================
+***************************
 
 Follow the `instructions guide <https://docs.sylabs.io/guides/3.6/user-guide/quick_start.html>`_ provided by Singularity to install the program under the 
 Operating System of your choosing.
@@ -163,7 +170,7 @@ Return to Home directory
 **Estimated time: 15-60 minutes**
 
 Step 3: Clone the Iliad repository and workflows
-================================================
+************************************************
 
 .. Given that Snakemake and Snakedeploy are installed and available (see Step 1), the workflow can be deployed as follows.
 
@@ -210,7 +217,7 @@ It also contains ``Excel`` files and ``TSV`` files where you will input your sam
 
 
 Step 4: Configure Workflow
-============================
+**************************
 
 To configure this workflow, modify ``Iliad/config/config.yaml`` according to your needs. 
 The file is clearly denoted into sections that you can change according to your needs. 
@@ -241,7 +248,7 @@ There are many defaults set that you do not have to change. The one most importa
 
 
 Step 5: Run workflow
-============================
+********************
 
 Given that the workflow has been properly deployed and configured, it can be executed as follows.
 
