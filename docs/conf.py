@@ -27,7 +27,6 @@ extensions = [
     "sphinxarg.ext",
     "sphinx.ext.autosectionlabel",
     "myst_parser",
-    "sphinxcontrib.video",
 ]
 
 # Snakemake theme (made by SciAni).
