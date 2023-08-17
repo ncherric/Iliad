@@ -9,9 +9,9 @@
 .. _homepage: https://cloud.google.com/?hl=en
 .. _getting_started/installation:
 
-============
-Installation
-============
+==============================
+Installation and Configuration
+==============================
 
 
 Iliad is Snakemake workflow management system and can be cloned from the `GitHub repository <https://github.com/ncherric/Iliad>`_.
