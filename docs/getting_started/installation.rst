@@ -6,7 +6,7 @@
 .. _platform: https://iliad-readthedocs.readthedocs.io/en/latest/getting_started/platform_preparation.html
 .. _token: https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls
 .. _creation: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
-.. _login: https://cloud.google.com/?hl=en
+.. _homepage: https://cloud.google.com/?hl=en
 .. _getting_started/installation:
 
 ============
@@ -26,7 +26,7 @@ Many HPC users at an academic institution will already have Singularity on their
 Google Cloud Platform server - Linux (Ubuntu)
 ====================================================================
 
-First, you will have to use your google account or create one and login_.
+First, you will have to use your google account or create one at the GCP homepage_.
 
 Step 1: Install Snakemake and Snakedeploy
 *****************************************
@@ -258,6 +258,8 @@ For running the workflow while deploying any necessary software via singularity 
 
     $ snakemake -p --use-singularity --use-conda --cores 1 --jobs 1 --default-resource=mem_mb=10000 --latency-wait 120
 
+Other workflows
+********************
 
 When executing the workflow, Snakemake will automatically find the main Snakefile in the workflow subfolder which is the **Raw Sequence Read Data** module.
 However, there are other Snakefiles that are specific to the other Modules that you will have to call using ``--snakefile [desired module snakefile]``
@@ -277,3 +279,13 @@ This example bewlow is for the `Stored Sequence Read Data <https://iliad-readthe
 .. code-block:: console
 
     $ snakemake -p --use-singularity --use-conda --cores 1 --jobs 1 --snakefile workflow/cram_Snakefile --default-resource=mem_mb=10000 --latency-wait 120
+
+
+
+Academic HPC cluster - Linux
+====================================================================
+
+
+
+Local machine - Docker
+====================================================================
