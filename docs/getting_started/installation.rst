@@ -19,15 +19,20 @@ It largely reduces the learning curve and software dependency installations by t
 It still requires the installation of the native package manager for the Snakemake application itself and Singularity.
 Many HPC users at an academic institution will already have Singularity on their clusters.
 
-.. image:: img/How-To-Introduction.mp4
-   :align: center
-   :width: 400
+.. raw:: html
+    <iframe width="560" height="315" src="https://youtu.be/9CCnaLlUFG4" frameborder="0.25" allowfullscreen></iframe>
 
-
-Google Cloud Platform server - Linux (Ubuntu)
+Google Cloud Platform server - Linux
 ====================================================================
 
 First, you will have to use your google account or create one at the GCP homepage_.
+
+Next, follow along this video when creating your GCP Virtual Machine (VM) Instance.
+
+.. image:: img/
+   :align: center
+   :width: 400
+
 
 Step 1: Install Snakemake and Snakedeploy
 *****************************************
