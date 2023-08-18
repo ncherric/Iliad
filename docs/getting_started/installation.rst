@@ -20,7 +20,7 @@ It still requires the installation of the native package manager for the Snakema
 Many HPC users at an academic institution will already have Singularity on their clusters.
 
 .. raw:: html
-    <iframe width="560" height="315" src="https://youtu.be/9CCnaLlUFG4" frameborder="0.25" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9CCnaLlUFG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Google Cloud Platform server - Linux
 ====================================================================
