@@ -19,6 +19,8 @@ It largely reduces the learning curve and software dependency installations by t
 It still requires the installation of the native package manager for the Snakemake application itself and Singularity.
 Many HPC users at an academic institution will already have Singularity on their clusters.
 
+https://youtu.be/9CCnaLlUFG4
+
 .. raw:: html
     <iframe width="560" height="315" src="https://www.youtube.com/embed/9CCnaLlUFG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
