@@ -25,6 +25,8 @@ https://youtu.be/9CCnaLlUFG4
 
    <iframe width="560" height="315" src="https://www.youtube.com/embed/Wu0EdBP_CD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+
+
 Google Cloud Platform server - Linux
 ====================================================================
 
@@ -35,6 +37,7 @@ Next, follow along this video when creating your GCP Virtual Machine (VM) Instan
 .. raw:: html
     
    <iframe width="560" height="315" src="https://www.youtube.com/embed/V82dEtKvl8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 
 Step 1: Install Snakemake and Snakedeploy
@@ -236,7 +239,7 @@ There are many defaults set that you do not have to change. The one most importa
 
     $ nano config/config.yaml
 
-.. code-block:: console
+.. code-block:: yaml
 
     #####################################
     #####################################
@@ -403,7 +406,7 @@ Step 4: Configure Workflow
 
 There are 2 methods: Automatic and Manual 
 
-**Automatic**
+**A) Automatic**
 
 .. code-block:: console
 
@@ -416,7 +419,7 @@ Answer the interactive prompts accordingly and then press RETURN/ENTER.
 
 
 
-**Manual**
+**B) Manual**
 
 To configure this workflow, modify ``Iliad/config/config.yaml`` according to your needs. 
 The file is clearly denoted into sections that you can change according to your needs. 
@@ -428,7 +431,7 @@ There are many defaults set that you do not have to change. The one most importa
 
 And INSERT your working directory path where NEED PATH HERE is. should look like this: **/path/to/project/Iliad/**
 
-.. code-block:: console
+.. code-block:: yaml
 
     #####################################
     #####################################
@@ -486,3 +489,44 @@ This example bewlow is for the `Stored Sequence Read Data <https://iliad-readthe
 
 Local machine - Docker
 ====================================================================
+
+First, it is important to know the machine specs on your local device i.e., Disk Space (Storage) and RAM (Memory).
+To work with human genomics and this tutorial, it will be necessary to have atleast 500 GB of free Disk Space and 30 GB of RAM. 
+There is an option to assign Docker to an external hard drive (preferably SSD storage drive for speed gains over HDD) if you need more disk space or don't want 
+to fill up your machine's Disk Space. 
+
+Next, follow along this video when creating your Docker container from Iliad's Docker Image. This tutorial was performed on MacOS.
+
+.. raw:: html
+    
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/V82dEtKvl8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+
+Step 1: Download and Install Docker Desktop
+*******************************************
+
+Follow instructions here: https://www.docker.com/products/docker-desktop/
+
+IF YOU NEED TO USE EXTERNAL DRIVE:
+Create a symlink to External Drive to preserve internal drive. **Replace <EXTERNAL_DRIVE> and <USERNAME> accordingly**
+
+.. code-block:: console
+
+    $ mkdir -p /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/
+    $ mv /Users/<USERNAME>/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/
+    $ ln -s /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/Docker.raw /Users/<USERNAME>/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw
+
+Step 2: Pull image from Docker
+******************************
+
+.. code-block:: console
+
+    $ docker pull ncherric/iliad:v1.16
+
+Step 3: Run the docker image to create a container that you can enter and exit
+******************************************************************************
+
+.. code-block:: console
+
+    $ docker run -it --memory=30g --storage-opt size=500G
