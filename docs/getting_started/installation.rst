@@ -25,7 +25,7 @@ https://youtu.be/9CCnaLlUFG4
 
    <iframe width="560" height="315" src="https://www.youtube.com/embed/Wu0EdBP_CD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-
+Quick intro about Iliad
 
 Google Cloud Platform server - Linux
 ====================================================================
@@ -38,19 +38,18 @@ Next, follow along this video when creating your GCP Virtual Machine (VM) Instan
     
    <iframe width="560" height="315" src="https://www.youtube.com/embed/V82dEtKvl8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+Install, configure, and run Iliad on GCP
 
 
-Step 1: Install Snakemake and Snakedeploy
-*****************************************
+Step 1: Install Conda and Snakemake
+***********************************
 
-Snakemake and Snakedeploy are best installed via the `Mamba package manager <https://github.com/mamba-org/mamba>`_ (a newer package manager for Conda replacement). 
-From our testing, Conda is perfectly fine as an alternative, and you can use them interchangeably below.
-If you have neither Conda nor Mamba, it can be installed via `Mambaforge <https://github.com/conda-forge/miniforge#mambaforge>`_. 
+Conda and Snakemake are best installed via the `Miniconda package manager <https://github.com/mamba-org/mamba>`_ (a newer package manager for Conda). 
+From our testing, Mamba and micromamba are perfectly fine as alternatives, and you can use them interchangeably below.
+If you have neither Conda nor Mamba, it can be installed via `conda-forge <https://github.com/conda-forge/miniforge#mambaforge>`_. 
 For other options see `here <https://github.com/mamba-org/mamba>`_.
 
-You will need to add Mamba to PATH so follow their instructions_ for such.
-
-Here is my suggested install guidance for Conda:
+Here is my suggested install guidance for Conda on GCP VM instance:
 
 .. code-block:: console
 
@@ -61,7 +60,7 @@ Here is my suggested install guidance for Conda:
     $ conda init bash
     $ source ~/.bashrc
 
-Given that Mamba (or Conda) is installed, run the following in your command line interface tool 
+Given that Conda (or Mamba) is installed, run the following in your command line interface tool 
 (i.e. `Putty <https://www.putty.org/>`_, 
 `MacOS Terminal <https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac>`_,
 or `VS Code <https://code.visualstudio.com/>`_).
@@ -71,7 +70,7 @@ If you need guidance for a specific platform you are using, see the specific `pl
 
     $ conda create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
 
-to install Snakemake, Snakedeploy, and a necessary python library for parsing user input tables in an isolated environment.
+to install Snakemake and necessary python libraries.
 For all following commands ensure that this environment is activated via
 
 
