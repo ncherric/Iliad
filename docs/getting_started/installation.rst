@@ -22,7 +22,8 @@ Many HPC users at an academic institution will already have Singularity on their
 https://youtu.be/9CCnaLlUFG4
 
 .. raw:: html
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/9CCnaLlUFG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/Wu0EdBP_CD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Google Cloud Platform server - Linux
 ====================================================================
@@ -31,9 +32,9 @@ First, you will have to use your google account or create one at the GCP homepag
 
 Next, follow along this video when creating your GCP Virtual Machine (VM) Instance.
 
-.. image:: img/
-   :align: center
-   :width: 400
+.. raw:: html
+    
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/V82dEtKvl8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 Step 1: Install Snakemake and Snakedeploy
