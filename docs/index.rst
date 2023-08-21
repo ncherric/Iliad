@@ -115,11 +115,13 @@ Iliad Workflow Schematics
 
    projectinfo/citing
    projectinfo/more_resources
+   projectinfo/container_images
    projectinfo/faq
    projectinfo/contributing
    projectinfo/credits
    projectinfo/changelog
    projectinfo/license
+
 
 .. toctree::
    :maxdepth: 2
