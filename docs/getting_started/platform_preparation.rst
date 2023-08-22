@@ -29,13 +29,13 @@ obtain mamba package manager:
 
 .. code-block:: console
 
-    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+    $ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
 
-install mambaforge (type 'yes' to all interactive prompts)
+install mambaforge
 
 .. code-block:: console
 
-    bash Mambaforge-$(uname)-$(uname -m).sh
+    $ bash Mambaforge-$(uname)-$(uname -m).sh -b
 
 * Step 4. RESTART
 
@@ -45,25 +45,25 @@ install mambaforge (type 'yes' to all interactive prompts)
 
 .. code-block:: console
 
-    mamba create -c conda-forge -c bioconda --name iliadEnv snakemake snakedeploy openpyxl
+    $ conda create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
 
 * Step 7. Change directories in the UBUNTU command line to get into proper location of your project folder
 
 .. code-block:: console
 
-    cd mnt/DRIVE/Path/To/Iliad/
+    $ cd mnt/DRIVE/Path/To/Iliad/
 
 * Step 8. Activate your conda environment (IliadEnv)
 
 .. code-block:: console
 
-    Mamba activate IliadEnv
+    $ Mamba activate IliadEnv
 
 * Step 9. Get your current location to add to the configuration file
 
 .. code-block:: console
 
-    pwd
+    $ pwd
 
 * Step 10. Copy that location and paste into the ``Iliad/config/config.yaml`` as your working directory. This should start with ``/mnt/`` and end with a forward slash ``/`` like so  ``/mnt/Drive/Path/To/Iliad/``
 
@@ -72,6 +72,13 @@ install mambaforge (type 'yes' to all interactive prompts)
 
 MacOS
 =====
+
+Docker container
+****************
+
+
+Oracle VM
+*********
 
 * Step 1. Download the latest version of `Oracle VM VirtualBox <"https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html#vbox">_`. 
 
