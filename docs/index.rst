@@ -15,6 +15,14 @@ created to build the right execution environment during workflow runtime, making
 The multi-functional feature is supported by a modularized Snakemake workflow design and includes independent Snakemake workflows to accommodate 
 **many forms of genomic data** and translate them to comprehensible genotypes in a **variant call format (VCF) file**.
 
+https://youtu.be/9CCnaLlUFG4
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/Wu0EdBP_CD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Quick intro about Iliad
+
 These are the currently supported genomic data starting points below:
 
 * Raw Sequence Read Data (.fq)
