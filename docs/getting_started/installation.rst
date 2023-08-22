@@ -10,6 +10,10 @@
 .. _Docker: https://hub.docker.com/repository/docker/ncherric/iliad/general
 .. _Singularity: https://cloud.sylabs.io/library/ncherric/iliad/igdp-container
 
+.. _GCP: https://iliad.readthedocs.io/en/latest/getting_started/GCP.html
+.. _Academic: https://iliad.readthedocs.io/en/latest/getting_started/academic.html
+.. _Docker: https://iliad.readthedocs.io/en/latest/getting_started/docker.html
+
 .. _getting_started/installation:
 
 ==============================
@@ -34,15 +38,14 @@ Quick intro about Iliad
 Google Cloud Platform server - Linux
 ====================================
 
-LINK
+GCP_
 
 Academic HPC cluster - Linux
 ============================
 
-LINK
-
+Academic_
 
 Local machine - Docker
 ======================
 
-LINK
+Docker_
