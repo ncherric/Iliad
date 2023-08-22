@@ -409,13 +409,15 @@ There are 2 methods: Automatic and Manual
 
 .. code-block:: console
 
-    $ conda install questionary -c conda-forge
     $ cd config
     $ python auto_config.py
+    $ mv modified.yaml config.yaml
+    $ cd ..
 
-There will be interactive questions on the command line that will ask you to enter your 1) working directory and 2) sample table file with download URLs. 
+There will be interactive questions on the command line that will ask you to enter your 1) working directory 2) sample table file with download URLs and 3) reference assembly info for download. 
 Answer the interactive prompts accordingly and then press RETURN/ENTER.
-
+NOTE: Using this command-line interactive prompt to update the config.yaml file will erase all comments and notes in your `config.yaml` file. 
+There is an additional `config-commented.yaml` that you can refer to if you have questions about settings.
 
 
 **B) Manual**
