@@ -82,7 +82,9 @@ Iliad Workflow Schematics
    :maxdepth: 1
 
    getting_started/installation
-   getting_started/platform_preparation
+   getting_started/GCP
+   getting_started/academic
+   getting_started/docker
    getting_started/demo
    getting_started/config
 
