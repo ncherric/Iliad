@@ -530,4 +530,4 @@ Step 3: Run the docker image to create a container that you can enter and exit
 
 .. code-block:: console
 
-    $ docker run -it --memory=30g --storage-opt size=500G
+    $ docker run ncherric/iliad:v1.16 -it --memory=30g --storage-opt size=500G
