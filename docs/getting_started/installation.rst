@@ -20,7 +20,8 @@ Installation and Configuration
 Iliad is Snakemake workflow management system and can be cloned from the `GitHub repository <https://github.com/ncherric/Iliad>`_.
 It largely reduces the learning curve and software dependency installations by taking advantage of pre-built execution environments for Iliad. 
 It still requires the installation of the native package manager for the Snakemake application itself and Singularity with certain machine configurations.
-Many HPC users at an academic institution will already have Singularity on their clusters and the Iliad Docker_ Image is an alternative to the Iliad Singularity_ Image. 
+Many HPC users at an academic institution will already have Singularity on their clusters just be sure to load the module for Snakemake to find the Iliad Singularity_ Image. 
+The Iliad Docker_ Image provides an alternative method to using Singularity. 
 
 https://youtu.be/9CCnaLlUFG4
 
