@@ -532,7 +532,7 @@ This creates a container based on the Iliad Docker Image that you can enter and 
 
 .. code-block:: console
 
-    $ docker run ncherric/iliad:v1.16 -it --memory=30g --storage-opt size=500G
+    $ docker run -it ncherric/iliad:v1.16
 
 If you ever ``exit`` your container, you can re-enter with ``docker exec -it <container_name> bash``
 
