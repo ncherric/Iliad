@@ -525,8 +525,10 @@ Step 2: Pull image from Docker
 
     $ docker pull ncherric/iliad:v1.16
 
-Step 3: Run the docker image to create a container that you can enter and exit
-******************************************************************************
+Step 3: Run the Docker image 
+****************************
+
+This creates a container based on the Iliad Docker Image that you can enter and exit.
 
 .. code-block:: console
 
