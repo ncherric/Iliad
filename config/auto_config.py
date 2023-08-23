@@ -18,8 +18,13 @@ def main():
         # Prompt the user for a new value
         refSpecies = input("Enter your reference assembly species. copy this if unchanged -> homo_sapiens: ")
         ymldoc['ref']['species'] = refSpecies
-        refRelease = input("Enter your reference assembly release. copy this if unchanged -> 104: ")
-        ymldoc['ref']['release'] = refRelease
+
+        try:
+            refRelease = int(input("Enter your reference assembly release. copy this if unchanged -> 104: "))
+            ymldoc['ref']['release'] = refRelease
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
         refBuild = input("Enter your reference assembly build. copy this if unchanged -> GRCh38: ")
         ymldoc['ref']['build'] = refBuild
 
