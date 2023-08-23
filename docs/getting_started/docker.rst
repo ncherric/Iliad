@@ -144,6 +144,12 @@ There are 2 methods: Automatic and Manual
 
     $ cd config
     $ python auto_config.py
+    # Now you will see interactive prompts. If you want to follow default and tutorial, here are your options.
+    /usr/projects/Iliad/
+    config/UserSampleTable.csv
+    homo_sapiens
+    104
+    GRCh38
     $ mv modified.yaml config.yaml
     $ cd ..
 
