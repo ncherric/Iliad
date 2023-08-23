@@ -77,15 +77,28 @@ If you ever ``exit`` your container, you can re-enter with ``docker exec -it <co
 Step 4: Clone the Iliad repository and workflows
 ************************************************
 
-.. Given that Snakemake and Snakedeploy are installed and available (see Step 1), the workflow can be deployed as follows.
-
-First, create an appropriate project working directory (/path/to/project) on your system and enter it:
+Given that Conda (or Mamba) is installed, run the following in your command line interface tool 
+(i.e. `Putty <https://www.putty.org/>`_, 
+`MacOS Terminal <https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac>`_,
+or `VS Code <https://code.visualstudio.com/>`_).
+If you need guidance for a specific platform you are using, see the specific `platform`_ preparation guides and they will help lead you to this point.
 
 .. code-block:: console
 
-    $ cd /usr/
-    $ mkdir -p project
-    $ cd project
+    $ conda create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
+
+to install Snakemake and necessary python libraries.
+For all following commands ensure that this environment is activated via
+
+.. code-block:: console
+
+    $ conda activate iliadEnv
+
+Now, either create an appropriate project working directory (/path/to/projects) on your system and make that your current working directory or follow the Image's pre-built projects folder:
+
+.. code-block:: console
+
+    $ cd /usr/projects
 
 In the next step, you will clone the Iliad repo. This will create an Iliad directory that you will cd into.
 If you are not an active github user, you may have to create an account and a personal access token that is entered 
