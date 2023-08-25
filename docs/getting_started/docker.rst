@@ -45,7 +45,8 @@ Find Settings
    :align: center
    :width: 800
 
-Find Resources and adjust CPUs (6-12), Memory (30 GB), and Virtual disk limit (~20 GB). These will depend on your system's available specs.
+Find Resources and adjust CPUs (6-12), Memory (30 GB), and Virtual disk limit (~32 GB). These will depend on your system's available specs and other uses you have for Docker.
+These suggestions are based on Iliad and this tutorial.
 
 Step 2: Pull image from Docker
 ******************************
