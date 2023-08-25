@@ -64,7 +64,7 @@ I have the **INTEL CHIP** - x86_64
     $ docker pull ncherric/iliad:x86_64-v1.16
 
 
-If you have the new **APPLE M1 CHIP** - aarch / arm64
+If you have the new **APPLE M1 or M2 CHIP** - aarch / arm64
 
 .. code-block:: console
 
@@ -73,7 +73,7 @@ If you have the new **APPLE M1 CHIP** - aarch / arm64
 Step 3: Run the Docker image 
 ****************************
 
-This creates a container based on the Iliad Docker Image that you can enter and exit. (Change the image to ncherric/iliad:arm64-v1.16 if you have Apple M1 chip)
+This creates a container based on the Iliad Docker Image that you can enter and exit. (Change the image to ncherric/iliad:arm64-v1.16 if you have Apple M1 or M2 chip)
 
 .. code-block:: console
 
