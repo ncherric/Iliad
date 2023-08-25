@@ -77,7 +77,7 @@ This creates a container based on the Iliad Docker Image that you can enter and 
 
 .. code-block:: console
 
-    $ docker run -it -v /Volumes:/External_SSD ncherric/iliad:x86_64-v1.16 --name iliadHOWTO
+    $ docker run -it --name iliadHOWTO -v /Volumes:/External_SSD ncherric/iliad:x86_64-v1.16
 
 If you ever ``exit`` your container, you can re-enter with ``docker exec -it iliadHOWTO bash``.
 Replace `iliadHOWTO` with <container_name> if you have declared a different container name.
@@ -94,7 +94,7 @@ Here is a link for token_ information and creation_.
 
 
 .. code-block:: console
-    
+
     $ cd External_SSD
     $ git clone https://github.com/ncherric/Iliad.git
     $ cd Iliad
