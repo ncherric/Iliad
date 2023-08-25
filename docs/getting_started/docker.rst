@@ -17,8 +17,7 @@ Local machine - Docker
 
 First, it is important to know the machine specs on your local device i.e., Disk Space (Storage) and RAM (Memory).
 To work with human genomics and this tutorial, it will be necessary to have atleast 500 GB of free Disk Space and 30 GB of RAM. 
-There is an option to assign Docker to an external hard drive (preferably SSD storage drive for speed gains over HDD) if you need more disk space or don't want 
-to fill up your machine's Disk Space. 
+For this How-To guide, I use an external SSD storage drive. 
 
 Next, follow along this video when creating your Docker container from Iliad's Docker Image. This tutorial was performed on MacOS.
 
@@ -32,15 +31,7 @@ Step 1: Download, Install, and Configure Docker Desktop
 *******************************************
 
 Follow instructions here to download and install Docker Desktop: https://www.docker.com/products/docker-desktop/
-
-IF YOU NEED TO USE EXTERNAL DRIVE:
-Create a symlink to External Drive to preserve internal drive. **Replace <EXTERNAL_DRIVE> and <USERNAME> accordingly**
-
-.. code-block:: console
-
-    $ mkdir -p /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/
-    $ mv /Users/<USERNAME>/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/
-    $ ln -s /Volumes/<EXTERNAL_DRIVE>/Users/<USERNAME>/Library/Containers/com.docker.docker/Docker.raw /Users/<USERNAME>/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw
+This website will recognize what your machine is. Remember this for Step 2.
 
 Edit Resource Settings in the Docker Desktop like so:
 
@@ -54,70 +45,54 @@ Find Settings
    :align: center
    :width: 800
 
-Find Resources and adjust CPUs (6), Memory (30 GB), and Virtual disk limit (~500 GB)
+Find Resources and adjust CPUs (6-12), Memory (30 GB), and Virtual disk limit (~20 GB). These will depend on your system's available specs.
 
 Step 2: Pull image from Docker
 ******************************
 
+Make sure have the right system architecture for your machine.
+
+.. image:: img/Docker-Desktop-Download.png
+   :align: center
+   :width: 300
+
+I have the **INTEL CHIP** - x86_64
+
 .. code-block:: console
 
-    $ docker pull ncherric/iliad:v1.16
+    $ docker pull ncherric/iliad:x86_64-v1.16
+
+
+If you have the new **APPLE M1 CHIP** - aarch / arm64
+
+.. code-block:: console
+
+    $ docker pull ncherric/iliad:arm64-v1.16
 
 Step 3: Run the Docker image 
 ****************************
 
-This creates a container based on the Iliad Docker Image that you can enter and exit.
+This creates a container based on the Iliad Docker Image that you can enter and exit. (Change the image to iliad:arm64-v1.16 if you have Apple M1 chip)
 
 .. code-block:: console
 
-    $ docker run -it ncherric/iliad:v1.16
+    $ docker run -it -v /Volumes:/External_SSD ncherric/iliad:x86_64-v1.16 --name iliadHOWTO
 
-If you ever ``exit`` your container, you can re-enter with ``docker exec -it <container_name> bash``
+If you ever ``exit`` your container, you can re-enter with ``docker exec -it iliadHOWTO bash``.
+Replace `iliadHOWTO` with <container_name> if you have declared a different container name.
 
 Step 4: Clone the Iliad repository and workflows
 ************************************************
-
-Given that Conda (or Mamba) is installed, run the following in your command line interface tool 
-(i.e. `Putty <https://www.putty.org/>`_, 
-`MacOS Terminal <https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac>`_,
-or `VS Code <https://code.visualstudio.com/>`_).
-If you need guidance for a specific platform you are using, see the specific `platform`_ preparation guides and they will help lead you to this point.
-
-.. code-block:: console
-
-    $ conda create -c conda-forge -c bioconda --name iliadEnv snakemake=7.19.0 snakedeploy openpyxl pandas
-
-to install Snakemake and necessary python libraries.
-For all following commands ensure that this environment is activated via
-
-.. code-block:: console
-
-    $ conda activate iliadEnv
-
-Now, either create an appropriate project working directory (/path/to/projects) on your system and make that your current working directory or follow the Image's pre-built projects folder:
-
-.. code-block:: console
-
-    $ cd /usr/projects
 
 In the next step, you will clone the Iliad repo. This will create an Iliad directory that you will cd into.
 If you are not an active github user, you may have to create an account and a personal access token that is entered 
 for password when prompted to do so on the command line in the following step. 
 Here is a link for token_ information and creation_.
 
-.. **OPTION 1: snakedeploy**
-
-.. .. code-block:: console
-
-..     $ snakedeploy https://github.com/ncherric/Iliad . --tag v1.0.0
-..     $ cd Iliad
-
 **Clone the repository using git:**
 
-.. Git clone the `GitHub repository <https://github.com/ncherric/Iliad>`_.
-
 .. code-block:: console
-
+    $ cd External_SSD
     $ git clone https://github.com/ncherric/Iliad.git
     $ cd Iliad
 
@@ -127,11 +102,10 @@ And your current working directory should be ``/path/to/project/Iliad/``.
 Two important folders found in the Iliad directory are **workflow** and **config**.
 The ``workflow`` contains rules and scripts that a designated Snakefile in Iliad call on to run a specific module.
 The ``config`` contains one configuration file ``Iliad/config/config.yaml`` which will be modified in the next step in order to configure the workflow to your needs.
-It also contains ``Excel`` files and ``TSV`` files where you will input your sample information.
+It also contains ``Excel`` or ``CSV`` for sampleID and URL as well as ``TSV`` files where you will input your sample ID only in one column.
 
-.. **side note**
-.. ( Once this pipeline is publicly available, and added to the Snakemake Workflow Catalog, run below. For now, just **clone ABOVE** )
-
+Since we are on a local machine and have mounted the volume **External_SSD** with our docker ``-v`` option, we can visualize this directory 
+and its contents with the Finder app on MacOS.
 
 Step 5: Configure Workflow
 **************************
@@ -144,7 +118,7 @@ There are 2 methods: Automatic and Manual
 
     $ cd config
     $ python auto_config.py
-    # Now you will see interactive prompts. If you want to follow default and tutorial, here are your options.
+    # Now you will see interactive prompts. If you want to follow default and tutorial, here are your options that you should copy and paste, individually when prompted.
     /usr/projects/Iliad/
     config/UserSampleTable.csv
     homo_sapiens
@@ -155,7 +129,7 @@ There are 2 methods: Automatic and Manual
 
 There will be interactive questions on the command line that will ask you to enter your 1) working directory 2) sample table file with download URLs and 3) reference assembly info for download. 
 Answer the interactive prompts accordingly and then press RETURN/ENTER.
-NOTE: Using this command-line interactive prompt to update the config.yaml file will erase all comments and notes in your ``config.yaml`` file. 
+**NOTE**: Using this command-line interactive prompt to update the config.yaml file will erase all comments and notes in your ``config.yaml`` file. 
 There is an additional ``config-commented.yaml`` that you can refer to if you have questions about settings.
 
 
@@ -169,7 +143,7 @@ There are many defaults set that you do not have to change. The one most importa
 
     $ nano config/config.yaml
 
-And INSERT your working directory path where NEED PATH HERE is. should look like this: **/path/to/project/Iliad/**
+And INSERT your working directory path where NEED PATH HERE is. should look like this: **/path/to/project/Iliad/** or in this HOW-TO specifically **/External_SSD/Iliad/**
 
 .. code-block:: yaml
 
