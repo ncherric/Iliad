@@ -95,13 +95,16 @@ Here is a link for token_ information and creation_.
 
 .. code-block:: console
 
+    $ cd ../../
     $ cd External_SSD
+    $ ls
+    $ cd <NAME-OF-EXTERNAL-DRIVE> # Mine happens to be Tyche, thus, cd Tyche
     $ git clone https://github.com/ncherric/Iliad.git
     $ cd Iliad
 
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project/`` like such ``/path/to/project/Iliad/``.
-And your current working directory should be ``/path/to/project/Iliad/``.
+And your current working directory should be ``/path/to/project/Iliad/``. Mine happens to be ``/External_SSD/Tyche/Iliad/``.
 
 Two important folders found in the Iliad directory are **workflow** and **config**.
 The ``workflow`` contains rules and scripts that a designated Snakefile in Iliad call on to run a specific module.
