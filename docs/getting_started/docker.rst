@@ -92,10 +92,13 @@ Here is a link for token_ information and creation_.
 
 **Clone the repository using git:**
 
+
 .. code-block:: console
+    
     $ cd External_SSD
     $ git clone https://github.com/ncherric/Iliad.git
     $ cd Iliad
+
 
 Now, there should be an ``./Iliad`` directory cloned into your ``/path/to/project/`` like such ``/path/to/project/Iliad/``.
 And your current working directory should be ``/path/to/project/Iliad/``.
