@@ -84,7 +84,7 @@ rule final_liftover:
     output:
         liftedVCF="data/liftover/{version}/liftedOver.{name}.vcf",
     params:
-        refAssemblyVersion=config['Liftover']['desiredVersion'],
+        refAssemblyVersion=config['LiftoverSub']['desiredVersion'],
     shell:
         """
         mkdir -p data/liftover/{params.refAssemblyVersion}
