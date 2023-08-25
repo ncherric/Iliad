@@ -1,4 +1,4 @@
-NAMES=config['Liftover']['filename']
+NAMES=config['LiftoverSub']['filename']
 
 # remove chr string 
 # awk '{ gsub(/chr/,"", $1); print }' OFS="\t" /homer/herrick/EUR-face-ancestry/2022/2-reference-IDs/data/13-Last-overlap-EUR1kgenhgdp.vcf > /homer/herrick/EUR-face-ancestry/2022/2-reference-IDs/data/15-Last-overlap-EUR1kgenhgdp-noChrString.vcf
