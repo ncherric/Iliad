@@ -115,3 +115,13 @@ You can delete the contents of ``./Iliad/workflow/cram_Snakefile`` and copy/past
 Model organism genome processing
 ================================
 
+Iliad has been developed, tested, applied with human genomic data. 
+However, the bioinformatic tools employed in these workflows can be translated to model organisms. Including other organisms (i.e., mice, flies, and bacteria) to the 
+functionality of this workflow toolkit is underway, but the code can be manually adapted to your liking in the meantime. Here is the suggested adaptations:
+
+1. Follow the instructions above for variant discovery. 
+2. Change the ``CHROMS`` variable in ``./Iliad/workflow/common.smk`` on lines 26-27 to your appropriate organism.
+3. Edit the ``./Iliad/config/config.yaml`` file variable ``AutoRetrieveReference: true`` to ``AutoRetrieveReference:`` AND ``IhaveReference:`` to ``IhaveReference: True``. Lines 65 and 70.
+4. Add the file path to your reference genome on line 76. ``filePath: ./Iliad/resources/NEW-REFERENCE-GENOME-HERE.fa`` 
+
+If you have already edited the ``config.yaml`` file previously with ``auto_config.py``, these line numbers provided above will be found in ``./Iliad/config/config-commented.yaml``.
