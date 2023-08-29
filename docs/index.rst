@@ -125,6 +125,7 @@ Iliad Workflow Schematics
 
    projectinfo/citing
    projectinfo/more_resources
+   projectinfo/comingsoon
    projectinfo/container_images
    projectinfo/faq
    projectinfo/contributing
