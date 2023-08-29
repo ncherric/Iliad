@@ -36,6 +36,7 @@ See the code blocks and images below to manually perform this.
 Raw sequence reads - file found in ``./Iliad/workflow/Snakefile``
 
 You can delete the contents of ``./Iliad/workflow/Snakefile`` and copy/paste below to replace it:
+
 .. code-block:: console
 
     singularity: "library://ncherric/iliad/igdp-container:v1.16"
@@ -81,6 +82,7 @@ You can delete the contents of ``./Iliad/workflow/Snakefile`` and copy/paste bel
 CRAM stored sequence reads - file found in ``./Iliad/workflow/cram_Snakefile``
 
 You can delete the contents of ``./Iliad/workflow/cram_Snakefile`` and copy/paste below to replace it:
+
 .. code-block:: console
 
     singularity: "library://ncherric/iliad/igdp-container:v1.16"
