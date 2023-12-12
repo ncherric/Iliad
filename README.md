@@ -31,6 +31,9 @@ Iliad is a suite of Snakemake workflows for genomic data processing. The modular
 
 Please visit our documentation hosted on Read The Docs: https://iliad.readthedocs.io/
 
+If you use this workflow in your publication, please cite the corresponding article:
+Herrick, N., Walsh, S. ILIAD: a suite of automated Snakemake workflows for processing genomic data for downstream applications. BMC Bioinformatics 24, 424 (2023). https://doi.org/10.1186/s12859-023-05548-x
+
 ## Intro Page
 
 ILIAD 
@@ -63,7 +66,9 @@ What Iliad will do:
 
 ## Getting started
 
-* Please read our paper for a full understanding of how Iliad can best serve you and your genetic data processing road blocks: 
+* Please read our paper for a full understanding of how Iliad can best serve you and your genetic data processing road blocks:
+
+Herrick, N., Walsh, S. ILIAD: a suite of automated Snakemake workflows for processing genomic data for downstream applications. BMC Bioinformatics 24, 424 (2023). https://doi.org/10.1186/s12859-023-05548-x
 
 * Quickly learn how to install Iliad - visit the Installation page at  https://iliad.readthedocs.io/
 
